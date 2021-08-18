@@ -15,11 +15,17 @@ module.exports = (sequelize, DataTypes) => {
                 foreignKey: 'workId'
             })
 
-         Work.belongsTo(models.Author, {
-            foreignKey: 'authorId',
-            foreignKeyConstraint: true,
-            onDelete: 'CASCADE'
-          })
+            Work.belongsTo(models.Author, {
+                foreignKey: 'authorId',
+                foreignKeyConstraint: true,
+                onDelete: 'CASCADE'
+            })
+
+            Work.belongsToMany(Subject, {
+                as: "Work",
+                through: "subjectWork",
+                foreignKey: "workId"
+            });
         }
     };
     Work.init({
