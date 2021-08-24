@@ -1,7 +1,5 @@
 'use strict';
-const {
-    Model
-} = require('sequelize');
+const {Model} = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
     class Work extends Model {
         /**
@@ -13,21 +11,28 @@ module.exports = (sequelize, DataTypes) => {
             // define association here
             Work.hasMany(models.Occurrence, {
                 foreignKey: 'workId'
-            })
+            });
 
             Work.belongsTo(models.Author, {
                 foreignKey: 'authorId',
                 foreignKeyConstraint: true,
                 onDelete: 'CASCADE'
-            })
+            });
 
             Work.belongsToMany(Subject, {
                 as: "Work",
                 through: "subjectWork",
                 foreignKey: "workId"
             });
+
+            Work.belongsToMany(Genre, {
+                as: "Work",
+                through: "genreWork",
+                foreignKey: "workId"
+            });
         }
     };
+
     Work.init({
         title: DataTypes.STRING,
         ageOfPublication: DataTypes.INTEGER,

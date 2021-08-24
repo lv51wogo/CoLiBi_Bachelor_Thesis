@@ -12,16 +12,28 @@ module.exports = (sequelize, DataTypes) => {
         static associate(models) {
             Author.hasMany(models.Work, {
                 foreignKey: 'authorId'
-            })
+            });
+
             Author.belongsToMany(Subject, {
                 as: "Author",
                 through: "subjectAuthor",
                 foreignKey: "authorId"
             });
+            Author.belongsToMany(Genre, {
+                as: "Author",
+                through: "genreAuthor",
+                foreignKey: "authorId"
+            });
+
+            Author.belongsToMany(Occupation, {
+                as: "Author",
+                through: "occupationAuthor",
+                foreignKey: "authorId"
+            });
         }
     };
     Author.init({
-        author: DataTypes.STRING,
+        author: DataTypes.STRING, // unique enough to use das PK?
         forename: DataTypes.STRING,
         surname: DataTypes.STRING,
         birthDate: DataTypes.DATE,
