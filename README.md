@@ -1,13 +1,13 @@
 # CoLiBi_Bachelor_Thesis
 This is a repo for my bachelor thesis project 
 
-#Project Setup
+# Project Setup
 Make sure node.js is installed on your device
 
 run:  -npm install  to initialize all dependencies 
 
 
-##Database and Database-migration 
+## Database and Database-migration 
 This projects runs on a SQLite database managed with the Sequelize CLI
 
 To migrate the database run: -npx sequelize-cli db:migrate
