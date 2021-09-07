@@ -1,0 +1,9 @@
+
+h1 {
+  color: var(--primary-font-color);
+  font-family: var(--main-headline-font);
+  font-size: 200%;
+}
+.heading {
+  text-align: center;
+}

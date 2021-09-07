@@ -1,1 +1,9 @@
-/* You can add global styles to this file, and also import other style files */
+
+:root {
+  --background-color: #fffaf0;
+  --primary-font-color: rgb(41, 128, 12);
+  --secondary-font-color: rgb(60,128,12);
+  --text-color: rgb(33,31,33);
+  --main-headline-font: 'Noto Serif JP', serif;
+  --basic-text-font: 'Roboto', sans-serif;
+}
