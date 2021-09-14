@@ -33,5 +33,5 @@ Object.keys(db).forEach(modelName => {
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
-
+db.genre = require("./genre")(sequelize, Sequelize);
 module.exports = db;

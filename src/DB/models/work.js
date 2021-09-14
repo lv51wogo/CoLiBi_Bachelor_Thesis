@@ -19,13 +19,13 @@ module.exports = (sequelize, DataTypes) => {
                 onDelete: 'CASCADE'
             });
 
-            Work.belongsToMany(Subject, {
-                as: "Work",
+            Work.belongsToMany(models.Subject, {
+                as: "Works",
                 through: "subjectWork",
                 foreignKey: "workId"
             });
 
-            Work.belongsToMany(Genre, {
+            Work.belongsToMany(models.Genre, {
                 as: "Work",
                 through: "genreWork",
                 foreignKey: "workId"
