@@ -2,7 +2,7 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('Subjects', {
-      id: {
+      subjectId: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.STRING

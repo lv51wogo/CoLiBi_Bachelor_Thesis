@@ -42,7 +42,6 @@ module.exports = (sequelize, DataTypes) => {
         region: DataTypes.STRING,
         originalLanguage: DataTypes.STRING,
         literatureForm: DataTypes.STRING,
-        genre: DataTypes.STRING, // Array workaround or Postgress?
         originCountry: DataTypes.STRING,
         downloads: DataTypes.INTEGER,
         subjects: DataTypes.STRING, //array

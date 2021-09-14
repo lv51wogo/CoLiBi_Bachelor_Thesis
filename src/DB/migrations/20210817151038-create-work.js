@@ -41,9 +41,6 @@ module.exports = {
             literatureForm: {
                 type: Sequelize.STRING
             },
-            genre: {
-                type: Sequelize.STRING
-            },
             originCountry: {
                 type: Sequelize.STRING
             },

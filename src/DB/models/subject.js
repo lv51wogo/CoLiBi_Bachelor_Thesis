@@ -23,8 +23,8 @@ module.exports = (sequelize, DataTypes) => {
         }
     };
     Subject.init({
-        subjectsId: {
-            type: DataTypes.INTEGER,
+        subjectId: {
+            type: DataTypes.STRING,
             primaryKey: true,
         },
     }, {
