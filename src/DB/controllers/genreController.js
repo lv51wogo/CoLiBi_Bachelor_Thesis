@@ -21,14 +21,13 @@ exports.findAll = (req, res) => {
 // Find a single Genre with an id
 exports.findOne = (req, res) => {
     const genreId = req.params.genreId;
-
     Genre.findByPk(genreId)
         .then(data => {
             res.send(data);
         })
         .catch(err => {
             res.status(500).send({
-                message: "Error retrieving Tutorial with id=" + id
+                message: "Error retrieving Tutorial with id=" + genreId
             });
         });
 };
