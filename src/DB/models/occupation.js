@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   Occupation.init({
     occupationId: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       primaryKey: true,
     },
   }, {

@@ -4,7 +4,7 @@ const Op = db.Sequelize.Op;
 
 exports.findAll = (req, res) => {
     const authorId = req.query.id;
-    let condition = authorId ? {id: {[Op.like]: `%${authorId}`}} : null;
+    let condition = authorId ? {id: {[Op.like]: `%${authorId}%`}} : null;
     Author.findAll({where: condition})
         .then(data => {
             res.send(data)

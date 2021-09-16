@@ -4,7 +4,7 @@ const Op = db.Sequelize.Op;
 
 exports.findAll = (req, res) => {
     const occupationId = req.query.occupationId;
-    let condition = occupationId ? {occupationId: {[Op.like]: `%${occupationId}`}} : null;
+    let condition = occupationId ? {occupationId: {[Op.like]: `%${occupationId}%`}} : null;
     Occupation.findAll({where: condition})
         .then(data => {
             res.send(data)

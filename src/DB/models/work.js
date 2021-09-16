@@ -34,6 +34,10 @@ module.exports = (sequelize, DataTypes) => {
     };
 
     Work.init({
+        id: {
+            type: DataTypes.STRING,
+            primaryKey: true
+        },
         title: DataTypes.STRING,
         ageOfPublication: DataTypes.INTEGER,
         year: DataTypes.DATE,

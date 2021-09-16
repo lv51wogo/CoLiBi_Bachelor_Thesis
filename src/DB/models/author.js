@@ -33,6 +33,10 @@ module.exports = (sequelize, DataTypes) => {
         }
     };
     Author.init({
+        id: {
+            type: DataTypes.STRING,
+            primaryKey: true
+        },
         author: DataTypes.STRING, // unique enough to use das PK?
         forename: DataTypes.STRING,
         surname: DataTypes.STRING,
