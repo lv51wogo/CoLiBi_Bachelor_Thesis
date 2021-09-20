@@ -10,9 +10,9 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      OccupationAuthor.associate = (models) => {
-        OccupationAuthor.belongsTo(models.Author, { foreignKey: 'authorId', targetKey: 'authorId', as: 'Author' });
-        OccupationAuthor.belongsTo(models.Genre, { foreignKey: 'occupationId', targetKey: 'occupationId', as: 'Occupation' });
+        occupationAuthor.associate = (models) => {
+        occupationAuthor.belongsTo(models.Author, { foreignKey: 'authorId', targetKey: 'authorId', as: 'Author' });
+        occupationAuthor.belongsTo(models.Genre, { foreignKey: 'occupationId', targetKey: 'occupationId', as: 'Occupation' });
       }
     }
   };

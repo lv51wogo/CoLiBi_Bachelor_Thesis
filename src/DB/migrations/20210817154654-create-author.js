@@ -17,10 +17,10 @@ module.exports = {
                 type: Sequelize.STRING
             },
             birthDate: {
-                type: Sequelize.DATE
+                type: Sequelize.STRING
             },
             deathDate: {
-                type: Sequelize.DATE
+                type: Sequelize.STRING
             },
             gender: {
                 type: Sequelize.STRING

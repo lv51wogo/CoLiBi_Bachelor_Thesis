@@ -14,30 +14,34 @@ module.exports = (sequelize, DataTypes) => {
                 foreignKey: 'authorId'
             });
 
-            Author.belongsToMany(Subject, {
-                as: "Author",
+            Author.belongsToMany(models.Subject, {
+                as: "Auth",
                 through: "subjectAuthor",
                 foreignKey: "authorId"
             });
-            Author.belongsToMany(Genre, {
+            Author.belongsToMany(models.Genre, {
                 as: "Author",
                 through: "genreAuthor",
                 foreignKey: "authorId"
             });
 
-            Author.belongsToMany(Occupation, {
-                as: "Author",
+            Author.belongsToMany(models.Occupation, {
+                as: "Authors",
                 through: "occupationAuthor",
                 foreignKey: "authorId"
             });
         }
     };
     Author.init({
+        id: {
+            type: DataTypes.STRING,
+            primaryKey: true
+        },
         author: DataTypes.STRING, // unique enough to use das PK?
         forename: DataTypes.STRING,
         surname: DataTypes.STRING,
-        birthDate: DataTypes.DATE,
-        deathDate: DataTypes.DATE,
+        birthDate: DataTypes.STRING,
+        deathDate: DataTypes.STRING,
         gender: DataTypes.STRING,
         workStart: DataTypes.STRING,
         religion: DataTypes.STRING,

@@ -20,5 +20,6 @@ To revert all migrations run:
     for all migrations: npx sequelize-cli db:migrate:undo:all
 
 Seeding:
+To generate a new Seed use: npx sequelize-cli seed:generate --name 'modelName'
 
 To seed the database with date run: npx sequelize-cli db:seed:all

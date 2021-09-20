@@ -22,7 +22,7 @@ module.exports = {
        primaryKey:false,
        references: {
           model: "Subjects",
-          key: "id",
+          key: "subjectId",
        } ,
         allowNull:false,
         onDelete: 'cascade',

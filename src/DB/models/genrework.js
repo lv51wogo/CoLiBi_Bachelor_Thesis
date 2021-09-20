@@ -10,9 +10,9 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      GenreWork.associate = (models) => {
-        GenreWork.belongsTo(models.Work, { foreignKey: 'workId', targetKey: 'workId', as: 'Work' });
-        GenreWork.belongsTo(models.Genre, { foreignKey: 'genreId', targetKey: 'genreId', as: 'Subject' });
+        genreWork.associate = (models) => {
+        genreWork.belongsTo(models.Work, { foreignKey: 'workId', targetKey: 'workId', as: 'Work' });
+        genreWork.belongsTo(models.Genre, { foreignKey: 'genreId', targetKey: 'genreId', as: 'Subject' });
       }
     }
   };

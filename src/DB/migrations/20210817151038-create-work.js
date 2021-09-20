@@ -24,7 +24,7 @@ module.exports = {
                 type: Sequelize.INTEGER
             },
             year: {
-                type: Sequelize.DATE
+                type: Sequelize.STRING
             },
             join: {
                 type: Sequelize.INTEGER
@@ -39,9 +39,6 @@ module.exports = {
                 type: Sequelize.STRING,
             },
             literatureForm: {
-                type: Sequelize.STRING
-            },
-            genre: {
                 type: Sequelize.STRING
             },
             originCountry: {

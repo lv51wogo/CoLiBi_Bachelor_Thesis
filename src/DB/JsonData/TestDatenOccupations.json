@@ -1,0 +1,1145 @@
+[
+ {
+  "occupationId": "abolitionist"
+ },
+ {
+  "occupationId": "academic"
+ },
+ {
+  "occupationId": "academic lecturer"
+ },
+ {
+  "occupationId": "activist"
+ },
+ {
+  "occupationId": "actor"
+ },
+ {
+  "occupationId": "adventurer"
+ },
+ {
+  "occupationId": "agriculturalist"
+ },
+ {
+  "occupationId": "agronomist"
+ },
+ {
+  "occupationId": "aircraft pilot"
+ },
+ {
+  "occupationId": "amanuensis"
+ },
+ {
+  "occupationId": "American football player"
+ },
+ {
+  "occupationId": "anarchist"
+ },
+ {
+  "occupationId": "Anglican priest"
+ },
+ {
+  "occupationId": "anthologist"
+ },
+ {
+  "occupationId": "anthropologist"
+ },
+ {
+  "occupationId": "antiquarian"
+ },
+ {
+  "occupationId": "aphorist"
+ },
+ {
+  "occupationId": "archaeologist"
+ },
+ {
+  "occupationId": "architect"
+ },
+ {
+  "occupationId": "archivist"
+ },
+ {
+  "occupationId": "art collector"
+ },
+ {
+  "occupationId": "art critic"
+ },
+ {
+  "occupationId": "art historian"
+ },
+ {
+  "occupationId": "art theorist"
+ },
+ {
+  "occupationId": "artisan"
+ },
+ {
+  "occupationId": "artist"
+ },
+ {
+  "occupationId": "association football player"
+ },
+ {
+  "occupationId": "assyriologist"
+ },
+ {
+  "occupationId": "astrologer"
+ },
+ {
+  "occupationId": "astronomer"
+ },
+ {
+  "occupationId": "athletics competitor"
+ },
+ {
+  "occupationId": "author"
+ },
+ {
+  "occupationId": "autobiographer"
+ },
+ {
+  "occupationId": "baker"
+ },
+ {
+  "occupationId": "bandleader"
+ },
+ {
+  "occupationId": "banker"
+ },
+ {
+  "occupationId": "Baron"
+ },
+ {
+  "occupationId": "barrister"
+ },
+ {
+  "occupationId": "barrister, writer"
+ },
+ {
+  "occupationId": "baseball player"
+ },
+ {
+  "occupationId": "bibliographer"
+ },
+ {
+  "occupationId": "biochemist"
+ },
+ {
+  "occupationId": "biographer"
+ },
+ {
+  "occupationId": "biologist"
+ },
+ {
+  "occupationId": "body-building instructor"
+ },
+ {
+  "occupationId": "book collector"
+ },
+ {
+  "occupationId": "bookseller"
+ },
+ {
+  "occupationId": "botanist"
+ },
+ {
+  "occupationId": "bryologist"
+ },
+ {
+  "occupationId": "business broker"
+ },
+ {
+  "occupationId": "businessperson"
+ },
+ {
+  "occupationId": "Canadian football player"
+ },
+ {
+  "occupationId": "cantatrice"
+ },
+ {
+  "occupationId": "caricaturist"
+ },
+ {
+  "occupationId": "cartographer"
+ },
+ {
+  "occupationId": "cartoonist"
+ },
+ {
+  "occupationId": "Catholic priest"
+ },
+ {
+  "occupationId": "ceramist"
+ },
+ {
+  "occupationId": "chansonnier"
+ },
+ {
+  "occupationId": "chaplain"
+ },
+ {
+  "occupationId": "character actor"
+ },
+ {
+  "occupationId": "chemist"
+ },
+ {
+  "occupationId": "chess composer"
+ },
+ {
+  "occupationId": "chess player"
+ },
+ {
+  "occupationId": "children's writer"
+ },
+ {
+  "occupationId": "church historian"
+ },
+ {
+  "occupationId": "circus performer"
+ },
+ {
+  "occupationId": "civil engineer"
+ },
+ {
+  "occupationId": "civil servant"
+ },
+ {
+  "occupationId": "claims adjuster"
+ },
+ {
+  "occupationId": "classical philologist"
+ },
+ {
+  "occupationId": "classical scholar"
+ },
+ {
+  "occupationId": "clergyman"
+ },
+ {
+  "occupationId": "cleric"
+ },
+ {
+  "occupationId": "clerk"
+ },
+ {
+  "occupationId": "clubwoman"
+ },
+ {
+  "occupationId": "collector"
+ },
+ {
+  "occupationId": "collector of fairy tales"
+ },
+ {
+  "occupationId": "college head"
+ },
+ {
+  "occupationId": "colonial administrator"
+ },
+ {
+  "occupationId": "columnist"
+ },
+ {
+  "occupationId": "comedian"
+ },
+ {
+  "occupationId": "comics artist"
+ },
+ {
+  "occupationId": "communard"
+ },
+ {
+  "occupationId": "composer"
+ },
+ {
+  "occupationId": "computer animator"
+ },
+ {
+  "occupationId": "conductor"
+ },
+ {
+  "occupationId": "contributing editor"
+ },
+ {
+  "occupationId": "correspondent"
+ },
+ {
+  "occupationId": "courtier"
+ },
+ {
+  "occupationId": "cricketer"
+ },
+ {
+  "occupationId": "criminologist"
+ },
+ {
+  "occupationId": "critic"
+ },
+ {
+  "occupationId": "croquet player"
+ },
+ {
+  "occupationId": "curate"
+ },
+ {
+  "occupationId": "curator"
+ },
+ {
+  "occupationId": "dancer"
+ },
+ {
+  "occupationId": "deacon"
+ },
+ {
+  "occupationId": "dentist"
+ },
+ {
+  "occupationId": "detective writer"
+ },
+ {
+  "occupationId": "diarist"
+ },
+ {
+  "occupationId": "diplomat"
+ },
+ {
+  "occupationId": "dramatist"
+ },
+ {
+  "occupationId": "dramaturge"
+ },
+ {
+  "occupationId": "dramaturgy"
+ },
+ {
+  "occupationId": "drawer"
+ },
+ {
+  "occupationId": "economist"
+ },
+ {
+  "occupationId": "editor"
+ },
+ {
+  "occupationId": "editorial cartoonist"
+ },
+ {
+  "occupationId": "editorial columnist"
+ },
+ {
+  "occupationId": "educator"
+ },
+ {
+  "occupationId": "egyptologist"
+ },
+ {
+  "occupationId": "encyclopedist"
+ },
+ {
+  "occupationId": "Encyclop�distes"
+ },
+ {
+  "occupationId": "engineer"
+ },
+ {
+  "occupationId": "engraver"
+ },
+ {
+  "occupationId": "entomologist"
+ },
+ {
+  "occupationId": "entrepreneur"
+ },
+ {
+  "occupationId": "environmentalist"
+ },
+ {
+  "occupationId": "epidemiologist"
+ },
+ {
+  "occupationId": "erudite"
+ },
+ {
+  "occupationId": "Esperantist"
+ },
+ {
+  "occupationId": "essayist"
+ },
+ {
+  "occupationId": "etcher"
+ },
+ {
+  "occupationId": "ethnologist"
+ },
+ {
+  "occupationId": "Evangelist"
+ },
+ {
+  "occupationId": "excavator"
+ },
+ {
+  "occupationId": "explorer"
+ },
+ {
+  "occupationId": "fabulist"
+ },
+ {
+  "occupationId": "feminist"
+ },
+ {
+  "occupationId": "fencer"
+ },
+ {
+  "occupationId": "film actor"
+ },
+ {
+  "occupationId": "film critic"
+ },
+ {
+  "occupationId": "film director"
+ },
+ {
+  "occupationId": "film editor"
+ },
+ {
+  "occupationId": "film producer"
+ },
+ {
+  "occupationId": "film score composer"
+ },
+ {
+  "occupationId": "folklorist"
+ },
+ {
+  "occupationId": "forester"
+ },
+ {
+  "occupationId": "French moralist"
+ },
+ {
+  "occupationId": "full professor"
+ },
+ {
+  "occupationId": "genealogist"
+ },
+ {
+  "occupationId": "geneticist"
+ },
+ {
+  "occupationId": "geographer"
+ },
+ {
+  "occupationId": "geologist"
+ },
+ {
+  "occupationId": "geopolitician"
+ },
+ {
+  "occupationId": "Germanist"
+ },
+ {
+  "occupationId": "ghostwriter"
+ },
+ {
+  "occupationId": "glaciologist"
+ },
+ {
+  "occupationId": "golfer"
+ },
+ {
+  "occupationId": "governess"
+ },
+ {
+  "occupationId": "graphic artist"
+ },
+ {
+  "occupationId": "graphic designer"
+ },
+ {
+  "occupationId": "hagiographer"
+ },
+ {
+  "occupationId": "head coach"
+ },
+ {
+  "occupationId": "head teacher"
+ },
+ {
+  "occupationId": "historian"
+ },
+ {
+  "occupationId": "historian of classical antiquity"
+ },
+ {
+  "occupationId": "historian of the modern age"
+ },
+ {
+  "occupationId": "Hofmeister"
+ },
+ {
+  "occupationId": "homeopath"
+ },
+ {
+  "occupationId": "horticulturist"
+ },
+ {
+  "occupationId": "human rights activist"
+ },
+ {
+  "occupationId": "humorist"
+ },
+ {
+  "occupationId": "hymnwriter"
+ },
+ {
+  "occupationId": "ichthyologist"
+ },
+ {
+  "occupationId": "illustrator"
+ },
+ {
+  "occupationId": "impresario"
+ },
+ {
+  "occupationId": "industrial designer"
+ },
+ {
+  "occupationId": "interpreter"
+ },
+ {
+  "occupationId": "inventor"
+ },
+ {
+  "occupationId": "investigator"
+ },
+ {
+  "occupationId": "Islamicist"
+ },
+ {
+  "occupationId": "jockey"
+ },
+ {
+  "occupationId": "journalist"
+ },
+ {
+  "occupationId": "judge"
+ },
+ {
+  "occupationId": "jurist"
+ },
+ {
+  "occupationId": "lacrosse player"
+ },
+ {
+  "occupationId": "landscape painter"
+ },
+ {
+  "occupationId": "law librarian"
+ },
+ {
+  "occupationId": "lawyer"
+ },
+ {
+  "occupationId": "lecturer"
+ },
+ {
+  "occupationId": "legal historian"
+ },
+ {
+  "occupationId": "legal scholar"
+ },
+ {
+  "occupationId": "lexicographer"
+ },
+ {
+  "occupationId": "librarian"
+ },
+ {
+  "occupationId": "librettist"
+ },
+ {
+  "occupationId": "linguist"
+ },
+ {
+  "occupationId": "literary"
+ },
+ {
+  "occupationId": "literary agent"
+ },
+ {
+  "occupationId": "literary critic"
+ },
+ {
+  "occupationId": "literary historian"
+ },
+ {
+  "occupationId": "literary scholar"
+ },
+ {
+  "occupationId": "lobbyist"
+ },
+ {
+  "occupationId": "logician"
+ },
+ {
+  "occupationId": "lyricist"
+ },
+ {
+  "occupationId": "malariologist"
+ },
+ {
+  "occupationId": "marine biologist"
+ },
+ {
+  "occupationId": "mathematician"
+ },
+ {
+  "occupationId": "medallist"
+ },
+ {
+  "occupationId": "medievalist"
+ },
+ {
+  "occupationId": "memoirist"
+ },
+ {
+  "occupationId": "merchant"
+ },
+ {
+  "occupationId": "meteorologist"
+ },
+ {
+  "occupationId": "microbiologist"
+ },
+ {
+  "occupationId": "middle-distance runner"
+ },
+ {
+  "occupationId": "midwife"
+ },
+ {
+  "occupationId": "military historian"
+ },
+ {
+  "occupationId": "military officer"
+ },
+ {
+  "occupationId": "military personnel"
+ },
+ {
+  "occupationId": "military physician"
+ },
+ {
+  "occupationId": "mime artist"
+ },
+ {
+  "occupationId": "mineralogist"
+ },
+ {
+  "occupationId": "mining engineer"
+ },
+ {
+  "occupationId": "minister"
+ },
+ {
+  "occupationId": "missionary"
+ },
+ {
+  "occupationId": "monk"
+ },
+ {
+  "occupationId": "mountaineer"
+ },
+ {
+  "occupationId": "movie scenarist"
+ },
+ {
+  "occupationId": "music critic"
+ },
+ {
+  "occupationId": "music journalist"
+ },
+ {
+  "occupationId": "music pedagogue"
+ },
+ {
+  "occupationId": "musician"
+ },
+ {
+  "occupationId": "musicologist"
+ },
+ {
+  "occupationId": "mycologist"
+ },
+ {
+  "occupationId": "mythographer"
+ },
+ {
+  "occupationId": "mythologist"
+ },
+ {
+  "occupationId": "naturalist"
+ },
+ {
+  "occupationId": "navigator"
+ },
+ {
+  "occupationId": "navy officer"
+ },
+ {
+  "occupationId": "neurologist"
+ },
+ {
+  "occupationId": "neuroscientist"
+ },
+ {
+  "occupationId": "newspaper editor"
+ },
+ {
+  "occupationId": "non-fiction writer"
+ },
+ {
+  "occupationId": "novelist"
+ },
+ {
+  "occupationId": "nun"
+ },
+ {
+  "occupationId": "nurse"
+ },
+ {
+  "occupationId": "occultist"
+ },
+ {
+  "occupationId": "Officer of the French Navy"
+ },
+ {
+  "occupationId": "ombudsman"
+ },
+ {
+  "occupationId": "opera singer"
+ },
+ {
+  "occupationId": "ophthalmologist"
+ },
+ {
+  "occupationId": "opinion journalism"
+ },
+ {
+  "occupationId": "opinion journalist"
+ },
+ {
+  "occupationId": "orator"
+ },
+ {
+  "occupationId": "organist"
+ },
+ {
+  "occupationId": "organizational founder"
+ },
+ {
+  "occupationId": "orientalist"
+ },
+ {
+  "occupationId": "ornithologist"
+ },
+ {
+  "occupationId": "pacifist"
+ },
+ {
+  "occupationId": "painter"
+ },
+ {
+  "occupationId": "paleontologist"
+ },
+ {
+  "occupationId": "pamphleteer"
+ },
+ {
+  "occupationId": "pastor"
+ },
+ {
+  "occupationId": "patron"
+ },
+ {
+  "occupationId": "peace activist"
+ },
+ {
+  "occupationId": "pedagogue"
+ },
+ {
+  "occupationId": "performing artist"
+ },
+ {
+  "occupationId": "philanthropist"
+ },
+ {
+  "occupationId": "philologist"
+ },
+ {
+  "occupationId": "philosopher"
+ },
+ {
+  "occupationId": "photographer"
+ },
+ {
+  "occupationId": "photojournalist"
+ },
+ {
+  "occupationId": "physician"
+ },
+ {
+  "occupationId": "physician writer"
+ },
+ {
+  "occupationId": "physicist"
+ },
+ {
+  "occupationId": "pianist"
+ },
+ {
+  "occupationId": "pioneer"
+ },
+ {
+  "occupationId": "playwright"
+ },
+ {
+  "occupationId": "poet"
+ },
+ {
+  "occupationId": "poet lawyer"
+ },
+ {
+  "occupationId": "polar explorer"
+ },
+ {
+  "occupationId": "political activist"
+ },
+ {
+  "occupationId": "political philosopher"
+ },
+ {
+  "occupationId": "politician"
+ },
+ {
+  "occupationId": "polygraph"
+ },
+ {
+  "occupationId": "polymath"
+ },
+ {
+  "occupationId": "postage stamp designer"
+ },
+ {
+  "occupationId": "poster artist"
+ },
+ {
+  "occupationId": "postmaster"
+ },
+ {
+  "occupationId": "potter"
+ },
+ {
+  "occupationId": "presbyter"
+ },
+ {
+  "occupationId": "priest"
+ },
+ {
+  "occupationId": "privateer"
+ },
+ {
+  "occupationId": "producer"
+ },
+ {
+  "occupationId": "professor"
+ },
+ {
+  "occupationId": "propagandist"
+ },
+ {
+  "occupationId": "prosaist"
+ },
+ {
+  "occupationId": "prose"
+ },
+ {
+  "occupationId": "psychiatrist"
+ },
+ {
+  "occupationId": "psychologist"
+ },
+ {
+  "occupationId": "pteridologist"
+ },
+ {
+  "occupationId": "public figure"
+ },
+ {
+  "occupationId": "publicist"
+ },
+ {
+  "occupationId": "publisher"
+ },
+ {
+  "occupationId": "Q2325255"
+ },
+ {
+  "occupationId": "Q35302890"
+ },
+ {
+  "occupationId": "rabbi"
+ },
+ {
+  "occupationId": "radio personality"
+ },
+ {
+  "occupationId": "railroad engineer"
+ },
+ {
+  "occupationId": "rector"
+ },
+ {
+  "occupationId": "religious servant"
+ },
+ {
+  "occupationId": "religious writer"
+ },
+ {
+  "occupationId": "reporter"
+ },
+ {
+  "occupationId": "researcher"
+ },
+ {
+  "occupationId": "resistance fighter"
+ },
+ {
+  "occupationId": "rower"
+ },
+ {
+  "occupationId": "rugby union player"
+ },
+ {
+  "occupationId": "sailor"
+ },
+ {
+  "occupationId": "salesperson"
+ },
+ {
+  "occupationId": "salonni�re"
+ },
+ {
+  "occupationId": "satirist"
+ },
+ {
+  "occupationId": "school teacher"
+ },
+ {
+  "occupationId": "schoolmaster"
+ },
+ {
+  "occupationId": "science fiction writer"
+ },
+ {
+  "occupationId": "science writer"
+ },
+ {
+  "occupationId": "scientific illustrator"
+ },
+ {
+  "occupationId": "scientist"
+ },
+ {
+  "occupationId": "screenwriter"
+ },
+ {
+  "occupationId": "sculptor"
+ },
+ {
+  "occupationId": "secretary"
+ },
+ {
+  "occupationId": "Secretary of Legation"
+ },
+ {
+  "occupationId": "sheep shearer"
+ },
+ {
+  "occupationId": "short story writer"
+ },
+ {
+  "occupationId": "silversmith"
+ },
+ {
+  "occupationId": "singer"
+ },
+ {
+  "occupationId": "singer-lyricist"
+ },
+ {
+  "occupationId": "singer-songwriter"
+ },
+ {
+  "occupationId": "sinologist"
+ },
+ {
+  "occupationId": "social critic"
+ },
+ {
+  "occupationId": "social reformer"
+ },
+ {
+  "occupationId": "social worker"
+ },
+ {
+  "occupationId": "socialite"
+ },
+ {
+  "occupationId": "sociologist"
+ },
+ {
+  "occupationId": "soldier"
+ },
+ {
+  "occupationId": "songwriter"
+ },
+ {
+  "occupationId": "sport cyclist"
+ },
+ {
+  "occupationId": "sport shooter"
+ },
+ {
+  "occupationId": "sportswriter"
+ },
+ {
+  "occupationId": "spy"
+ },
+ {
+  "occupationId": "stage actor"
+ },
+ {
+  "occupationId": "statesperson"
+ },
+ {
+  "occupationId": "statistician"
+ },
+ {
+  "occupationId": "stockbroker"
+ },
+ {
+  "occupationId": "storyteller"
+ },
+ {
+  "occupationId": "Suffragette"
+ },
+ {
+  "occupationId": "suffragist"
+ },
+ {
+  "occupationId": "surgeon"
+ },
+ {
+  "occupationId": "swimmer"
+ },
+ {
+  "occupationId": "Taschenspieler"
+ },
+ {
+  "occupationId": "teacher"
+ },
+ {
+  "occupationId": "technical writer"
+ },
+ {
+  "occupationId": "television actor"
+ },
+ {
+  "occupationId": "television director"
+ },
+ {
+  "occupationId": "television presenter"
+ },
+ {
+  "occupationId": "tennis player"
+ },
+ {
+  "occupationId": "textile designer"
+ },
+ {
+  "occupationId": "theatre critic"
+ },
+ {
+  "occupationId": "theatre director"
+ },
+ {
+  "occupationId": "theatre manager"
+ },
+ {
+  "occupationId": "theatrical producer"
+ },
+ {
+  "occupationId": "theologian"
+ },
+ {
+  "occupationId": "tinsmith"
+ },
+ {
+  "occupationId": "trade unionist"
+ },
+ {
+  "occupationId": "translator"
+ },
+ {
+  "occupationId": "travel writer"
+ },
+ {
+  "occupationId": "traveller"
+ },
+ {
+  "occupationId": "type designer"
+ },
+ {
+  "occupationId": "typesetter"
+ },
+ {
+  "occupationId": "university teacher"
+ },
+ {
+  "occupationId": "veterinarian"
+ },
+ {
+  "occupationId": "vicar"
+ },
+ {
+  "occupationId": "visual artist"
+ },
+ {
+  "occupationId": "voice actor"
+ },
+ {
+  "occupationId": "war correspondent"
+ },
+ {
+  "occupationId": "War poet"
+ },
+ {
+  "occupationId": "water polo player"
+ },
+ {
+  "occupationId": "watercolourist"
+ },
+ {
+  "occupationId": "woman of letters"
+ },
+ {
+  "occupationId": "writer"
+ },
+ {
+  "occupationId": "zoologist"
+ }
+]

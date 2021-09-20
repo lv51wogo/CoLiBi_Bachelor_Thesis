@@ -19,13 +19,13 @@ module.exports = (sequelize, DataTypes) => {
                 onDelete: 'CASCADE'
             });
 
-            Work.belongsToMany(Subject, {
-                as: "Work",
+            Work.belongsToMany(models.Subject, {
+                as: "Works",
                 through: "subjectWork",
                 foreignKey: "workId"
             });
 
-            Work.belongsToMany(Genre, {
+            Work.belongsToMany(models.Genre, {
                 as: "Work",
                 through: "genreWork",
                 foreignKey: "workId"
@@ -34,15 +34,18 @@ module.exports = (sequelize, DataTypes) => {
     };
 
     Work.init({
+        id: {
+            type: DataTypes.STRING,
+            primaryKey: true
+        },
         title: DataTypes.STRING,
         ageOfPublication: DataTypes.INTEGER,
-        year: DataTypes.DATE,
+        year: DataTypes.STRING,
         join: DataTypes.INTEGER,
         split: DataTypes.INTEGER,
         region: DataTypes.STRING,
         originalLanguage: DataTypes.STRING,
         literatureForm: DataTypes.STRING,
-        genre: DataTypes.STRING, // Array workaround or Postgress?
         originCountry: DataTypes.STRING,
         downloads: DataTypes.INTEGER,
         subjects: DataTypes.STRING, //array
