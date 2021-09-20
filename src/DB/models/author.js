@@ -40,8 +40,8 @@ module.exports = (sequelize, DataTypes) => {
         author: DataTypes.STRING, // unique enough to use das PK?
         forename: DataTypes.STRING,
         surname: DataTypes.STRING,
-        birthDate: DataTypes.DATE,
-        deathDate: DataTypes.DATE,
+        birthDate: DataTypes.STRING,
+        deathDate: DataTypes.STRING,
         gender: DataTypes.STRING,
         workStart: DataTypes.STRING,
         religion: DataTypes.STRING,

@@ -40,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         title: DataTypes.STRING,
         ageOfPublication: DataTypes.INTEGER,
-        year: DataTypes.DATE,
+        year: DataTypes.STRING,
         join: DataTypes.INTEGER,
         split: DataTypes.INTEGER,
         region: DataTypes.STRING,

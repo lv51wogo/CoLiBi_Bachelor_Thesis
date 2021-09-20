@@ -1,6 +1,7 @@
 {
   "development": {
     "dialect": "sqlite",
+    "_comment": "storage,: ./database.sqlite3-use this for migration ",
     "storage": "./src/DB/database.sqlite3"
   },
   "test": {
@@ -9,6 +10,6 @@
   },
   "production": {
     "dialect": "sqlite",
-    "storage": "./src/DB/database.sqlite3/database.sqlite3"
+    "storage": "./src/DB/database.sqlite3"
   }
 }

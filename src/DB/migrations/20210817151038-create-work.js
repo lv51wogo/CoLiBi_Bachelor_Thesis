@@ -24,7 +24,7 @@ module.exports = {
                 type: Sequelize.INTEGER
             },
             year: {
-                type: Sequelize.DATE
+                type: Sequelize.STRING
             },
             join: {
                 type: Sequelize.INTEGER
