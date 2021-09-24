@@ -21,8 +21,8 @@ export class SearchService {
     }
     return this.http.get<any[]>(`${this.searchUrl}/?name=${term}`).pipe(
       tap(x => x.length ?
-        this.log(`found heroes matching "${term}"`) :
-        this.log(`no heroes matching "${term}"`)),
+        this.log(`found terms matching "${term}"`) :
+        this.log(`no terms matching "${term}"`)),
       catchError(this.handleError<any[]>('searchTerm', []))
     );
   }
