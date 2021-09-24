@@ -1,0 +1,11 @@
+<div class="wrap">
+  <div class="search">
+    <input type="text" #searchBox id="search-box" (input)="search(searchBox.value)"class="searchTerm" placeholder="What are you looking for?">
+    <button type="submit" class="searchButton"> search</button>
+  </div>
+  <ul class="search-result">
+    <li *ngFor="let term of terms$ | async" >
+      {{term.id}},{{term.name}}
+    </li>
+  </ul>
+</div>
