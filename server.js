@@ -26,7 +26,7 @@ require("./src/DB/routes/author.routes.js")(app);
 require("./src/DB/routes/subject.routes.js")(app);
 require("./src/DB/routes/occupation.routes.js")(app);
 require("./src/DB/routes/work.routes.js")(app);
-
+require("./src/DB/routes/search.routes.js")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;

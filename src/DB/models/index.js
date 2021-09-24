@@ -38,4 +38,5 @@ db.author = require("./author")(sequelize, Sequelize);
 db.subject = require("./subject")(sequelize,Sequelize);
 db.occupation = require("./occupation")(sequelize,Sequelize);
 db.work = require("./work")(sequelize,Sequelize);
+db.occurrance = require("./occurrence")(sequelize,Sequelize);
 module.exports = db;
