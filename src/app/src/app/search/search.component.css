@@ -1,0 +1,44 @@
+body{
+  background: var(--background-color);
+  font-family: var(--basic-text-font)
+}
+
+.search {
+  width: 100%;
+  position: relative;
+  display: flex;
+  left: 100px;
+  top: -85px;
+}
+
+.searchTerm {
+  width: 50%;
+  border: 3px solid var(--secondary-font-color);
+  border-right: none;
+  padding: 5px;
+  height: 20px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: var(--text-color);
+}
+
+.searchButton {
+  width: 75px;
+  height: 36px;
+  border: 3px solid var(--secondary-font-color);
+  text-align: center;
+  color: var(--text-color);
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
+  background-color: var(--background-color);
+}
+
+/*Resize the wrap to see the search bar change!*/
+.wrap{
+  width: 30%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
