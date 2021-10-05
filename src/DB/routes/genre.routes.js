@@ -3,10 +3,8 @@ module.exports = app => {
 
     let router = require("express").Router();
 
-    // Retrieve all Tutorials
     router.get("/", genres.findAll);
 
-    // Retrieve a single Tutorial with id
     router.get("/:genreId", genres.findOne);
 
 

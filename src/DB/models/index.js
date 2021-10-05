@@ -25,12 +25,6 @@ fs
     db[model.name] = model;
   });
 
-Object.keys(db).forEach(modelName => {
-  if (db[modelName].associate) {
-    db[modelName].associate(db);
-  }
-});
-
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 db.genre = require("./genre")(sequelize, Sequelize);
@@ -38,4 +32,12 @@ db.author = require("./author")(sequelize, Sequelize);
 db.subject = require("./subject")(sequelize,Sequelize);
 db.occupation = require("./occupation")(sequelize,Sequelize);
 db.work = require("./work")(sequelize,Sequelize);
+db.occurrance = require("./occurrence")(sequelize,Sequelize);
+
+Object.keys(db).forEach(modelName => {
+  if (db[modelName].associate) {
+    db[modelName].associate(db);
+  }
+});
+
 module.exports = db;

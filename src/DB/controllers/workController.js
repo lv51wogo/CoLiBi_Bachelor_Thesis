@@ -1,5 +1,6 @@
 const db = require("../models");
 const Work = db.work;
+const Occurrence = db.occurrance
 const Op = db.Sequelize.Op;
 
 exports.findAll = (req, res) => {
@@ -28,4 +29,14 @@ exports.findOne = (req, res) => {
                 message: "Error retrieving Work with id=" + id
             });
         });
+};
+
+exports.findByOccurrence = (req, res) => {
+    const term = req.params.term;
+
+    Work.findAll({include: [{ model: Occurrence, where: { term : term}}]
+
+    }).then(data => {
+        res.send(data)
+    })
 };
