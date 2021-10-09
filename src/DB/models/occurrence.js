@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       primaryKey: true,
     },
-    name: DataTypes.STRING,
+    term: DataTypes.STRING,
     scientificName: DataTypes.STRING,
     wordsFrame: DataTypes.INTEGER,
     sentence: DataTypes.STRING

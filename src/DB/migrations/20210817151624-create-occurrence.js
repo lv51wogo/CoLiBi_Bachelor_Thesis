@@ -17,7 +17,7 @@ module.exports = {
                     as: 'workId'
                 }
             },
-            name: {
+            term: {
                 type: Sequelize.STRING
             },
             scientificName: {
