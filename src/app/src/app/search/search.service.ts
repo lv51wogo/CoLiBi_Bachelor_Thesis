@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {MessageService} from "../message.service";
-import {Observable, of} from "rxjs";
-import {catchError, tap} from "rxjs/operators";
+import {Observable, of, throwError} from "rxjs";
+import {catchError, map, tap} from "rxjs/operators";
+import {Search} from "../shared/models/search.model";
 
 @Injectable({
   providedIn: 'root'
 })
 export class SearchService {
-  private searchUrl ='api/taxa'
+  private searchUrl ='http://localhost:8080/api/search'
   constructor( private http: HttpClient,
               private messageService: MessageService) { }
 
@@ -19,11 +20,12 @@ export class SearchService {
       // if not search term, return empty taxa array.
       return of([]);
     }
-    return this.http.get<any[]>(`${this.searchUrl}/?name=${term}`).pipe(
-      tap(x => x.length ?
-        this.log(`found terms matching "${term}"`) :
-        this.log(`no terms matching "${term}"`)),
-      catchError(this.handleError<any[]>('searchTerm', []))
+    return this.http.get<any[]>(`${this.searchUrl}/${term}`).pipe(
+      map((data: Search[])=>{
+        return data;
+      }), catchError (err => {
+        return throwError('error occurred with fetching data')
+      })
     );
   }
 
