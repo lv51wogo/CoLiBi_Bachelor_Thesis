@@ -4,27 +4,17 @@
   display: flex;
   left: 0px;
   top: 64px;
+  border: 2px solid var(--text-color);
+  border-radius: 8px;
 }
-
-li {
-  position: relative;
-  left: 0;
-  border-bottom: 1px solid black; ;
-  padding: .1em 0;
-  height: 1.6em;
-  border-radius: 1px;
-  list-style-type: none;
+.list-group{
+  width: 100%;
+  height: auto;
+  max-height: 300px;
+  margin-right: 4px;
+  overflow:scroll;
+  overflow-x: hidden;
 }
- ul {
-  position: relative;
-  border: 2px solid black;
-  padding-right: 0px;
-  padding-left: 0px;
-  border-radius: 5px;
-  top: -40px;
-  width: 85%;
-}
-
 .author {
   font-family: var( --basic-text-font);
   text-align: center;
