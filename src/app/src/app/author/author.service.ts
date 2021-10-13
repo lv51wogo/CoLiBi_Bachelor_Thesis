@@ -25,7 +25,7 @@ export class AuthorService {
   }
 
   /*GET author by id*/
-  getAuthor(id:number): Observable<Author>{
+  getAuthor(id:string): Observable<Author>{
     const url = `${this.authorUrl}/${id}`;
     return this.http.get<Author>(url).pipe(
       tap(_=> this.log(`fetched hero id= ${id}`)),

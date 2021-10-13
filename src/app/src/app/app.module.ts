@@ -11,13 +11,15 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
 import { MessagesComponent } from './messages/messages.component';
 import { AuthorComponent } from './author/author.component';
+import { AuthorDetailComponent } from './author-detail/author-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchComponent,
     MessagesComponent,
-    AuthorComponent
+    AuthorComponent,
+    AuthorDetailComponent
   ],
   imports: [
     BrowserModule,
