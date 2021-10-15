@@ -7,3 +7,9 @@ h1 {
 .heading {
   text-align: center;
 }
+
+.container div{
+  position: relative;
+  top: 60px;
+  text-align: center;
+}

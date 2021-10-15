@@ -1,0 +1,10 @@
+<div class="authors">
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let author of authors" (click)="onSelect(author)">
+     <span class = "author">
+       {{author.id}}
+     </span>
+    </li>
+  </ul>
+</div>
+<app-author-detail [author]="selectedAuthor"></app-author-detail>
