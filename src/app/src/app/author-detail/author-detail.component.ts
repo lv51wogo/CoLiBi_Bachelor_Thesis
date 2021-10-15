@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { Author } from '../shared/models/author.model';
 import { AuthorService } from '../author/author.service';
 
@@ -8,15 +8,16 @@ import { AuthorService } from '../author/author.service';
   styleUrls: ['./author-detail.component.css']
 })
 export class AuthorDetailComponent implements OnInit {
-  author: Author | undefined;
-
+  @Input() author?: Author
   constructor(private authorService: AuthorService) { }
 
   ngOnInit(): void {
-    this.getAuthor('Hodgson, William Hope')
+    this.getAuthor(this.author?.id)
   }
-   getAuthor(id:string) :void {
-    this.authorService.getAuthor(id).subscribe(author => this.author = author);
+   getAuthor(id:string | undefined) :void {
+    if (id){
+      this.authorService.getAuthor(id).subscribe(author => this.author = author);
+    }
    }
 
 }

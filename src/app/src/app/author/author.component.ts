@@ -9,7 +9,7 @@ import {Author} from "../shared/models/author.model";
 })
 export class AuthorComponent implements OnInit {
   authors: Author[] = [];
-
+  selectedAuthor?: Author;
   constructor(private authorService: AuthorService) { }
 
   ngOnInit(): void {
@@ -19,5 +19,9 @@ export class AuthorComponent implements OnInit {
   getAuthors(): void {
     this.authorService.getAuthors()
       .subscribe(authors => this.authors = authors);
+  }
+
+  onSelect(author: Author): void {
+    this.selectedAuthor = author;
   }
 }
