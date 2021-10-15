@@ -15,7 +15,11 @@
   overflow:scroll;
   overflow-x: hidden;
 }
+.list-group-item{
+  text-align: left;
+}
+
 .author {
   font-family: var( --basic-text-font);
-  text-align: center;
+
 }

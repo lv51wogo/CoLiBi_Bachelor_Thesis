@@ -6,6 +6,7 @@
   top: 80px;
   border: 2px solid var(--text-color);
   border-radius: 8px;
+  font-family: var( --basic-text-font);
 }
 
 .list-group{
@@ -15,4 +16,12 @@
   margin-right: 4px;
   overflow:scroll;
   overflow-x: hidden;
+}
+.list-group-item {
+  text-align: left;
+}
+
+#fistEntry{
+  text-align: center;
+  font-weight: bold;
 }
