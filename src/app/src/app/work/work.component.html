@@ -1,0 +1,9 @@
+<div class="works">
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let work of works" (click)="onSelect(work)">
+      <span>
+        {{work.title}}
+      </span>
+    </li>
+  </ul>
+</div>

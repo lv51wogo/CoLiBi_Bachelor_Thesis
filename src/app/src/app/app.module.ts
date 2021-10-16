@@ -12,6 +12,8 @@ import { InMemoryDataService } from './in-memory-data.service';
 import { MessagesComponent } from './messages/messages.component';
 import { AuthorComponent } from './author/author.component';
 import { AuthorDetailComponent } from './author-detail/author-detail.component';
+import { WorkComponent } from './work/work.component';
+import { WorkDetailComponent } from './work-detail/work-detail.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { AuthorDetailComponent } from './author-detail/author-detail.component';
     SearchComponent,
     MessagesComponent,
     AuthorComponent,
-    AuthorDetailComponent
+    AuthorDetailComponent,
+    WorkComponent,
+    WorkDetailComponent
   ],
   imports: [
     BrowserModule,
