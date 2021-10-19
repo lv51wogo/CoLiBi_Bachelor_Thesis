@@ -9,7 +9,6 @@
   border-radius: 8px;
   font-family: var( --basic-text-font);
 }
-
 .list-group{
   width: 100%;
   height: auto;
@@ -20,9 +19,4 @@
 }
 .list-group-item {
   text-align: left;
-}
-
-#fistEntry{
-  text-align: center;
-  font-weight: bold;
 }
