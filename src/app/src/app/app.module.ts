@@ -18,6 +18,8 @@ import { ImprintComponent } from './imprint/imprint.component';
 import { HomeComponent } from './home/home.component';
 import { SearchResultComponent } from './search-result/search-result.component';
 import {DataService} from "./shared/services/data.service";
+import { WorkComponent } from './work/work.component';
+import { WorkDetailComponent } from './work-detail/work-detail.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,9 @@ import {DataService} from "./shared/services/data.service";
     ImprintComponent,
     HomeComponent,
     SearchResultComponent,
+    AuthorDetailComponent,
+    WorkComponent,
+    WorkDetailComponent
   ],
   imports: [
     BrowserModule,
