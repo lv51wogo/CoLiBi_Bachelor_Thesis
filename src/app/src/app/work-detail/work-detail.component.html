@@ -1,1 +1,39 @@
-<p>work-detail works!</p>
+<div class="work-detail" *ngIf="work">
+  <ul class="list-group">
+    <li class="list-group-item border-0 fw-bold text-center"> {{work.title}}</li>
+    <li class="list-group-item border-0"> {{'Author:  '}}{{work.authorId}}</li>
+    <li class="list-group-item border-0"> {{'Age of publication:  '}}{{work.ageOfPublication}}</li>
+    <li class="list-group-item border-0"> {{'Year:  '}}{{work.year}}</li>
+    <li class="list-group-item border-0"> {{'Join:  '}}{{work.join}}</li>
+    <li class="list-group-item border-0"> {{'Split:  '}}{{work.split}}</li>
+    <li class="list-group-item border-0"> {{'Region:  '}}{{work.region}}</li>
+    <li class="list-group-item border-0"> {{'Original language:  '}}{{work.originalLanguage}}</li>
+    <li class="list-group-item border-0"> {{'Literature form:  '}}{{work.literatureForm}}</li>
+    <li class="list-group-item border-0"> {{'Origin country:  '}}{{work.originCountry}}</li>
+    <li class="list-group-item border-0"> {{'Downloads:  '}}{{work.downloads}}</li>
+    <li class="list-group-item border-0"> {{'Subjects:  '}}{{work.subjects}}</li>
+    <li class="list-group-item border-0"> {{'Language:  '}}{{work.language}}</li>
+    <li class="list-group-item border-0"> {{'Size:  '}}{{work.size}}</li>
+    <li class="list-group-item border-0"> {{'Words count:  '}}{{work.wordsCount}}</li>
+    <li class="list-group-item border-0"> {{'Competed flag:  '}}{{work.completedFlag}}</li>
+    <li class="list-group-item border-0"> {{'Literary period:  '}}{{work.literaryPeriod}}</li>
+    <li class="list-group-item border-0"> {{'Literary form:  '}}{{work.literaryForm}}</li>
+    <li class="list-group-item border-0"> {{'Richness frame mean:  '}}{{work.rFrameMean}}</li>
+    <li class="list-group-item border-0"> {{'Abundance frame mean:  '}}{{work.nFrameMean}}</li>
+    <li class="list-group-item border-0"> {{'Shannon frame mean:  '}}{{work.hFrameMean}}</li>
+    <li class="list-group-item border-0"> {{'Simpson frame mean:  '}}{{work.sFrameMean}}</li>
+    <li class="list-group-item border-0"> {{'Richness work:  '}}{{work.rWork}}</li>
+    <li class="list-group-item border-0"> {{'Abundance work:  '}}{{work.nWork}}</li>
+    <li class="list-group-item border-0"> {{'Shannon work:  '}}{{work.hWork}}</li>
+    <li class="list-group-item border-0"> {{'Simpson work:  '}}{{work.sWork}}</li>
+    <li class="list-group-item border-0"> {{'Richness beta:  '}}{{work.rBeta}}</li>
+    <li class="list-group-item border-0"> {{'Shannon beta:  '}}{{work.hBeta}}</li>
+    <li class="list-group-item border-0"> {{'Simpson beta:  '}}{{work.sBeta}}</li>
+    <li class="list-group-item border-0"> {{'Richness frame mean Gen Div:  '}}{{work.rFrameMeanGenDiv}}</li>
+    <li class="list-group-item border-0"> {{'Richness work Gen Div:  '}}{{work.rWorkGenDiv}}</li>
+    <li class="list-group-item border-0"> {{'Abundance frame mean Gen Div:  '}}{{work.nFrameMeanGenDiv}}</li>
+    <li class="list-group-item border-0"> {{'Abundance work Gen Div:  '}}{{work.nWorkGenDiv}}</li>
+    <li class="list-group-item border-0"> {{'Richness beta Gen Div:  '}}{{work.rBetaGenDiv}}</li>
+    <li class="list-group-item border-0"> {{'Abundance beta Gen Div:  '}}{{work.nBetaGenDiv}}</li>
+  </ul>
+</div>

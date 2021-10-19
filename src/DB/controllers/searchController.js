@@ -30,7 +30,7 @@ exports.searchWorks = (req, res) => {
 
     Work.findAll({where:{
             [Op.or]: [
-                {title: {[Op.like]: `${searchTerm}`}},
+                {title: {[Op.like]: `%${searchTerm}%`}},
                 {id: {[Op.like]: `${searchTerm}`}}
             ]
         }
@@ -76,7 +76,7 @@ exports.search = (req, res) => {
     Promise.all([
         Work.findAll({where:{
             [Op.or]: [
-                {title: {[Op.like]: `${searchTerm}`}},
+                {title: {[Op.like]: `%${searchTerm}%`}},
                 {id: {[Op.like]: `${searchTerm}`}}
             ]
         }

@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Work} from "../shared/models/work.model";
-import {WorkService} from "./work.service";
 
 @Component({
   selector: 'app-work',
@@ -8,17 +7,13 @@ import {WorkService} from "./work.service";
   styleUrls: ['./work.component.css']
 })
 export class WorkComponent implements OnInit {
-  works: Work[] = [];
+  @Input() works?: Work[];
   selectedWork?: Work;
-  constructor(private workService: WorkService) { }
 
-  ngOnInit(): void {
-    this.getWorks()
+  constructor() {
   }
 
-  getWorks(): void{
-    this.workService.getWorks()
-      .subscribe(works => this.works = works);
+  ngOnInit(): void {
   }
 
   onSelect(work: Work): void {

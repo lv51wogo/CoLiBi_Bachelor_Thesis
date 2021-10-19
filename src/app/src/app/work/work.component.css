@@ -1,0 +1,22 @@
+.works{
+  width: 100%;
+  position: relative;
+  display: flex;
+  left: 0px;
+  top: 64px;
+  border: 2px solid var(--text-color);
+  border-radius: 8px;
+}
+
+.list-group{
+  width: 100%;
+  height: auto;
+  max-height: 300px;
+  margin-right: 4px;
+  overflow:scroll;
+  overflow-x: hidden;
+}
+.list-group-item{
+  text-align: left;
+}
+

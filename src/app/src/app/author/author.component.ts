@@ -10,11 +10,12 @@ import {Author} from "../shared/models/author.model";
 export class AuthorComponent implements OnInit {
   @Input() authors?: Author[];
   selectedAuthor?: Author;
-  constructor() { }
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
-
 
   onSelect(author: Author): void {
     this.selectedAuthor = author;
