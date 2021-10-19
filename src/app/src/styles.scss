@@ -1,4 +1,7 @@
-@import '~bootstrap/dist/css/bootstrap.min.css';
+$primary: rgb(107, 180, 60);
+$secondary: rgb(41, 128, 12);
+
+@import "~bootstrap/scss/bootstrap";
 
 :root {
   --background-color: #fffaf0;
@@ -7,4 +10,7 @@
   --text-color: rgb(33,31,33);
   --main-headline-font: 'Noto Serif JP', serif;
   --basic-text-font: 'Roboto', sans-serif;
+}
+h1 {
+  font-family: 'Noto Serif JP', serif;
 }

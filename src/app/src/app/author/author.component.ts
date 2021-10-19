@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {AuthorService} from "./author.service";
 import {Author} from "../shared/models/author.model";
 
@@ -8,18 +8,13 @@ import {Author} from "../shared/models/author.model";
   styleUrls: ['./author.component.css']
 })
 export class AuthorComponent implements OnInit {
-  authors: Author[] = [];
+  @Input() authors?: Author[];
   selectedAuthor?: Author;
-  constructor(private authorService: AuthorService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.getAuthors()
   }
 
-  getAuthors(): void {
-    this.authorService.getAuthors()
-      .subscribe(authors => this.authors = authors);
-  }
 
   onSelect(author: Author): void {
     this.selectedAuthor = author;
