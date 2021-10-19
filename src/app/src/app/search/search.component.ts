@@ -3,6 +3,7 @@ import {SearchService} from "./search.service";
 import {Observable, Subject} from "rxjs";
 import {debounceTime, distinctUntilChanged, switchMap} from "rxjs/operators";
 import {Search} from "../shared/models/search.model";
+import {DataService} from "../shared/services/data.service";
 
 @Component({
   selector: 'app-search',
@@ -11,29 +12,19 @@ import {Search} from "../shared/models/search.model";
 })
 export class SearchComponent implements OnInit {
   terms$! : Observable<any[]>;
-  searchTerm = new Subject<string>();
   result!: Search[];
 
-  constructor(private searchService: SearchService) { }
+  constructor(private searchService: SearchService, private dataService: DataService) { }
 
   search(term: string):void {
-    this.searchTerm.next(term);
-    this.searchService.searchTerm(term).subscribe((data:any)=>{
-      console.log(data);
-      this.result = data.data;
+    this.searchService.searchTerm(term).subscribe((data: Search)=>{
+      console.log(data)
+      this.dataService.changeResult(data);
     })
   }
 
   ngOnInit(): void {
-    this.terms$ = this.searchTerm.pipe(
-      // wait 300ms after each keystroke before considering the term
-      debounceTime(300),
 
-      // ignore new term if same as previous term
-      distinctUntilChanged(),
-      // switch to new search observable each time the term changes
-      switchMap((term:string)=> this.searchService.searchTerm(term)),
-    );
   }
 
 }

@@ -80,7 +80,7 @@ exports.search = (req, res) => {
                 {id: {[Op.like]: `${searchTerm}`}}
             ]
         }
-    }),
+        }),
         Occurrence.findAll({where:{
                 [Op.or]: [
                     {term: {[Op.like]: `${searchTerm}`}},
@@ -99,6 +99,12 @@ exports.search = (req, res) => {
         })
         ]
     ).then(data => {
-        res.send(data)
+        console.log(data)
+        res.send({
+            works: data[0],
+            occurrences: data[1],
+            authors: data[2]
+            }
+        )
     })
 }

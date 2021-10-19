@@ -1,18 +1,17 @@
-
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col">
-        <a [routerLink]="['/']">
-          <img src="assets/Logo.svg" width="100" height="50" alt ="logo missing">
-        </a>
-      </div>
-      <div class="col-auto">
-        <h1>{{'Welcome to Colibi'}}</h1>
-      </div>
-      <div class="col text-end">
-        <a [routerLink]="['/about']" class="btn btn-link btn-sm">About</a>
-        <a [routerLink]="['/imprint']" class="btn btn-link btn-sm">Impressum</a>
-      </div>
+<header class="py-4">
+  <div class="row  align-items-center">
+    <div class="col">
+      <a [routerLink]="['/']">
+        <img src="assets/Logo.svg" width="100" height="50" alt="logo missing">
+      </a>
+    </div>
+    <div class="col-auto ">
+      <h1 class="text-secondary fw-bold">{{'Welcome to Colibi'}}</h1>
+    </div>
+    <div class="col text-end">
+      <a [routerLink]="['/about']" class="btn btn-link btn-sm">About</a>
+      <a [routerLink]="['/imprint']" class="btn btn-link btn-sm">Impressum</a>
     </div>
   </div>
+</header>
 

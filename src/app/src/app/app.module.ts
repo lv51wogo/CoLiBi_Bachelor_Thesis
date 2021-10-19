@@ -16,6 +16,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { AboutComponent } from './about/about.component';
 import { ImprintComponent } from './imprint/imprint.component';
 import { HomeComponent } from './home/home.component';
+import { SearchResultComponent } from './search-result/search-result.component';
+import {DataService} from "./shared/services/data.service";
 
 @NgModule({
   declarations: [
@@ -27,14 +29,17 @@ import { HomeComponent } from './home/home.component';
     NavbarComponent,
     AboutComponent,
     ImprintComponent,
-    HomeComponent
+    HomeComponent,
+    SearchResultComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    DataService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
