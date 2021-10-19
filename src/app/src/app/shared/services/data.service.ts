@@ -6,6 +6,7 @@ import {Search} from "../models/search.model";
 export class DataService {
 
   private resultSource = new BehaviorSubject<Search>({});
+
   /*GET*/
   currentResult = this.resultSource.asObservable();
 

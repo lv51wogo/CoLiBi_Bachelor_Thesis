@@ -1,25 +1,23 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { SearchComponent } from './search/search.component';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {SearchComponent} from './search/search.component';
 import {HttpClientModule} from "@angular/common/http";
 
-//used for development
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './in-memory-data.service';
-import { MessagesComponent } from './messages/messages.component';
-import { AuthorComponent } from './author/author.component';
-import { AuthorDetailComponent } from './author-detail/author-detail.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { AboutComponent } from './about/about.component';
-import { ImprintComponent } from './imprint/imprint.component';
-import { HomeComponent } from './home/home.component';
-import { SearchResultComponent } from './search-result/search-result.component';
+import {MessagesComponent} from './messages/messages.component';
+import {AuthorComponent} from './author/author.component';
+import {AuthorDetailComponent} from './author-detail/author-detail.component';
+import {NavbarComponent} from './navbar/navbar.component';
+import {AboutComponent} from './about/about.component';
+import {ImprintComponent} from './imprint/imprint.component';
+import {HomeComponent} from './home/home.component';
+import {SearchResultComponent} from './search-result/search-result.component';
 import {DataService} from "./shared/services/data.service";
-import { WorkComponent } from './work/work.component';
-import { WorkDetailComponent } from './work-detail/work-detail.component';
+import {WorkComponent} from './work/work.component';
+import {WorkDetailComponent} from './work-detail/work-detail.component';
+import {OccurrenceComponent} from './occurrence/occurrence.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +33,8 @@ import { WorkDetailComponent } from './work-detail/work-detail.component';
     SearchResultComponent,
     AuthorDetailComponent,
     WorkComponent,
-    WorkDetailComponent
+    WorkDetailComponent,
+    OccurrenceComponent
   ],
   imports: [
     BrowserModule,
@@ -47,4 +46,5 @@ import { WorkDetailComponent } from './work-detail/work-detail.component';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

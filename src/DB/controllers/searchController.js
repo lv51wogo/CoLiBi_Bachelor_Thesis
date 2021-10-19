@@ -1,5 +1,6 @@
 const db = require("../models");
 const { Op } = require("sequelize");
+const {Sequelize} = require("sequelize");
 const Occurrence = db.occurrance;
 const Work = db.work;
 const Author = db.author;
@@ -81,9 +82,11 @@ exports.search = (req, res) => {
             ]
         }
         }),
-        Occurrence.findAll({where:{
+        Occurrence.findAll({
+            attributes:[[Sequelize.fn('DISTINCT', Sequelize.col('term')), 'term'], 'scientificName'],
+            where:{
                 [Op.or]: [
-                    {term: {[Op.like]: `${searchTerm}`}},
+                    {term: {[Op.like]: `%${searchTerm}`}},
                     {scientificName: {[Op.like]: `${searchTerm}`}},
                 ]
             }

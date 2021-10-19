@@ -4,7 +4,7 @@
       <app-author *ngIf="authors" [authors]="authors"></app-author>
     </div>
     <div class="col">
-     <app-author></app-author>
+     <app-occurrence *ngIf="occurrences" [occurrences]="occurrences" ></app-occurrence>
     </div>
     <div class="col">
       <app-work *ngIf="works" [works]="works"></app-work>
