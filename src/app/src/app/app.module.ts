@@ -12,6 +12,12 @@ import { InMemoryDataService } from './in-memory-data.service';
 import { MessagesComponent } from './messages/messages.component';
 import { AuthorComponent } from './author/author.component';
 import { AuthorDetailComponent } from './author-detail/author-detail.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { AboutComponent } from './about/about.component';
+import { ImprintComponent } from './imprint/imprint.component';
+import { HomeComponent } from './home/home.component';
+import { SearchResultComponent } from './search-result/search-result.component';
+import {DataService} from "./shared/services/data.service";
 import { WorkComponent } from './work/work.component';
 import { WorkDetailComponent } from './work-detail/work-detail.component';
 
@@ -22,6 +28,12 @@ import { WorkDetailComponent } from './work-detail/work-detail.component';
     MessagesComponent,
     AuthorComponent,
     AuthorDetailComponent,
+    NavbarComponent,
+    AboutComponent,
+    ImprintComponent,
+    HomeComponent,
+    SearchResultComponent,
+    AuthorDetailComponent,
     WorkComponent,
     WorkDetailComponent
   ],
@@ -30,7 +42,9 @@ import { WorkDetailComponent } from './work-detail/work-detail.component';
     AppRoutingModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    DataService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -15,13 +15,13 @@ export class SearchService {
 
 
   /* GET taxa whose name contains search term */
-  searchTerm(term: string): Observable<any[]> {
+  searchTerm(term: string): Observable<Search> {
     if (!term.trim()) {
       // if not search term, return empty taxa array.
-      return of([]);
+      return of({});
     }
-    return this.http.get<any[]>(`${this.searchUrl}/${term}`).pipe(
-      map((data: Search[])=>{
+    return this.http.get<Search>(`${this.searchUrl}/${term}`).pipe(
+      map((data: Search)=>{
         return data;
       }), catchError (err => {
         return throwError('error occurred with fetching data')

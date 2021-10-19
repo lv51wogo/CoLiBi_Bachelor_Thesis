@@ -105,3 +105,6 @@ dist
 
 # Idea Settings
 .idea
+
+#DB
+src/DB/database.sqlite3
