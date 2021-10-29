@@ -20,7 +20,8 @@
         <ul class="list-group">
           <li class="list-group-item border-0" *ngFor="let occurrence of occurrences">
           <span *ngIf="occurrence.term !== searchTerm && occurrence.scientificName !== searchTerm">
-           Term: {{occurrence.term}}, Scientific name: {{occurrence.scientificName}}
+           Term: {{occurrence.term}},
+            <br>Scientific name: {{occurrence.scientificName}}
           </span>
           </li>
         </ul>
@@ -28,4 +29,4 @@
     </div>
   </div>
 </div>
-
+<app-occurrence-detail></app-occurrence-detail>

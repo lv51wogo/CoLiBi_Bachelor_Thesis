@@ -27,15 +27,15 @@ exports.findOne = (req, res) => {
         .catch(err => {
             res.status(500).send({
                 message:
-                err.message || "Error retrieving Occurrence with id=" + id
+                    err.message || "Error retrieving Occurrence with id=" + id
             });
         });
 };
 
 exports.findAllDistinct = (req, res) => {
     Occurrence.findAll({
-        attributes:[[Sequelize.fn('DISTINCT', Sequelize.col('term')), 'term'], 'scientificName','OccId'],
-        })
+        attributes: [[Sequelize.fn('DISTINCT', Sequelize.col('term')), 'term'], 'scientificName', 'OccId'],
+    })
         .then(data => {
             res.send(data)
         })
@@ -49,26 +49,37 @@ exports.findAllDistinct = (req, res) => {
 
 exports.countAllOccurrences = (req, res) => {
     const term = req.params.term;
-    Occurrence.count({
-      where: {[Op.or]: [
-              {term: {[Op.like]: `%${term}`}},
-              {scientificName: {[Op.like]: `${term}`}},
-          ]}
+    Occurrence.findAndCountAll({
+        attributes: ['term', 'scientificName'],
+        group: ['term', 'scientificName'],
+            where: {
+                [Op.or]: [
+                    {term: {[Op.like]: `%${term}`}},
+                    {scientificName: {[Op.like]: `${term}`}},
+                ]
+            }
         }
     ).then(data => {
         res.send(data)
     });
 };
 
-exports.countOccurrences = (req, res) => {
+exports.countOccurrence = (req, res) => {
     const term = req.params.term;
     Occurrence.count({
             where: {[Op.or]: [
-                    {term: {[Op.like]: `${term}`}},
+                    {term: {[Op.like]: `%${term}`}},
                     {scientificName: {[Op.like]: `${term}`}},
-                ]}
+                ]
+            }
         }
     ).then(data => {
-        res.send(data)
+        console.log(data)
+        res.send ( data.toString())
+    }).catch(err => {
+        res.sendStatus(500).send({
+            message:
+                err.message || "Error occurred while fetching count of : " + term
+        })
     });
 };

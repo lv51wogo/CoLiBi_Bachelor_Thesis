@@ -18,6 +18,7 @@ import {DataService} from "./shared/services/data.service";
 import {WorkComponent} from './work/work.component';
 import {WorkDetailComponent} from './work-detail/work-detail.component';
 import {OccurrenceComponent} from './occurrence/occurrence.component';
+import { OccurrenceDetailComponent } from './occurrence-detail/occurrence-detail.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {OccurrenceComponent} from './occurrence/occurrence.component';
     AuthorDetailComponent,
     WorkComponent,
     WorkDetailComponent,
-    OccurrenceComponent
+    OccurrenceComponent,
+    OccurrenceDetailComponent
   ],
   imports: [
     BrowserModule,
