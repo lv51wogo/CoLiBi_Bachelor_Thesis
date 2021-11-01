@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
-import {Observable, of, throwError} from "rxjs";
+import {Observable, of} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {MessageService} from "../message.service";
 import {CountModel} from "../shared/models/count.model";
-import {catchError, map, tap} from "rxjs/operators";
+import {catchError, tap} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'

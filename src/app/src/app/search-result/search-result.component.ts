@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, SimpleChanges} from '@angular/core';
 import {DataService} from "../shared/services/data.service";
 import {Search} from "../shared/models/search.model";
 import {Author} from "../shared/models/author.model";
@@ -19,11 +19,9 @@ export class SearchResultComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataService.currentResult.subscribe((data: Search) => {
-      console.log(data)
       this.works = data.works as Work[];
       this.authors = data.authors as Author[];
       this.occurrences = data.occurrences as Occurrence[];
     });
   }
-
 }
