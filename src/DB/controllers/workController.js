@@ -32,10 +32,9 @@ exports.findOne = (req, res) => {
 };
 
 exports.findByOccurrence = (req, res) => {
-    const term = req.params.term;
 
-    Work.findAll({include: [{ model: Occurrence, where: { term : term}}]
-
+    Work.findAll({
+        include: [{model: Occurrence, where: {term: term}}]
     }).then(data => {
         res.send(data)
     })

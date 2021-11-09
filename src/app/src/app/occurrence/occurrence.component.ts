@@ -3,7 +3,9 @@ import {Occurrence} from "../shared/models/occurrence.model";
 import {DataService} from "../shared/services/data.service";
 import {WorkService} from "../work/work.service";
 import {Search} from "../shared/models/search.model";
-import { Work } from '../shared/models/work.model';
+import {Work} from '../shared/models/work.model';
+import {catchError, map} from "rxjs/operators";
+import {Observable, throwError} from "rxjs";
 
 @Component({
   selector: 'app-occurrence',
@@ -11,28 +13,46 @@ import { Work } from '../shared/models/work.model';
   styleUrls: ['./occurrence.component.css']
 })
 export class OccurrenceComponent implements OnInit {
-  @Input() occurrences?: Occurrence[]
+  occurrences!: Occurrence[];
   searchTerm!: string;
-
-  constructor(private dataService: DataService, private workService: WorkService) { }
+  currentSearchResult!: Search;
+  constructor(private dataService: DataService, private workService: WorkService) {
+  }
 
   ngOnInit(): void {
+    this.initOccurrences()
     this.dataService.currentSearchTerm.subscribe(term =>
-    this.searchTerm = term)
+      this.searchTerm = term)
     this.findWorksByOccurrence(this.searchTerm)
+    this.updateResult()
+  }
+
+  initOccurrences(): void {
     this.dataService.currentResult.subscribe((data: Search) => {
-      console.log(data)
+      this.occurrences = data.occurrences as Occurrence[]
     })
   }
 
   /*GET all works related to the search term*/
-  findWorksByOccurrence(occurrence: string): void {
-    let works:Work[];
-    this.workService.findByOccurrence(occurrence).subscribe((data: Work[]) =>{
-      works = data as Work[];
-      this.dataService.currentResult.subscribe((data: Search) => {
-        data.works = works;
+  findWorksByOccurrence(occurrence: string): Observable<Work[]> {
+    return this.workService.findByOccurrence(occurrence).pipe(
+      map( (data: Work[]) =>{
+        return data;
       })
+    );
+  }
+
+  updateResult(): void {
+    this.dataService.currentResult.subscribe( (data: Search) => {
+      this.currentSearchResult = data;
+    })
+
+    this.currentSearchResult.works
+    this.findWorksByOccurrence(this.searchTerm).subscribe((data:Work[]) => {
+      this.currentSearchResult.works = data;
+      console.log(this.currentSearchResult)
+      this.dataService.changeResult(this.currentSearchResult);
     })
   }
+
 }
