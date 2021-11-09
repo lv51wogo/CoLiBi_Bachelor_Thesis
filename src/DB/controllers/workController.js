@@ -1,6 +1,6 @@
 const db = require("../models");
 const Work = db.work;
-const Occurrence = db.occurrance
+const Occurrence = db.occurrance;
 const Op = db.Sequelize.Op;
 
 exports.findAll = (req, res) => {
@@ -32,8 +32,10 @@ exports.findOne = (req, res) => {
 };
 
 exports.findByOccurrence = (req, res) => {
+    const term = req.params.term;
 
     Work.findAll({
+        // add or to also match scientific name
         include: [{model: Occurrence, where: {term: term}}]
     }).then(data => {
         res.send(data)
