@@ -4,8 +4,10 @@ import {DataService} from "../shared/services/data.service";
 import {WorkService} from "../work/work.service";
 import {Search} from "../shared/models/search.model";
 import {Work} from '../shared/models/work.model';
-import {catchError, map} from "rxjs/operators";
-import {Observable, throwError} from "rxjs";
+import {map} from "rxjs/operators";
+import {Observable} from "rxjs";
+import {AuthorService} from "../author/author.service";
+import {Author} from "../shared/models/author.model";
 
 @Component({
   selector: 'app-occurrence',
@@ -16,7 +18,7 @@ export class OccurrenceComponent implements OnInit {
   occurrences!: Occurrence[];
   searchTerm!: string;
   currentSearchResult!: Search;
-  constructor(private dataService: DataService, private workService: WorkService) {
+  constructor(private dataService: DataService, private workService: WorkService, private authorService: AuthorService) {
   }
 
   ngOnInit(): void {
@@ -42,6 +44,14 @@ export class OccurrenceComponent implements OnInit {
     );
   }
 
+  findAuthorsByOccurrence(occurrence: string): Observable<Author[]> {
+    return this.authorService.findByOccurrence(occurrence).pipe(
+      map( (data: Author[]) =>{
+        return data;
+      })
+    );
+  }
+
   updateResult(): void {
     this.dataService.currentResult.subscribe( (data: Search) => {
       this.currentSearchResult = data;
@@ -50,9 +60,12 @@ export class OccurrenceComponent implements OnInit {
     this.currentSearchResult.works
     this.findWorksByOccurrence(this.searchTerm).subscribe((data:Work[]) => {
       this.currentSearchResult.works = data;
-      console.log(this.currentSearchResult)
+      this.dataService.changeResult(this.currentSearchResult);
+    })
+
+    this.findAuthorsByOccurrence(this.searchTerm).subscribe((data: Author[]) => {
+      this.currentSearchResult.authors = data;
       this.dataService.changeResult(this.currentSearchResult);
     })
   }
-
 }
