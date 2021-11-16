@@ -36,8 +36,34 @@ exports.findByOccurrence = (req, res) => {
 
     Work.findAll({
         // add or to also match scientific name
-        include: [{model: Occurrence, where: {term: term}}]
+        include: [{
+            model: Occurrence, where: {
+                [Op.or]: [
+                    {term: {[Op.like]: `%${term}`}},
+                    {scientificName: {[Op.like]: `${term}`}},
+                ]
+            }
+        }]
     }).then(data => {
         res.send(data)
     })
 };
+
+exports.findByAuthor = (req, res) => {
+    const term = req.params.term;
+
+    Work.findAll({
+        where: {
+            [Op.or]: [
+                {authorId: {[Op.like]: `${term}`}},
+            ]
+        }
+    }).then(data => {
+        res.send(data)
+    })
+        .catch(err => {
+            res.status(500).send({
+                message: "Error retrieving Works related to given author "
+            });
+        });
+}

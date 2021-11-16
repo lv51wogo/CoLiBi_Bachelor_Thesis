@@ -35,7 +35,7 @@ export class WorkService {
 
   /*GET all works in dependence of occurrence*/
   findByOccurrence(occurrence: string): Observable<Work[]> {
-    const url = `${this.workUrl}/findBy/${occurrence}`
+    const url = `${this.workUrl}/findByOccur/${occurrence}`
     return this.http.get<Work[]>(url).pipe(
       tap(_=> this.log(`fetched works by occurrence ${occurrence}`)),
       catchError(this.handleError<Work[]>(`findByOccurrence ${occurrence}`))
