@@ -1,6 +1,6 @@
 const db = require("../models");
 const Work = db.work;
-const Occurrence = db.occurrance
+const Occurrence = db.occurrance;
 const Op = db.Sequelize.Op;
 
 exports.findAll = (req, res) => {
@@ -34,9 +34,36 @@ exports.findOne = (req, res) => {
 exports.findByOccurrence = (req, res) => {
     const term = req.params.term;
 
-    Work.findAll({include: [{ model: Occurrence, where: { term : term}}]
-
+    Work.findAll({
+        // add or to also match scientific name
+        include: [{
+            model: Occurrence, where: {
+                [Op.or]: [
+                    {term: {[Op.like]: `%${term}`}},
+                    {scientificName: {[Op.like]: `${term}`}},
+                ]
+            }
+        }]
     }).then(data => {
         res.send(data)
     })
 };
+
+exports.findByAuthor = (req, res) => {
+    const term = req.params.term;
+
+    Work.findAll({
+        where: {
+            [Op.or]: [
+                {authorId: {[Op.like]: `${term}`}},
+            ]
+        }
+    }).then(data => {
+        res.send(data)
+    })
+        .catch(err => {
+            res.status(500).send({
+                message: "Error retrieving Works related to given author "
+            });
+        });
+}

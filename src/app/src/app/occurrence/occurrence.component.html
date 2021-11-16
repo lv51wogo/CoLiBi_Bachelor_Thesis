@@ -1,0 +1,32 @@
+<div class="occurrences">
+  <div class="container">
+    <div *ngFor="let occurrence of occurrences">
+      <div class="row mt-2" *ngIf="occurrence.term === searchTerm || occurrence.scientificName === searchTerm">
+        <h5 class="col fw-bold text-secondary">
+          Term: {{occurrence.term}}
+        </h5>
+        <h5 class="col text-primary">
+          Scientific name: {{occurrence.scientificName}}
+        </h5>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        Related Terms:
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <ul class="list-group">
+          <li class="list-group-item border-0" *ngFor="let occurrence of occurrences">
+          <span *ngIf="occurrence.term !== searchTerm && occurrence.scientificName !== searchTerm">
+           Term: {{occurrence.term}},
+            <br>Scientific name: {{occurrence.scientificName}}
+          </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<app-occurrence-detail></app-occurrence-detail>

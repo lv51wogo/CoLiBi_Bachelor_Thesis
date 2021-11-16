@@ -4,7 +4,8 @@ module.exports = app => {
 
     router.get("/", works.findAll);
     router.get("/:id", works.findOne);
-    router.get("/findBy/:term", works.findByOccurrence);
+    router.get("/findByOccur/:term", works.findByOccurrence);
+    router.get("/findByAuthor/:term", works.findByAuthor);
 
     app.use('/api/works', router)
 };

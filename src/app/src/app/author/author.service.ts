@@ -4,6 +4,7 @@ import {MessageService} from "../message.service";
 import {Observable, of, throwError} from "rxjs";
 import {Author} from "../shared/models/author.model";
 import {catchError, map, tap} from "rxjs/operators";
+import {Work} from "../shared/models/work.model";
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +34,14 @@ export class AuthorService {
     );
   }
 
+  /*GET all authors in dependence of occurrence*/
+  findByOccurrence(occurrence: string): Observable<Author[]> {
+    const url = `${this.authorUrl}/findByOccur/${occurrence}`
+    return this.http.get<Author[]>(url).pipe(
+      tap(_=> this.log(`fetched authors by occurrence ${occurrence}`)),
+      catchError(this.handleError<Author[]>(`findByOccurrence ${occurrence}`))
+    )
+  }
 
 /**
  * Handle Http operation that failed.
