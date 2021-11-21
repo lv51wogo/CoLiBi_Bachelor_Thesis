@@ -10,7 +10,7 @@ exports.searchOccurrence = (req, res) => {
 
     Occurrence.findAll({where:{
             [Op.or]: [
-                {term: {[Op.like]: `${searchTerm}`}},
+                {term: {[Op.like]: `%${searchTerm}`}},
                 {scientificName: {[Op.like]: `${searchTerm}`}},
             ]
         }
@@ -93,10 +93,10 @@ exports.search = (req, res) => {
         }),
         Author.findAll({where:{
                 [Op.or]: [
-                    {author: {[Op.like]: `${searchTerm}`}},
+                    {author: {[Op.like]: `%${searchTerm}`}},
                     {id: {[Op.like]: `${searchTerm}`}},
-                    {forename: {[Op.like]: `${searchTerm}`}},
-                    {surname: {[Op.like]: `${searchTerm}`}}
+                    {forename: {[Op.like]: `%${searchTerm}`}},
+                    {surname: {[Op.like]: `%${searchTerm}`}}
                 ]
             }
         })

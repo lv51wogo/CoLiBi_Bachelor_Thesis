@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Occurrence} from "../shared/models/occurrence.model";
 import {DataService} from "../shared/services/data.service";
 import {WorkService} from "../work/work.service";
@@ -25,8 +25,10 @@ export class OccurrenceComponent implements OnInit {
     this.initOccurrences()
     this.dataService.currentSearchTerm.subscribe(term =>
       this.searchTerm = term)
-    this.findWorksByOccurrence(this.searchTerm)
-    this.updateResult()
+    if(this.occurrences.length >= 1){
+      this.findWorksByOccurrence(this.searchTerm)
+      this.updateResult()
+    }
   }
 
   initOccurrences(): void {
@@ -57,14 +59,13 @@ export class OccurrenceComponent implements OnInit {
       this.currentSearchResult = data;
     })
 
-    this.currentSearchResult.works
     this.findWorksByOccurrence(this.searchTerm).subscribe((data:Work[]) => {
-      this.currentSearchResult.works = data;
+      this.currentSearchResult.works =  this.currentSearchResult.works?.concat(data);
       this.dataService.changeResult(this.currentSearchResult);
     })
 
     this.findAuthorsByOccurrence(this.searchTerm).subscribe((data: Author[]) => {
-      this.currentSearchResult.authors = data;
+      this.currentSearchResult.authors = this.currentSearchResult.authors?.concat(data);
       this.dataService.changeResult(this.currentSearchResult);
     })
   }

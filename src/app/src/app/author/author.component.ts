@@ -1,5 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {AuthorService} from "./author.service";
+import {Component, OnInit} from '@angular/core';
 import {Author} from "../shared/models/author.model";
 import {DataService} from "../shared/services/data.service";
 import {Search} from "../shared/models/search.model";
@@ -30,4 +29,17 @@ export class AuthorComponent implements OnInit {
   onSelect(author: Author): void {
     this.selectedAuthor = author;
   }
+
+  // @ts-ignore
+  uncheckAll() {
+    const checkboxes = document.getElementsByName('authorBox')
+    for(let i = 0; i < checkboxes.length ; i++) {
+      // @ts-ignore
+      if ( checkboxes[i].checked)
+        // @ts-ignore
+        checkboxes[i].checked = !checkboxes[i].checked
+    }
+    console.log(checkboxes)
+  }
 }
+

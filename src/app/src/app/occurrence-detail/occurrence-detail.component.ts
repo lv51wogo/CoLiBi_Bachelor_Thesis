@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {OccurrenceService} from "../occurrence/occurrence.service";
 import {DataService} from "../shared/services/data.service";
+import {SearchService} from "../search/search.service";
+import {Occurrence} from "../shared/models/occurrence.model";
 
 @Component({
   selector: 'app-occurrence-detail',
@@ -11,8 +13,9 @@ export class OccurrenceDetailComponent implements OnInit {
   searchTerm!: string;
   count!: string;
   countAll!: any[];
+  occurrences!: Occurrence[]
 
-  constructor(private occurrenceService: OccurrenceService, private dataService: DataService) {
+  constructor(private occurrenceService: OccurrenceService, private dataService: DataService, private searchService: SearchService) {
   }
 
   ngOnInit(): void {
@@ -21,6 +24,13 @@ export class OccurrenceDetailComponent implements OnInit {
     console.log(this.searchTerm)
     this.getCountAll(this.searchTerm)
     this.getCount(this.searchTerm)
+    this.getAllOccurrences(this.searchTerm)
+  }
+
+  getAllOccurrences(searchTerm: string):void{
+    this.searchService.searchForOccurrences(searchTerm).subscribe( data => {
+      this.occurrences = data
+    })
   }
 
   getCountAll(searchTerm: string): void {
@@ -34,5 +44,4 @@ export class OccurrenceDetailComponent implements OnInit {
       this.count = x
     })
   }
-
 }

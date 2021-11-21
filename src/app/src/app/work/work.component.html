@@ -1,6 +1,18 @@
+<h5 class="col fw-bold mt-5" *ngIf="works">
+  Works ({{works.length}})
+</h5>
+<div class="row mb-3">
+  <div class="col">
+    <button type="button" class="btn btn-secondary btn-sm"> Select all</button>
+  </div>
+  <div class="col">
+    <button type="button" class="btn btn-light btn-sm">Deselect all</button>
+  </div>
+</div>
 <div class="works">
   <ul class="list-group">
     <li class="list-group-item" *ngFor="let work of works" (click)="onSelect(work)">
+      <input aria-label="..." class="form-check-input me-1" type="checkbox" value="">
       <span class="work">
         {{work.title}}
       </span>

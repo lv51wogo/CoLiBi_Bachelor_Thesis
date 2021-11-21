@@ -8,11 +8,10 @@
     <div class="row">
       <div class="col">
         <ul class="list-group">
-          <li class="list-group-item border-0" *ngFor="let occurCount of countAll">
+          <li class="list-group-item border-0" *ngFor="let occur of occurrences">
           <span>
-           Term: {{occurCount.term}},
-            <br>Scientific name: {{occurCount.scientificName}}, occurred {{occurCount.count}}
-            times.
+           Term: {{occur.term}},
+            <br> Sentence: {{occur.sentence}}
           </span>
           </li>
         </ul>

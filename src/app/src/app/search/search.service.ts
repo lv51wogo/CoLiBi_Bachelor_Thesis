@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {MessageService} from "../message.service";
 import {Observable, of, throwError} from "rxjs";
-import {catchError, map, tap} from "rxjs/operators";
+import {catchError, map} from "rxjs/operators";
 import {Search} from "../shared/models/search.model";
-
+import {Occurrence} from "../shared/models/occurrence.model";
 @Injectable({
   providedIn: 'root'
 })
@@ -14,7 +14,7 @@ export class SearchService {
               private messageService: MessageService) { }
 
 
-  /* GET taxa whose name contains search term */
+  /* GET DB Entries who match the search term  */
   searchTerm(term: string): Observable<Search> {
     if (!term.trim()) {
       // if not search term, return empty taxa array.
@@ -29,6 +29,17 @@ export class SearchService {
     );
   }
 
+  searchForOccurrences( occurrence: string): Observable<Occurrence[]>{
+    const url = `${this.searchUrl}/occur/${occurrence}`;
+    return this.http.get<Occurrence[]>(url).pipe(
+      map((data: Occurrence[]) => {
+        return data;
+      }), catchError( err => {
+        return throwError('error occurred while searching occurrences')
+      })
+    );
+  }
+
   /**
    * Handle Http operation that failed.
    * Let the app continue.
@@ -38,13 +49,10 @@ export class SearchService {
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
+      console.error(error);
 
-      // TODO: better job of transforming error for user consumption
       this.log(`${operation} failed: ${error.message}`);
 
-      // Let the app keep running by returning an empty result.
       return of(result as T);
     };
   }

@@ -36,7 +36,7 @@ exports.findOne = (req, res) => {
 exports.findByOccurrence = (req, res) => {
     const term = req.params.term;
     Author.findAll({
-        include: [{model: Work, include:[ {model: Occurrence, where: {term: term},attributes:[]}], attributes:[]}],
+        include: [{model: Work, include:[ {model: Occurrence, where: {term: {[Op.like]: `%${term}%`}},attributes:[]}], attributes:[]}],
         where: {
           '$Works.id$':{
               [Op.ne]: null
