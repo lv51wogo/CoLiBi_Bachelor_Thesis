@@ -8,6 +8,7 @@ import {map} from "rxjs/operators";
 import {Observable} from "rxjs";
 import {AuthorService} from "../author/author.service";
 import {Author} from "../shared/models/author.model";
+import {OccurrenceService} from "./occurrence.service";
 
 @Component({
   selector: 'app-occurrence',
@@ -18,14 +19,20 @@ export class OccurrenceComponent implements OnInit {
   occurrences!: Occurrence[];
   searchTerm!: string;
   currentSearchResult!: Search;
-  constructor(private dataService: DataService, private workService: WorkService, private authorService: AuthorService) {
+  label = 'Number of occurrences';
+  labelsXAxis!: any[];
+  labelsYAxis!: any[];
+
+  constructor(private dataService: DataService, private workService: WorkService, private authorService: AuthorService, private occurrenceService: OccurrenceService) {
   }
 
   ngOnInit(): void {
     this.initOccurrences()
     this.dataService.currentSearchTerm.subscribe(term =>
       this.searchTerm = term)
-    if(this.occurrences.length >= 1){
+    this.getChartData()
+
+    if (this.occurrences.length >= 1) {
       this.findWorksByOccurrence(this.searchTerm)
       this.updateResult()
     }
@@ -40,7 +47,7 @@ export class OccurrenceComponent implements OnInit {
   /*GET all works related to the search term*/
   findWorksByOccurrence(occurrence: string): Observable<Work[]> {
     return this.workService.findByOccurrence(occurrence).pipe(
-      map( (data: Work[]) =>{
+      map((data: Work[]) => {
         return data;
       })
     );
@@ -48,25 +55,32 @@ export class OccurrenceComponent implements OnInit {
 
   findAuthorsByOccurrence(occurrence: string): Observable<Author[]> {
     return this.authorService.findByOccurrence(occurrence).pipe(
-      map( (data: Author[]) =>{
+      map((data: Author[]) => {
         return data;
       })
     );
   }
 
   updateResult(): void {
-    this.dataService.currentResult.subscribe( (data: Search) => {
+    this.dataService.currentResult.subscribe((data: Search) => {
       this.currentSearchResult = data;
     })
 
-    this.findWorksByOccurrence(this.searchTerm).subscribe((data:Work[]) => {
-      this.currentSearchResult.works =  this.currentSearchResult.works?.concat(data);
+    this.findWorksByOccurrence(this.searchTerm).subscribe((data: Work[]) => {
+      this.currentSearchResult.works = this.currentSearchResult.works?.concat(data);
       this.dataService.changeResult(this.currentSearchResult);
     })
 
     this.findAuthorsByOccurrence(this.searchTerm).subscribe((data: Author[]) => {
       this.currentSearchResult.authors = this.currentSearchResult.authors?.concat(data);
       this.dataService.changeResult(this.currentSearchResult);
+    })
+  }
+
+  getChartData(): void {
+    this.occurrenceService.getCountAllOccurrences(this.searchTerm).subscribe(x => {
+      this.labelsXAxis = x.count.map(y => y.term);
+      this.labelsYAxis = x.count.map(y => y.count);
     })
   }
 }

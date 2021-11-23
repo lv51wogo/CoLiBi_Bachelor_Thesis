@@ -1,7 +1,7 @@
 <div class="occurrences">
   <div class="container">
     <div *ngFor="let occurrence of occurrences">
-      <div class="row mt-2" *ngIf="occurrence.term === searchTerm || occurrence.scientificName === searchTerm">
+      <div *ngIf="occurrence.term === searchTerm || occurrence.scientificName === searchTerm" class="row mt-2">
         <h5 class="col fw-bold text-secondary">
           Term: {{occurrence.term}}
         </h5>
@@ -10,7 +10,9 @@
         </h5>
       </div>
     </div>
-<!--    <img src="../../assets/Screenshot 2021-11-16 113417.png" width="700" height="500"><img/>-->
-</div>
+    <div *ngIf="labelsYAxis">
+      <app-chart [label]='label' [labelsXAxis]="labelsXAxis" [labelsYAxis]="labelsYAxis"></app-chart>
+    </div>
+  </div>
 </div>
 <app-occurrence-detail></app-occurrence-detail>
