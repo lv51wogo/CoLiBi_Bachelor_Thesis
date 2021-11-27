@@ -1,4 +1,5 @@
 const db = require("../models");
+const {Sequelize} = require("sequelize");
 const Work = db.work;
 const Occurrence = db.occurrance;
 const Op = db.Sequelize.Op;
@@ -35,7 +36,6 @@ exports.findByOccurrence = (req, res) => {
     const term = req.params.term;
 
     Work.findAll({
-        // add or to also match scientific name
         include: [{
             model: Occurrence, where: {
                 [Op.or]: [
@@ -66,4 +66,28 @@ exports.findByAuthor = (req, res) => {
                 message: "Error retrieving Works related to given author "
             });
         });
+}
+
+exports.countOfOccurrencePerWork = (req, res) => {
+    const term = req.params.term;
+
+    Work.findAll({
+        attributes: ['title', 'id',[Sequelize.fn('COUNT', Sequelize.col('term')), 'count']],
+        include: [{
+            model: Occurrence, where: {
+                [Op.or]: [
+                    {term: {[Op.like]: `%${term}`}},
+                    {scientificName: {[Op.like]: `${term}`}},
+                ]
+            },
+            attributes: []
+        }],
+        group: ['title']
+    }).then(data => {
+        res.send(data)
+    }).catch(err => {
+        res.status(500).send({
+            message: "Error retrieving count of occurrence per work "
+        });
+    });
 }

@@ -20,7 +20,7 @@ export class OccurrenceComponent implements OnInit {
   searchTerm!: string;
   currentSearchResult!: Search;
   label = 'Number of occurrences';
-  labelsXAxis!: any[];
+  labelsXAxis!: string[];
   labelsYAxis!: any[];
 
   constructor(private dataService: DataService, private workService: WorkService, private authorService: AuthorService, private occurrenceService: OccurrenceService) {
@@ -78,9 +78,9 @@ export class OccurrenceComponent implements OnInit {
   }
 
   getChartData(): void {
-    this.occurrenceService.getCountAllOccurrences(this.searchTerm).subscribe(x => {
-      this.labelsXAxis = x.count.map(y => y.term);
-      this.labelsYAxis = x.count.map(y => y.count);
+    this.workService.getCountOfOccurrencePerWork(this.searchTerm).subscribe(x => {
+      this.labelsXAxis = x.map(y => y.title.replace("\\", "'", ""));
+      this.labelsYAxis = x.map(y => y.count);
     })
   }
 }
