@@ -9,13 +9,13 @@ import {Occurrence} from "../shared/models/occurrence.model";
   providedIn: 'root'
 })
 export class SearchService {
-  private searchUrl ='http://localhost:8080/api/search'
+  private searchUrl ='http://localhost:8080/api/search/occur'
   constructor( private http: HttpClient,
               private messageService: MessageService) { }
 
 
   /* GET DB Entries who match the search term  */
-  searchTerm(term: string): Observable<Search> {
+  search(term: string): Observable<Search> {
     if (!term.trim()) {
       // if not search term, return empty taxa array.
       return of({});
@@ -29,6 +29,7 @@ export class SearchService {
     );
   }
 
+  //rebuild
   searchForOccurrences( occurrence: string): Observable<Occurrence[]>{
     const url = `${this.searchUrl}/occur/${occurrence}`;
     return this.http.get<Occurrence[]>(url).pipe(

@@ -7,17 +7,30 @@ export class DataService {
 
   private resultSource = new BehaviorSubject<Search>({});
   private searchTermSource = new BehaviorSubject<string>('');
+  private authorFilter = new BehaviorSubject<string[]>([]);
+  private workFilter = new BehaviorSubject<string[]>([]);
 
   /*GET*/
   currentResult = this.resultSource.asObservable();
   currentSearchTerm = this.searchTermSource.asObservable();
+  currentAuthorFilter = this.authorFilter.asObservable()
+  currentWorkFilter = this.workFilter.asObservable();
 
   /*SET*/
   changeResult(result: Search) {
     this.resultSource.next(result)
   }
-  changeSearchTerm(term: string){
+
+  changeSearchTerm(term: string) {
     this.searchTermSource.next(term);
+  }
+
+  changeAuthorFilter(authors: []) {
+    this.authorFilter.next(authors)
+  }
+
+  changeWorksFilter(works: []) {
+    this.workFilter.next(works)
   }
 
 }

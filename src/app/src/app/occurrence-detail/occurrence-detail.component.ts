@@ -19,16 +19,17 @@ export class OccurrenceDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.dataService.currentSearchTerm.subscribe(term =>
-      this.searchTerm = term)
-    console.log(this.searchTerm)
-    this.getCountAll(this.searchTerm)
-    this.getCount(this.searchTerm)
-    this.getAllOccurrences(this.searchTerm)
+    this.dataService.currentSearchTerm.subscribe(term => {
+      this.searchTerm = term
+      console.log(this.searchTerm)
+      this.getCountAll(this.searchTerm)
+      this.getCount(this.searchTerm)
+      this.getAllOccurrences(this.searchTerm)
+    })
   }
 
   getAllOccurrences(searchTerm: string):void{
-    this.searchService.searchForOccurrences(searchTerm).subscribe( data => {
+    this.occurrenceService.getOccurrences().subscribe( data => {
       this.occurrences = data
     })
   }

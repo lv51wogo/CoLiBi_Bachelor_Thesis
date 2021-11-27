@@ -21,7 +21,8 @@ export class AuthorComponent implements OnInit {
 
   initAuthors(): void {
     this.dataService.currentResult.subscribe((data: Search) => {
-        this.authors = data.authors as Author[]
+        this.authors = data.authors as Author[];
+        console.log(data, 'test')
       }
     )
   }

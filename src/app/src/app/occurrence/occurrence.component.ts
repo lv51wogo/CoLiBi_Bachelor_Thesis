@@ -27,15 +27,13 @@ export class OccurrenceComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.initOccurrences()
-    this.dataService.currentSearchTerm.subscribe(term =>
-      this.searchTerm = term)
-    this.getChartData()
+    this.initOccurrences();
+    this.dataService.currentSearchTerm.subscribe(term =>{
+      this.searchTerm = term
 
-    if (this.occurrences.length >= 1) {
-      this.findWorksByOccurrence(this.searchTerm)
-      this.updateResult()
-    }
+      this.getChartData();
+
+    });
   }
 
   initOccurrences(): void {
@@ -61,21 +59,6 @@ export class OccurrenceComponent implements OnInit {
     );
   }
 
-  updateResult(): void {
-    this.dataService.currentResult.subscribe((data: Search) => {
-      this.currentSearchResult = data;
-    })
-
-    this.findWorksByOccurrence(this.searchTerm).subscribe((data: Work[]) => {
-      this.currentSearchResult.works = this.currentSearchResult.works?.concat(data);
-      this.dataService.changeResult(this.currentSearchResult);
-    })
-
-    this.findAuthorsByOccurrence(this.searchTerm).subscribe((data: Author[]) => {
-      this.currentSearchResult.authors = this.currentSearchResult.authors?.concat(data);
-      this.dataService.changeResult(this.currentSearchResult);
-    })
-  }
 
   getChartData(): void {
     this.workService.getCountOfOccurrencePerWork(this.searchTerm).subscribe(x => {

@@ -1,9 +1,11 @@
 import {Injectable} from '@angular/core';
-import {Observable, of} from "rxjs";
+import {Observable, of, throwError} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {MessageService} from "../message.service";
 import {CountModel} from "../shared/models/count.model";
-import {catchError, tap} from "rxjs/operators";
+import {catchError, map, tap} from "rxjs/operators";
+import {Author} from "../shared/models/author.model";
+import {Occurrence} from "../shared/models/occurrence.model";
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +31,16 @@ export class OccurrenceService {
     return this.http.get<string>(url).pipe(
       tap(_=> this.log('fetched count')),
       catchError(this.handleError<string>(`getCount ${searchTerm}`))
+    );
+  }
+
+  getOccurrences(): Observable<Occurrence[]>{
+    return this.http.get<Occurrence[]>(this.occurrenceUrl).pipe(
+      map((data: Occurrence[]) => {
+        return data;
+      }), catchError( err => {
+        return throwError('error occurred while fetching occurrences')
+      })
     );
   }
 
