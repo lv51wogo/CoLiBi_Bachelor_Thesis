@@ -25,11 +25,12 @@ export class DataService {
     this.searchTermSource.next(term);
   }
 
-  changeAuthorFilter(authors: []) {
+  changeAuthorFilter(authors: string[]) {
     this.authorFilter.next(authors)
+    this.changeWorksFilter([])
   }
 
-  changeWorksFilter(works: []) {
+    changeWorksFilter(works: string[]) {
     this.workFilter.next(works)
   }
 

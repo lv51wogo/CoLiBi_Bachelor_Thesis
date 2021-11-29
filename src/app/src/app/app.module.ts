@@ -21,6 +21,7 @@ import {OccurrenceComponent} from './occurrence/occurrence.component';
 import {OccurrenceDetailComponent} from './occurrence-detail/occurrence-detail.component';
 import {ChartComponent} from './chart/chart.component';
 import {ChartsModule} from "ng2-charts";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -41,12 +42,13 @@ import {ChartsModule} from "ng2-charts";
     OccurrenceDetailComponent,
     ChartComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    ChartsModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        ChartsModule,
+        FormsModule
+    ],
   providers: [
     DataService
   ],

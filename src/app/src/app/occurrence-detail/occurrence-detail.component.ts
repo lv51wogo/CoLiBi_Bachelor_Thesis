@@ -14,6 +14,7 @@ export class OccurrenceDetailComponent implements OnInit {
   count!: string;
   countAll!: any[];
   occurrences!: Occurrence[]
+  currentWorkFilter!: string[]
 
   constructor(private occurrenceService: OccurrenceService, private dataService: DataService, private searchService: SearchService) {
   }
@@ -25,6 +26,10 @@ export class OccurrenceDetailComponent implements OnInit {
       this.getCountAll(this.searchTerm)
       this.getCount(this.searchTerm)
       this.getAllOccurrences(this.searchTerm)
+    })
+
+    this.dataService.currentWorkFilter.subscribe( worksFilter => {
+      this.currentWorkFilter = worksFilter;
     })
   }
 

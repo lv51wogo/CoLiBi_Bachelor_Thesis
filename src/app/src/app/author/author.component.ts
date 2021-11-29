@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Author} from "../shared/models/author.model";
 import {DataService} from "../shared/services/data.service";
 import {Search} from "../shared/models/search.model";
@@ -9,8 +9,12 @@ import {Search} from "../shared/models/search.model";
   styleUrls: ['./author.component.css']
 })
 export class AuthorComponent implements OnInit {
+  // @ts-ignore
+  @ViewChild('authorList') authorList: ElementRef<HTMLElement>;
+
   authors?: Author[];
   selectedAuthor?: Author;
+  selectedAuthors?: string[]
 
   constructor(private dataService: DataService) {
   }
@@ -31,6 +35,17 @@ export class AuthorComponent implements OnInit {
     this.selectedAuthor = author;
   }
 
+  changeSelection(): void {
+    this.selectedAuthors= [];
+    this.authorList.nativeElement.querySelectorAll('input:checked').forEach((element:Element) => {
+      // @ts-ignore
+      console.log(element.value)
+      // @ts-ignore
+      this.selectedAuthors.push(element.value)
+    })
+    this.dataService.changeAuthorFilter(this.selectedAuthors)
+  }
+
   // @ts-ignore
   uncheckAll() {
     const checkboxes = document.getElementsByName('authorBox')
@@ -40,7 +55,6 @@ export class AuthorComponent implements OnInit {
         // @ts-ignore
         checkboxes[i].checked = !checkboxes[i].checked
     }
-    console.log(checkboxes)
   }
 }
 
