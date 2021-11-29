@@ -6,6 +6,7 @@ import {CountModel} from "../shared/models/count.model";
 import {catchError, map, tap} from "rxjs/operators";
 import {Author} from "../shared/models/author.model";
 import {Occurrence} from "../shared/models/occurrence.model";
+import {OccurrenceAndWorks} from "../shared/models/OccurrenceAndWorks";
 
 @Injectable({
   providedIn: 'root'
@@ -41,6 +42,15 @@ export class OccurrenceService {
       }), catchError( err => {
         return throwError('error occurred while fetching occurrences')
       })
+    );
+  }
+
+  //get Occurrences with associated Work metadata
+  getOccurrencesWithWorkData(searchTerm:string): Observable<OccurrenceAndWorks[]>{
+   const url = `${this.occurrenceUrl}/workOccurData/${searchTerm}`;
+    return this.http.get<OccurrenceAndWorks[]>(url).pipe(
+      tap(_=> this.log('fetched count')),
+      catchError(this.handleError<OccurrenceAndWorks[]>(`getOccurrencesWithWorkDat ${searchTerm}`))
     );
   }
 

@@ -1,6 +1,8 @@
 const db = require("../models");
 const {Sequelize} = require("sequelize");
 const Occurrence = db.occurrance;
+const Work = db.work;
+
 const Op = db.Sequelize.Op;
 
 exports.findAll = (req, res) => {
@@ -82,4 +84,20 @@ exports.countOccurrence = (req, res) => {
                 err.message || "Error occurred while fetching count of : " + term
         })
     });
+};
+
+exports.findWorksForOccurrences = (req, res) => {
+    const term = req.params.term;
+    Occurrence.findAll({
+        include: [{
+            model: Work}],
+        where: {
+            [Op.or]: [
+                {term: {[Op.like]: `%${term}`}},
+                {scientificName: {[Op.like]: `${term}`}},
+            ]
+        }
+    }).then(data => {
+        res.send(data)
+    })
 };

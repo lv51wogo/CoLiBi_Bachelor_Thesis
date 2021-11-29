@@ -42,27 +42,10 @@ export class OccurrenceComponent implements OnInit {
     })
   }
 
-  /*GET all works related to the search term*/
-  findWorksByOccurrence(occurrence: string): Observable<Work[]> {
-    return this.workService.findByOccurrence(occurrence).pipe(
-      map((data: Work[]) => {
-        return data;
-      })
-    );
-  }
-
-  findAuthorsByOccurrence(occurrence: string): Observable<Author[]> {
-    return this.authorService.findByOccurrence(occurrence).pipe(
-      map((data: Author[]) => {
-        return data;
-      })
-    );
-  }
-
-
   getChartData(): void {
     this.workService.getCountOfOccurrencePerWork(this.searchTerm).subscribe(x => {
-      this.labelsXAxis = x.map(y => y.title.replace("\\", "'", ""));
+      console.log(x)
+      this.labelsXAxis = x.map(y => y.year);
       this.labelsYAxis = x.map(y => y.count);
     })
   }

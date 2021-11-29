@@ -2,7 +2,7 @@ export interface Work {
   id: string;
   title: string;
   ageOfPublication: number;
-  year: string;
+  year: number;
   join: number;
   split: number;
   region: string;

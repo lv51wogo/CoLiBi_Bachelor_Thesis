@@ -72,7 +72,7 @@ exports.countOfOccurrencePerWork = (req, res) => {
     const term = req.params.term;
 
     Work.findAll({
-        attributes: ['title', 'id',[Sequelize.fn('COUNT', Sequelize.col('term')), 'count']],
+        attributes: ['title', 'id',  'year', [Sequelize.fn('COUNT', Sequelize.col('term')), 'count']],
         include: [{
             model: Occurrence, where: {
                 [Op.or]: [
@@ -82,7 +82,7 @@ exports.countOfOccurrencePerWork = (req, res) => {
             },
             attributes: []
         }],
-        group: ['title']
+        group: ['year']
     }).then(data => {
         res.send(data)
     }).catch(err => {

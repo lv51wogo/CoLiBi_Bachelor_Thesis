@@ -13,5 +13,7 @@ module.exports = app => {
 
     router.get("/count/:term", occurrence.countOccurrence);
 
+    router.get("/workOccurData/:term", occurrence.findWorksForOccurrences);
+
     app.use('/api/occur', router);
 };

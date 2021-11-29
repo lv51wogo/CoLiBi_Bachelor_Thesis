@@ -27,7 +27,7 @@ export class ChartComponent implements AfterViewInit {
   chartMethod() {
     // @ts-ignore
     this.chart = new Chart(this.chartCanvas.nativeElement, {
-      type: 'bar',
+      type: 'line',
       data: {
         labels: this.labelsXAxis,
         datasets: [

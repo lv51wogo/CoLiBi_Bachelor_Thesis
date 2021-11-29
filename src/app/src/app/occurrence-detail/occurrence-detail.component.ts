@@ -3,6 +3,7 @@ import {OccurrenceService} from "../occurrence/occurrence.service";
 import {DataService} from "../shared/services/data.service";
 import {SearchService} from "../search/search.service";
 import {Occurrence} from "../shared/models/occurrence.model";
+import {OccurrenceAndWorks} from "../shared/models/OccurrenceAndWorks";
 
 @Component({
   selector: 'app-occurrence-detail',
@@ -13,7 +14,7 @@ export class OccurrenceDetailComponent implements OnInit {
   searchTerm!: string;
   count!: string;
   countAll!: any[];
-  occurrences!: Occurrence[]
+  occurrencesWithWorkMetadata!: OccurrenceAndWorks[]
   currentWorkFilter!: string[]
 
   constructor(private occurrenceService: OccurrenceService, private dataService: DataService, private searchService: SearchService) {
@@ -25,7 +26,7 @@ export class OccurrenceDetailComponent implements OnInit {
       console.log(this.searchTerm)
       this.getCountAll(this.searchTerm)
       this.getCount(this.searchTerm)
-      this.getAllOccurrences(this.searchTerm)
+      this.getAllOccurrencesWithWorkMetadata(this.searchTerm)
     })
 
     this.dataService.currentWorkFilter.subscribe( worksFilter => {
@@ -33,9 +34,11 @@ export class OccurrenceDetailComponent implements OnInit {
     })
   }
 
-  getAllOccurrences(searchTerm: string):void{
-    this.occurrenceService.getOccurrences().subscribe( data => {
-      this.occurrences = data
+  getAllOccurrencesWithWorkMetadata(searchTerm: string):void{
+    this.occurrenceService.getOccurrencesWithWorkData(searchTerm).subscribe( data => {
+      this.occurrencesWithWorkMetadata = data
+      console.log(this.occurrencesWithWorkMetadata)
+      console.log(this.occurrencesWithWorkMetadata[0].Work)
     })
   }
 
