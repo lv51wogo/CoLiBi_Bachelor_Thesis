@@ -1,13 +1,12 @@
 import {AfterViewInit, Component, ElementRef, Input, ViewChild} from '@angular/core';
 
-
 @Component({
   selector: 'app-chart',
   templateUrl: './chart.component.html',
   styleUrls: ['./chart.component.css']
 })
 export class ChartComponent implements AfterViewInit {
-  @ViewChild('chartCanvas') chartCanvas: ElementRef | undefined;
+  @ViewChild('chartCanvas' ,{static: false}) chartCanvas: ElementRef | undefined;
   chart: any;
 
   @Input()
@@ -23,6 +22,12 @@ export class ChartComponent implements AfterViewInit {
 
     console.log(this.labelsXAxis)
   }
+
+  ngOnChanges () {
+    this.chart.destroy();
+    this.ngAfterViewInit()
+  }
+
 
   chartMethod() {
     // @ts-ignore

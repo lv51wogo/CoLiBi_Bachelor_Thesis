@@ -53,7 +53,19 @@ export class AuthorComponent implements OnInit {
       // @ts-ignore
       if ( checkboxes[i].checked)
         // @ts-ignore
-        checkboxes[i].checked = !checkboxes[i].checked
+        checkboxes[i].click()
+    }
+  }
+
+  // @ts-ignore
+  checkAll() {
+    const checkboxes = document.getElementsByName('authorBox')
+    for(let i = 0; i < checkboxes.length ; i++) {
+      // @ts-ignore
+      if ( !checkboxes[i].checked){
+        // @ts-ignore
+        checkboxes[i].click()
+      }
     }
   }
 }

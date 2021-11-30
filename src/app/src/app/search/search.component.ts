@@ -11,45 +11,34 @@ import {DataService} from "../shared/services/data.service";
 })
 export class SearchComponent implements OnInit {
   result!: Search[];
+  occurrence = "occurrence";
+  work = "work";
+  author = "author";
+  categoryModel: any;
 
   constructor(private searchService: SearchService, private dataService: DataService) { }
-
-  search(term: string):void {
-    this.searchService.search(term).subscribe((data: Search)=>{
-      this.dataService.changeResult(data);
-    })
-    this.dataService.changeSearchTerm(term);
-  }
 
   ngOnInit(): void {
   }
 
+  change(val: any){
+    this.categoryModel = val;
+    console.log(this.categoryModel)
+  }
 
-
-
-  //1 suche occurr  => initalen Suche occur[4]
-  // => fill author & work
-
-  //2 author =>
-  //=> fill works & occur
-
-  //3 work
-  //=> fill author & occur
-
-  /*updateResult(): void {
-    this.dataService.currentResult.subscribe((data: Search) => {
-      this.currentSearchResult = data;
-    })
-
-    this.findWorksByOccurrence(this.searchTerm).subscribe((data: Work[]) => {
-      this.currentSearchResult.works = this.currentSearchResult.works?.concat(data);
-      this.dataService.changeResult(this.currentSearchResult);
-    })
-
-    this.findAuthorsByOccurrence(this.searchTerm).subscribe((data: Author[]) => {
-      this.currentSearchResult.authors = this.currentSearchResult.authors?.concat(data);
-      this.dataService.changeResult(this.currentSearchResult);
-    })
-  }*/
-
+  search(term: string):void {
+    if(this.categoryModel == this.occurrence) {
+      this.searchService.searchOccurrences(term).subscribe((data: Search) => {
+        this.dataService.changeResult(data);
+        this.dataService.changeSearchType(this.categoryModel)
+      })
+      this.dataService.changeSearchTerm(term);
+    }
+    if (this.categoryModel == this.work){
+      console.log("work")
+    }
+    if (this.categoryModel == this.author){
+      console.log("author")
+    }
+  }
 }

@@ -4,7 +4,6 @@ import {MessageService} from "../message.service";
 import {Observable, of, throwError} from "rxjs";
 import {catchError, map} from "rxjs/operators";
 import {Search} from "../shared/models/search.model";
-import {Occurrence} from "../shared/models/occurrence.model";
 @Injectable({
   providedIn: 'root'
 })
@@ -15,7 +14,7 @@ export class SearchService {
 
 
   /* GET DB Entries who match the search term  */
-  search(term: string): Observable<Search> {
+  searchOccurrences(term: string): Observable<Search> {
     if (!term.trim()) {
       // if not search term, return empty taxa array.
       return of({});
@@ -29,18 +28,9 @@ export class SearchService {
     );
   }
 
-  //rebuild
-  searchForOccurrences( occurrence: string): Observable<Occurrence[]>{
-    const url = `${this.searchUrl}/occur/${occurrence}`;
-    return this.http.get<Occurrence[]>(url).pipe(
-      map((data: Occurrence[]) => {
-        return data;
-      }), catchError( err => {
-        return throwError('error occurred while searching occurrences')
-      })
-    );
-  }
+  //search Work
 
+  //search Author
   /**
    * Handle Http operation that failed.
    * Let the app continue.

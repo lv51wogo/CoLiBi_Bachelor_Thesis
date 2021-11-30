@@ -9,12 +9,14 @@ export class DataService {
   private searchTermSource = new BehaviorSubject<string>('');
   private authorFilter = new BehaviorSubject<string[]>([]);
   private workFilter = new BehaviorSubject<string[]>([]);
+  private searchType = new BehaviorSubject<string>('')
 
   /*GET*/
   currentResult = this.resultSource.asObservable();
   currentSearchTerm = this.searchTermSource.asObservable();
   currentAuthorFilter = this.authorFilter.asObservable()
   currentWorkFilter = this.workFilter.asObservable();
+  currentSearchType = this.searchType.asObservable()
 
   /*SET*/
   changeResult(result: Search) {
@@ -32,6 +34,10 @@ export class DataService {
 
     changeWorksFilter(works: string[]) {
     this.workFilter.next(works)
+  }
+
+  changeSearchType(searchType: string) {
+    this.searchType.next(searchType)
   }
 
 }

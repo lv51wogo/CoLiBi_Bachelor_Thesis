@@ -3,11 +3,7 @@ import {Occurrence} from "../shared/models/occurrence.model";
 import {DataService} from "../shared/services/data.service";
 import {WorkService} from "../work/work.service";
 import {Search} from "../shared/models/search.model";
-import {Work} from '../shared/models/work.model';
-import {map} from "rxjs/operators";
-import {Observable} from "rxjs";
 import {AuthorService} from "../author/author.service";
-import {Author} from "../shared/models/author.model";
 import {OccurrenceService} from "./occurrence.service";
 
 @Component({
@@ -18,7 +14,6 @@ import {OccurrenceService} from "./occurrence.service";
 export class OccurrenceComponent implements OnInit {
   occurrences!: Occurrence[];
   searchTerm!: string;
-  currentSearchResult!: Search;
   label = 'Number of occurrences';
   labelsXAxis!: string[];
   labelsYAxis!: any[];
@@ -28,11 +23,13 @@ export class OccurrenceComponent implements OnInit {
 
   ngOnInit(): void {
     this.initOccurrences();
-    this.dataService.currentSearchTerm.subscribe(term =>{
+    this.dataService.currentSearchTerm.subscribe(term => {
       this.searchTerm = term
 
-      this.getChartData();
+      this.dataService.currentSearchType.subscribe(searchType => {
+        this.getChartData(searchType);
 
+      })
     });
   }
 
@@ -42,11 +39,14 @@ export class OccurrenceComponent implements OnInit {
     })
   }
 
-  getChartData(): void {
-    this.workService.getCountOfOccurrencePerWork(this.searchTerm).subscribe(x => {
-      console.log(x)
-      this.labelsXAxis = x.map(y => y.year);
-      this.labelsYAxis = x.map(y => y.count);
-    })
+  getChartData(searchType: string): void {
+    if (searchType === 'occurrence') {
+      this.workService.getCountOfOccurrencePerWork(this.searchTerm).subscribe(x => {
+        this.labelsXAxis = x.map(y => y.year);
+        this.labelsYAxis = x.map(y => y.count);
+      })
+    }
+    // searchType = work => get all occurs and their count fetched by workId
+    // searchType = author => get all occurs and their count in works of given author => fetched by authorId
   }
 }

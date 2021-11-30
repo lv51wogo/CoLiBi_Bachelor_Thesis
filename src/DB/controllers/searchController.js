@@ -40,7 +40,6 @@ exports.searchOccurrence = (req, res) => {
                 }
             }
         })]).then(data => {
-        console.log(data)
         res.send({
                 occurrences: data[0],
                 works: data[1],
@@ -112,8 +111,6 @@ exports.search = (req, res) => {
                     [Op.or]: [
                         {title: {[Op.like]: `%${searchTerm}%`}},
                         {id: {[Op.like]: `${searchTerm}`}}
-
-                        //sub
                     ]
                 }
             }),

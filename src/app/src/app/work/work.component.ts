@@ -59,4 +59,15 @@ export class WorkComponent implements OnInit {
         checkboxes[i].checked = !checkboxes[i].checked
     }
   }
+
+  // @ts-ignore
+  checkAll() {
+    const checkboxes = document.getElementsByName('workBox')
+    for(let i = 0; i < checkboxes.length ; i++) {
+      // @ts-ignore
+      if ( !checkboxes[i].checked)
+        // @ts-ignore
+        checkboxes[i].click()
+    }
+  }
 }

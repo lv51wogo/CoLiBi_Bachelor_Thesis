@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {OccurrenceService} from "../occurrence/occurrence.service";
 import {DataService} from "../shared/services/data.service";
 import {SearchService} from "../search/search.service";
-import {Occurrence} from "../shared/models/occurrence.model";
 import {OccurrenceAndWorks} from "../shared/models/OccurrenceAndWorks";
 
 @Component({
@@ -23,7 +22,6 @@ export class OccurrenceDetailComponent implements OnInit {
   ngOnInit(): void {
     this.dataService.currentSearchTerm.subscribe(term => {
       this.searchTerm = term
-      console.log(this.searchTerm)
       this.getCountAll(this.searchTerm)
       this.getCount(this.searchTerm)
       this.getAllOccurrencesWithWorkMetadata(this.searchTerm)
@@ -37,8 +35,6 @@ export class OccurrenceDetailComponent implements OnInit {
   getAllOccurrencesWithWorkMetadata(searchTerm: string):void{
     this.occurrenceService.getOccurrencesWithWorkData(searchTerm).subscribe( data => {
       this.occurrencesWithWorkMetadata = data
-      console.log(this.occurrencesWithWorkMetadata)
-      console.log(this.occurrencesWithWorkMetadata[0].Work)
     })
   }
 
