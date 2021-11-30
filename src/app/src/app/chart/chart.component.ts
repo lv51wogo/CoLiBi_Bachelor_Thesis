@@ -19,8 +19,6 @@ export class ChartComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.chartMethod();
     this.chart.options.gridLines = 10;
-
-    console.log(this.labelsXAxis)
   }
 
   ngOnChanges () {
