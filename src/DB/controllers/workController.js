@@ -41,7 +41,7 @@ exports.findByOccurrence = (req, res) => {
             model: Occurrence, where: {
                 [Op.or]: [
                     {term: {[Op.like]: `%${term}`}},
-                    {scientificName: {[Op.like]: `${term}`}},
+                    {scientificName: {[Op.like]: `%${term} %`}},
                 ]
             }
         }]
@@ -78,12 +78,36 @@ exports.countOfOccurrencePerWork = (req, res) => {
             model: Occurrence, where: {
                 [Op.or]: [
                     {term: {[Op.like]: `%${term}`}},
-                    {scientificName: {[Op.like]: `${term}`}},
+                    {scientificName: {[Op.like]: `%${term} %`}},
                 ]
             },
             attributes: []
         }],
         group: ['year']
+    }).then(data => {
+        res.send(data)
+    }).catch(err => {
+        res.status(500).send({
+            message: "Error retrieving count of occurrence per work "
+        });
+    });
+}
+
+exports.countOfOccurrencePerWorkForAuthor = (req, res) => {
+    const term = req.params.term;
+
+    Work.findAll({
+        attributes: ['title', 'id',  'year', [Sequelize.fn('COUNT', Sequelize.col('term')), 'count']],
+        include: [{
+            model: Occurrence,
+            attributes: []
+        }],
+        where: {
+            [Op.or]: [
+                {authorId: {[Op.like]: `%${term}%`}},
+            ]
+        },
+        group: ['title']
     }).then(data => {
         res.send(data)
     }).catch(err => {

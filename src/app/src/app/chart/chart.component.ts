@@ -10,6 +10,8 @@ export class ChartComponent implements AfterViewInit {
   chart: any;
 
   @Input()
+  chatType!: string;
+  @Input()
   label!: string;
   @Input()
   labelsXAxis!: any[];
@@ -30,7 +32,7 @@ export class ChartComponent implements AfterViewInit {
   chartMethod() {
     // @ts-ignore
     this.chart = new Chart(this.chartCanvas.nativeElement, {
-      type: 'line',
+      type: this.chatType,
       data: {
         labels: this.labelsXAxis,
         datasets: [

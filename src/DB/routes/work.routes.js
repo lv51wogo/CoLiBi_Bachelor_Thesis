@@ -7,6 +7,7 @@ module.exports = app => {
     router.get("/findByOccur/:term", works.findByOccurrence);
     router.get("/findByAuthor/:term", works.findByAuthor);
     router.get("/countTerm/:term", works.countOfOccurrencePerWork);
+    router.get("/countTermAuthor/:term", works.countOfOccurrencePerWorkForAuthor);
 
     app.use('/api/works', router)
 };

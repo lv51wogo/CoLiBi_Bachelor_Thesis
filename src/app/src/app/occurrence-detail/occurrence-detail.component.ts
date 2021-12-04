@@ -20,6 +20,7 @@ export class OccurrenceDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.occurrencesWithWorkMetadata = []
     this.dataService.currentSearchTerm.subscribe(term => {
       this.searchTerm = term
       this.getCountAll(this.searchTerm)
@@ -27,14 +28,33 @@ export class OccurrenceDetailComponent implements OnInit {
       this.getAllOccurrencesWithWorkMetadata(this.searchTerm)
     })
 
-    this.dataService.currentWorkFilter.subscribe( worksFilter => {
+    this.dataService.currentWorkFilter.subscribe(worksFilter => {
       this.currentWorkFilter = worksFilter;
     })
   }
 
-  getAllOccurrencesWithWorkMetadata(searchTerm: string):void{
-    this.occurrenceService.getOccurrencesWithWorkData(searchTerm).subscribe( data => {
-      this.occurrencesWithWorkMetadata = data
+  ngOnChanges () {
+    this.dataService.changeWorksFilter([])
+    this.currentWorkFilter = []
+    this.ngOnInit()
+  }
+
+
+  getAllOccurrencesWithWorkMetadata(searchTerm: string): void {
+    this.dataService.currentSearchType.subscribe(type => {
+      if (type === 'occurrence') {
+        this.occurrenceService.getOccurrencesWithWorkData(searchTerm).subscribe(data => {
+          this.occurrencesWithWorkMetadata = data
+        })
+      }
+      if (type === 'author') {
+        this.occurrenceService.getOccurrencesWithWorkDataForAuthor(searchTerm).subscribe(data => {
+          this.occurrencesWithWorkMetadata = data
+        })
+      }
+      if (type === 'works') {
+        console.log('works')
+      }
     })
   }
 

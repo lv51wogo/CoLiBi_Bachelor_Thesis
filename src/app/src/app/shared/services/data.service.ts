@@ -1,21 +1,20 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {BehaviorSubject} from 'rxjs';
 import {Search} from "../models/search.model";
 
 @Injectable()
 export class DataService {
 
   private resultSource = new BehaviorSubject<Search>({});
-  private searchTermSource = new BehaviorSubject<string>('');
-  private authorFilter = new BehaviorSubject<string[]>([]);
-  private workFilter = new BehaviorSubject<string[]>([]);
-  private searchType = new BehaviorSubject<string>('')
-
   /*GET*/
   currentResult = this.resultSource.asObservable();
+  private searchTermSource = new BehaviorSubject<string>('');
   currentSearchTerm = this.searchTermSource.asObservable();
+  private authorFilter = new BehaviorSubject<string[]>([]);
   currentAuthorFilter = this.authorFilter.asObservable()
+  private workFilter = new BehaviorSubject<string[]>([]);
   currentWorkFilter = this.workFilter.asObservable();
+  private searchType = new BehaviorSubject<string>('')
   currentSearchType = this.searchType.asObservable()
 
   /*SET*/
@@ -32,7 +31,7 @@ export class DataService {
     this.changeWorksFilter([])
   }
 
-    changeWorksFilter(works: string[]) {
+  changeWorksFilter(works: string[]) {
     this.workFilter.next(works)
   }
 

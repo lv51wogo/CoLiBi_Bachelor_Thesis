@@ -14,7 +14,7 @@ exports.searchOccurrence = (req, res) => {
             where: {
                 [Op.or]: [
                     {term: {[Op.like]: `%${searchTerm}`}},
-                    {scientificName: {[Op.like]: `${searchTerm}`}},
+                    {scientificName: {[Op.like]: `%${searchTerm} %`}},
                 ]
             }
         }),
@@ -23,7 +23,7 @@ exports.searchOccurrence = (req, res) => {
                 model: Occurrence, where: {
                     [Op.or]: [
                         {term: {[Op.like]: `%${searchTerm}`}},
-                        {scientificName: {[Op.like]: `${searchTerm}`}},
+                        {scientificName: {[Op.like]: `%${searchTerm} %`}},
                     ]
                 }
             }]
@@ -31,7 +31,10 @@ exports.searchOccurrence = (req, res) => {
         Author.findAll({
             include: [{
                 model: Work,
-                include: [{model: Occurrence, where: {term: {[Op.like]: `%${searchTerm}%`}}, attributes: []}],
+                include: [{model: Occurrence, where: {[Op.or]: [
+                            {term: {[Op.like]: `%${searchTerm}`}},
+                            {scientificName: {[Op.like]: `%${searchTerm} %`}},
+                        ]}, attributes: []}],
                 attributes: []
             }],
             where: {
@@ -57,7 +60,6 @@ exports.searchOccurrence = (req, res) => {
 
 exports.searchWorks = (req, res) => {
     const searchTerm = req.params.id;
-
     Work.findAll({
         where: {
             [Op.or]: [
@@ -79,20 +81,39 @@ exports.searchWorks = (req, res) => {
 
 exports.searchAuthor = (req, res) => {
     const searchTerm = req.params.id;
-
-    Author.findAll({
-        where: {
-            [Op.or]: [
-                {author: {[Op.like]: `${searchTerm}`}},
-                {id: {[Op.like]: `${searchTerm}`}},
-                {forename: {[Op.like]: `${searchTerm}`}},
-                {surname: {[Op.like]: `${searchTerm}`}}
-            ]
-        }
-    })
-        .then(data => {
-            res.send(data)
+    Promise.all([
+        Author.findAll({
+            where: {
+                [Op.or]: [
+                    {author: {[Op.like]: `%${searchTerm}`}},
+                    {id: {[Op.like]: `%${searchTerm}%`}},
+                    {forename: {[Op.like]: `%${searchTerm}`}},
+                    {surname: {[Op.like]: `%${searchTerm}`}}
+                ]
+            }
+        }),
+        Work.findAll({
+            where: {
+                [Op.or]: [
+                    {authorId: {[Op.like]: `%${searchTerm}%`}},
+                ]
+            }
+        }),
+        Occurrence.findAll({
+            include: [{model: Work, where: {
+                    [Op.or]: [
+                        {authorId: {[Op.like]: `%${searchTerm}%`}},
+                    ]
+                }, attributes:[]}]
         })
+    ]).then(data => {
+        res.send({
+                authors: data[0],
+                works: data[1],
+                occurrences: data[2]
+            }
+        )
+    })
         .catch(err => {
             res.status(500).send({
                 message:
@@ -119,7 +140,7 @@ exports.search = (req, res) => {
                 where: {
                     [Op.or]: [
                         {term: {[Op.like]: `%${searchTerm}`}},
-                        {scientificName: {[Op.like]: `${searchTerm}`}},
+                        {scientificName: {[Op.like]: `%${searchTerm}`}},
                     ]
                 }
             }),

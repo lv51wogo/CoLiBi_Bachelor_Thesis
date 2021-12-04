@@ -2,6 +2,7 @@ const db = require("../models");
 const {Sequelize} = require("sequelize");
 const Occurrence = db.occurrance;
 const Work = db.work;
+const Author = db.author;
 
 const Op = db.Sequelize.Op;
 
@@ -94,10 +95,38 @@ exports.findWorksForOccurrences = (req, res) => {
         where: {
             [Op.or]: [
                 {term: {[Op.like]: `%${term}`}},
-                {scientificName: {[Op.like]: `${term}`}},
+                {scientificName: {[Op.like]: `%${term} %`}},
             ]
         }
     }).then(data => {
         res.send(data)
     })
 };
+
+exports.findWorksOccurrencesForAuthor = (req, res) => {
+     const authorId = req.params.authorId;
+     Occurrence.findAll({
+         include: [{
+             model: Work, where: {
+                 [Op.or]: [
+                     {authorId: {[Op.like]: `%${authorId}%`}},
+                 ]
+             }
+         }],
+     }).then(data => {
+         res.send(data)
+     })
+}
+
+exports.findByAuthor = (req, res) => {
+    const term = req.params.term;
+    Occurrence.findAll({
+        include: [{model: Work, where: {
+                [Op.or]: [
+                    {authorId: {[Op.like]: `${term}`}},
+                ]
+            }, attributes:[]}]
+    }).then(data => {
+        res.send(data)
+    })
+}

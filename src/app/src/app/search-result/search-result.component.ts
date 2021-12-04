@@ -23,6 +23,7 @@ export class SearchResultComponent implements OnInit {
       this.works = data.works as Work[];
       this.authors = data.authors as Author[];
       this.occurrences = data.occurrences as Occurrence[];
+      console.log(data)
     });
   }
 }

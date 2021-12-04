@@ -4,7 +4,6 @@ import {HttpClient} from "@angular/common/http";
 import {MessageService} from "../message.service";
 import {CountModel} from "../shared/models/count.model";
 import {catchError, map, tap} from "rxjs/operators";
-import {Author} from "../shared/models/author.model";
 import {Occurrence} from "../shared/models/occurrence.model";
 import {OccurrenceAndWorks} from "../shared/models/OccurrenceAndWorks";
 
@@ -49,10 +48,20 @@ export class OccurrenceService {
   getOccurrencesWithWorkData(searchTerm:string): Observable<OccurrenceAndWorks[]>{
    const url = `${this.occurrenceUrl}/workOccurData/${searchTerm}`;
     return this.http.get<OccurrenceAndWorks[]>(url).pipe(
-      tap(_=> this.log('fetched count')),
+      tap(_=> this.log('fetched occurs and works')),
       catchError(this.handleError<OccurrenceAndWorks[]>(`getOccurrencesWithWorkDat ${searchTerm}`))
     );
   }
+
+  getOccurrencesWithWorkDataForAuthor(authorId:string): Observable<OccurrenceAndWorks[]>{
+    const url = `${this.occurrenceUrl}/workOccurDataAuthor/${authorId}`;
+    return this.http.get<OccurrenceAndWorks[]>(url).pipe(
+      tap(_=> this.log('fetched occurs and works for author')),
+      catchError(this.handleError<OccurrenceAndWorks[]>(`getOccurrencesWithWorkDat ${authorId}`))
+    );
+  }
+
+
 
   /**
    * Handle Http operation that failed.

@@ -14,6 +14,7 @@ import {OccurrenceService} from "./occurrence.service";
 export class OccurrenceComponent implements OnInit {
   occurrences!: Occurrence[];
   searchTerm!: string;
+  chartType = 'line';
   label = 'Number of occurrences';
   labelsXAxis!: string[];
   labelsYAxis!: any[];
@@ -41,12 +42,20 @@ export class OccurrenceComponent implements OnInit {
 
   getChartData(searchType: string): void {
     if (searchType === 'occurrence') {
+      this.chartType = 'line';
       this.workService.getCountOfOccurrencePerWork(this.searchTerm).subscribe(x => {
         this.labelsXAxis = x.map(y => y.year);
         this.labelsYAxis = x.map(y => y.count);
       })
     }
-    // searchType = work => get all occurs and their count fetched by workId
+    if (searchType === 'author'){
+      this.chartType = 'bar';
+      this.workService.getCountOfOccurrencePerWorkForAuthor(this.searchTerm).subscribe(x => {
+        console.log(x)
+        this.labelsXAxis = x.map(y => y.title);
+        this.labelsYAxis = x.map(y => y.count);
+      })
+    }
     // searchType = author => get all occurs and their count in works of given author => fetched by authorId
   }
 }

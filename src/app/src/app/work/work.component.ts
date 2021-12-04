@@ -21,6 +21,7 @@ export class WorkComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.dataService.changeWorksFilter([])
     this.initWorks()
     this.dataService.currentAuthorFilter.subscribe( authorFilter => {
       this.currentAuthorsFilter = authorFilter;

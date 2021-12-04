@@ -1,34 +1,52 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {MessageService} from "../message.service";
 import {Observable, of, throwError} from "rxjs";
 import {catchError, map} from "rxjs/operators";
 import {Search} from "../shared/models/search.model";
+
 @Injectable({
   providedIn: 'root'
 })
 export class SearchService {
-  private searchUrl ='http://localhost:8080/api/search/occur'
-  constructor( private http: HttpClient,
-              private messageService: MessageService) { }
+  private searchUrl = 'http://localhost:8080/api/search/'
+
+  constructor(private http: HttpClient,
+              private messageService: MessageService) {
+  }
 
 
-  /* GET DB Entries who match the search term  */
+  /* GET search for occurrence and the related works and authors   */
   searchOccurrences(term: string): Observable<Search> {
+    const url = `${this.searchUrl}/occur/${term}`;
     if (!term.trim()) {
-      // if not search term, return empty taxa array.
+      // if not search term, return empty arrays.
       return of({});
     }
-    return this.http.get<Search>(`${this.searchUrl}/${term}`).pipe(
-      map((data: Search)=>{
+    return this.http.get<Search>(url).pipe(
+      map((data: Search) => {
         return data;
-      }), catchError (err => {
-        return throwError('error occurred with fetching data')
+      }), catchError(err => {
+        return throwError('error occurred while fetching data')
       })
     );
   }
 
-  //search Work
+  /* GET search for author and the related works and occurrences */
+  searchAuthors(term: string): Observable<Search> {
+    const url = `${this.searchUrl}/authors/${term}`;
+    if (!term.trim()) {
+      // if not search term, return empty arrays.
+      return of({});
+    }
+    return this.http.get<Search>(url).pipe(
+      map((data: Search) => {
+        return data;
+      }), catchError(err => {
+        return throwError('error occurred while fetching data')
+      })
+    );
+  }
 
   //search Author
   /**

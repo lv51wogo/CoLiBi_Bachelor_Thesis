@@ -13,8 +13,8 @@
       <label class="form-check-label" for="inlineRadio2"> Work </label>
     </div>
     <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="author" disabled ngModel>
-      <label class="form-check-label" for="inlineRadio3">Author (disabled)</label>
+      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" [value]="author" (change)="change(author)">
+      <label class="form-check-label" for="inlineRadio3"> Author </label>
     </div>
   </div>
   <div class="col">

@@ -50,6 +50,14 @@ export class WorkService {
     )
   }
 
+  getCountOfOccurrencePerWorkForAuthor(authorId: string): Observable<any[]>{
+    const url = `${this.workUrl}/countTermAuthor/${authorId}`
+    return this.http.get<any[]>(url).pipe(
+      tap(_=> this.log(`fetched count of occur per work of author ${authorId}`)),
+      catchError(this.handleError<any[]>(`getCountOfOccurrencePerWork`))
+    )
+  }
+
   /**
    * Handle Http operation that failed.
    * Let the app continue.

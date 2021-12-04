@@ -27,7 +27,7 @@ export class SearchComponent implements OnInit {
   }
 
   search(term: string):void {
-    if(this.categoryModel == this.occurrence) {
+    if (this.categoryModel == this.occurrence) {
       this.searchService.searchOccurrences(term).subscribe((data: Search) => {
         this.dataService.changeResult(data);
         this.dataService.changeSearchType(this.categoryModel)
@@ -38,7 +38,13 @@ export class SearchComponent implements OnInit {
       console.log("work")
     }
     if (this.categoryModel == this.author){
-      console.log("author")
+      this.searchService.searchAuthors(term).subscribe((data: Search) => {
+        this.dataService.changeResult(data);
+        console.log(data)
+        this.dataService.changeSearchType(this.categoryModel)
+      })
+      this.dataService.changeSearchTerm(term);
     }
   }
+
 }
