@@ -31,10 +31,14 @@ exports.searchOccurrence = (req, res) => {
         Author.findAll({
             include: [{
                 model: Work,
-                include: [{model: Occurrence, where: {[Op.or]: [
+                include: [{
+                    model: Occurrence, where: {
+                        [Op.or]: [
                             {term: {[Op.like]: `%${searchTerm}`}},
                             {scientificName: {[Op.like]: `%${searchTerm} %`}},
-                        ]}, attributes: []}],
+                        ]
+                    }, attributes: []
+                }],
                 attributes: []
             }],
             where: {
@@ -45,7 +49,7 @@ exports.searchOccurrence = (req, res) => {
         }),
         Occurrence.findAll({
             attributes: ['term', 'workId'],
-            include: [{model: Work, attributes:['authorId']}],
+            include: [{model: Work, attributes: ['authorId']}],
             where: {
                 [Op.or]: [
                     {term: {[Op.like]: `%${searchTerm}`}},
@@ -111,18 +115,32 @@ exports.searchAuthor = (req, res) => {
             }
         }),
         Occurrence.findAll({
-            include: [{model: Work, where: {
+            include: [{
+                model: Work, where: {
                     [Op.or]: [
                         {authorId: {[Op.like]: `%${searchTerm}%`}},
                     ]
-                }, attributes:[]}],
+                }, attributes: []
+            }],
             group: ['term']
+        }),
+        Occurrence.findAll({
+            attributes: ['term', 'workId'],
+            include: [{
+                model: Work, where: {
+                    [Op.or]: [
+                        {authorId: {[Op.like]: `%${searchTerm}%`}},
+                    ]
+                },
+                attributes: ['authorId']
+            }],
         })
     ]).then(data => {
         res.send({
                 authors: data[0],
                 works: data[1],
-                occurrences: data[2]
+                occurrences: data[2],
+                occurrenceJoin: data[3]
             }
         )
     })
