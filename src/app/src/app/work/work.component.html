@@ -1,23 +1,25 @@
-<h5 class="col fw-bold mt-5" *ngIf="works">
+<h5 *ngIf="works" class="col fw-bold mt-5">
   Works ({{works.length}})
 </h5>
 <div class="row mb-3">
   <div class="col">
-    <button type="button" class="btn btn-secondary btn-sm" (click)="checkAll()"> Select all</button>
+    <button (click)="checkAll()" class="btn btn-secondary btn-sm" type="button"> Select all</button>
   </div>
   <div class="col">
-    <button type="button" class="btn btn-light btn-sm" (click)="uncheckAll()">Deselect all</button>
+    <button (click)="uncheckAll()" class="btn btn-light btn-sm" type="button">Deselect all</button>
   </div>
 </div>
 <div class="works">
-  <ul class="list-group" #workList>
-    <ng-container *ngFor="let work of works" >
-    <li class="list-group-item" *ngIf="currentAuthorsFilter.includes(work.authorId)|| currentAuthorsFilter.length===0">
-      <input (change)="changeSelection()" class="form-check-input" type="checkbox" [value]="work.id" name='workBox'>
-      <span class="work">
-        {{work.title}}
-      </span>
-    </li>
+  <ul #workList class="list-group">
+    <ng-container *ngFor="let work of works">
+      <div *ngIf="currentAuthorsFilter.includes(work.authorId) && currentOccurFilter.includes(work.id)  || currentOccurFilter.length===0 && currentAuthorsFilter.includes(work.authorId) || currentOccurFilter.length===0 && currentAuthorsFilter.length==0">
+        <li class="list-group-item">
+          <input (change)="changeSelection()" [value]="work.id" class="form-check-input" name='workBox' type="checkbox">
+          <span class="work">
+           {{work.title}}
+          </span>
+        </li>
+      </div>
     </ng-container>
   </ul>
 </div>

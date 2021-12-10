@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {OccurrenceService} from "../occurrence/occurrence.service";
 import {DataService} from "../shared/services/data.service";
 import {SearchService} from "../search/search.service";
-import {OccurrenceAndWorks} from "../shared/models/OccurrenceAndWorks";
+import {OccurrenceAndWorks} from "../shared/models/occurrenceAndWorks";
 
 @Component({
   selector: 'app-occurrence-detail',
@@ -20,7 +20,6 @@ export class OccurrenceDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.occurrencesWithWorkMetadata = []
     this.dataService.currentSearchTerm.subscribe(term => {
       this.searchTerm = term
       this.getCountAll(this.searchTerm)
@@ -34,11 +33,10 @@ export class OccurrenceDetailComponent implements OnInit {
   }
 
   ngOnChanges () {
-    this.dataService.changeWorksFilter([])
+    this.occurrencesWithWorkMetadata = []
     this.currentWorkFilter = []
     this.ngOnInit()
   }
-
 
   getAllOccurrencesWithWorkMetadata(searchTerm: string): void {
     this.dataService.currentSearchType.subscribe(type => {

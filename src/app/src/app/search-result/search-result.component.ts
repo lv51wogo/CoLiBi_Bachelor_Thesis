@@ -4,6 +4,7 @@ import {Search} from "../shared/models/search.model";
 import {Author} from "../shared/models/author.model";
 import {Work} from "../shared/models/work.model";
 import {Occurrence} from "../shared/models/occurrence.model";
+import {OccurrenceJoin} from "../shared/models/occurrenceJoin";
 
 @Component({
   selector: 'app-search-result',
@@ -15,6 +16,7 @@ export class SearchResultComponent implements OnInit {
   works?: Work[];
   occurrences?: Occurrence[];
   searchResult?: Search;
+  occurrenceJoin?: OccurrenceJoin[];
 
   constructor(private dataService: DataService) { }
 
@@ -23,6 +25,7 @@ export class SearchResultComponent implements OnInit {
       this.works = data.works as Work[];
       this.authors = data.authors as Author[];
       this.occurrences = data.occurrences as Occurrence[];
+      this.occurrenceJoin = data.occurrenceJoin as OccurrenceJoin[]
       console.log(data)
     });
   }

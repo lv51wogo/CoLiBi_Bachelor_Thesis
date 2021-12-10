@@ -1,17 +1,26 @@
 <div class="occurrences">
   <div class="container">
-    <div *ngFor="let occurrence of occurrences">
-      <div *ngIf="occurrence.term === searchTerm || occurrence.scientificName === searchTerm" class="row mt-2">
-        <h5 class="col fw-bold text-secondary">
-          Term: {{occurrence.term}}
-        </h5>
-        <h5 class="col text-primary">
-          Scientific name: {{occurrence.scientificName}}
-        </h5>
+    <div class="row mt-2">
+      <div class="col-7">
+        <h5> You searched for: {{searchTerm}}</h5>
+        <br> maybe put count off occurrences here or something
+      </div>
+      <div class="col align-items-end">
+      <ul class="list-group" #occurrenceList>
+        <div *ngFor="let occurrence of occurrences">
+          <li class="list-group-item">
+            <input (change)="changeSelection()" class="form-check-input" type="checkbox" [value]="occurrence.term" id="flexCheckDefault" name='occurBox'>
+            {{occurrence.term}}, {{occurrence.scientificName}}
+          </li>
+        </div>
+      </ul>
       </div>
     </div>
-    <div *ngIf="labelsYAxis">
-      <app-chart [chatType]="chartType" [label]='label' [labelsXAxis]="labelsXAxis" [labelsYAxis]="labelsYAxis"></app-chart>
+    <div class="row mt-2">
+      <div *ngIf="labelsYAxis">
+        <app-chart [chatType]="chartType" [label]='label' [labelsXAxis]="labelsXAxis"
+                   [labelsYAxis]="labelsYAxis"></app-chart>
+      </div>
     </div>
   </div>
 </div>

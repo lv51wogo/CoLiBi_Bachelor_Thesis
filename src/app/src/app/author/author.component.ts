@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnInit,ViewChild} from '@angular/core';
 import {Author} from "../shared/models/author.model";
 import {DataService} from "../shared/services/data.service";
 import {Search} from "../shared/models/search.model";
@@ -14,13 +14,21 @@ export class AuthorComponent implements OnInit {
 
   authors?: Author[];
   selectedAuthor?: Author;
-  selectedAuthors?: string[]
+  selectedAuthors?: string[];
+  currentOccurFilter!: string[];
 
   constructor(private dataService: DataService) {
   }
 
   ngOnInit(): void {
     this.initAuthors()
+    this.dataService.currentOccurrenceFilter.subscribe( occurFilter => {
+      this.currentOccurFilter = occurFilter.map(function (occur){
+        return occur.Work.authorId
+      });
+      console.log(this.currentOccurFilter)
+      this.uncheckAll()
+    })
   }
 
   initAuthors(): void {
@@ -36,6 +44,7 @@ export class AuthorComponent implements OnInit {
   }
 
   changeSelection(): void {
+    this.dataService.changeWorksFilter([])
     this.selectedAuthors= [];
     this.authorList.nativeElement.querySelectorAll('input:checked').forEach((element:Element) => {
       // @ts-ignore

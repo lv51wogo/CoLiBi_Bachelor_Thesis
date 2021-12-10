@@ -33,6 +33,7 @@ export class SearchComponent implements OnInit {
         this.dataService.changeSearchType(this.categoryModel)
       })
       this.dataService.changeSearchTerm(term);
+      this.dataService.changeOccurrenceFilter([])
     }
     if (this.categoryModel == this.work){
       console.log("work")
@@ -44,6 +45,7 @@ export class SearchComponent implements OnInit {
         this.dataService.changeSearchType(this.categoryModel)
       })
       this.dataService.changeSearchTerm(term);
+      this.dataService.changeOccurrenceFilter([])
     }
   }
 

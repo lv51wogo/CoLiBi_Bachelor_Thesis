@@ -123,9 +123,10 @@ exports.findByAuthor = (req, res) => {
     Occurrence.findAll({
         include: [{model: Work, where: {
                 [Op.or]: [
-                    {authorId: {[Op.like]: `${term}`}},
+                    {authorId: {[Op.like]: `%${term}%`}},
                 ]
-            }, attributes:[]}]
+            }, attributes:[]}],
+
     }).then(data => {
         res.send(data)
     })

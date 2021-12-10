@@ -5,7 +5,7 @@ import {MessageService} from "../message.service";
 import {CountModel} from "../shared/models/count.model";
 import {catchError, map, tap} from "rxjs/operators";
 import {Occurrence} from "../shared/models/occurrence.model";
-import {OccurrenceAndWorks} from "../shared/models/OccurrenceAndWorks";
+import {OccurrenceAndWorks} from "../shared/models/occurrenceAndWorks";
 
 @Injectable({
   providedIn: 'root'

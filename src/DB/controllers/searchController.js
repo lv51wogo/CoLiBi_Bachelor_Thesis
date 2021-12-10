@@ -42,11 +42,22 @@ exports.searchOccurrence = (req, res) => {
                     [Op.ne]: null
                 }
             }
+        }),
+        Occurrence.findAll({
+            attributes: ['term', 'workId'],
+            include: [{model: Work, attributes:['authorId']}],
+            where: {
+                [Op.or]: [
+                    {term: {[Op.like]: `%${searchTerm}`}},
+                    {scientificName: {[Op.like]: `%${searchTerm} %`}},
+                ]
+            }
         })]).then(data => {
         res.send({
                 occurrences: data[0],
                 works: data[1],
-                authors: data[2]
+                authors: data[2],
+                occurrenceJoin: data[3]
             }
         )
     })
@@ -104,7 +115,8 @@ exports.searchAuthor = (req, res) => {
                     [Op.or]: [
                         {authorId: {[Op.like]: `%${searchTerm}%`}},
                     ]
-                }, attributes:[]}]
+                }, attributes:[]}],
+            group: ['term']
         })
     ]).then(data => {
         res.send({

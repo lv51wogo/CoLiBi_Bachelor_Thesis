@@ -1,10 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Occurrence} from "../shared/models/occurrence.model";
 import {DataService} from "../shared/services/data.service";
 import {WorkService} from "../work/work.service";
 import {Search} from "../shared/models/search.model";
 import {AuthorService} from "../author/author.service";
 import {OccurrenceService} from "./occurrence.service";
+import {OccurrenceJoin} from "../shared/models/occurrenceJoin";
 
 @Component({
   selector: 'app-occurrence',
@@ -12,12 +13,16 @@ import {OccurrenceService} from "./occurrence.service";
   styleUrls: ['./occurrence.component.css']
 })
 export class OccurrenceComponent implements OnInit {
+  // @ts-ignore
+  @ViewChild('occurrenceList') occurrenceList: ElementRef<HTMLElement>;
+
   occurrences!: Occurrence[];
   searchTerm!: string;
   chartType = 'line';
   label = 'Number of occurrences';
   labelsXAxis!: string[];
   labelsYAxis!: any[];
+  selectedOccurrences?: string[];
 
   constructor(private dataService: DataService, private workService: WorkService, private authorService: AuthorService, private occurrenceService: OccurrenceService) {
   }
@@ -29,7 +34,6 @@ export class OccurrenceComponent implements OnInit {
 
       this.dataService.currentSearchType.subscribe(searchType => {
         this.getChartData(searchType);
-
       })
     });
   }
@@ -40,7 +44,23 @@ export class OccurrenceComponent implements OnInit {
     })
   }
 
+  changeSelection(): void {
+    this.selectedOccurrences = [];
+    let filteredOccurrenceJoin: OccurrenceJoin[] = []
+    this.occurrenceList.nativeElement.querySelectorAll('input:checked').forEach((element:Element) => {
+      // @ts-ignore
+      this.selectedOccurrences.push(element.value)
+    })
+      this.dataService.currentResult.subscribe((data: Search) => {
+        const occurrenceJoin = data.occurrenceJoin as OccurrenceJoin[]
+        filteredOccurrenceJoin = occurrenceJoin.filter(occur => this.selectedOccurrences?.includes(occur.term))
+        console.log(filteredOccurrenceJoin)
+      })
+    this.dataService.changeOccurrenceFilter(filteredOccurrenceJoin)
+  }
+
   getChartData(searchType: string): void {
+    //filter occurs
     if (searchType === 'occurrence') {
       this.chartType = 'line';
       this.workService.getCountOfOccurrencePerWork(this.searchTerm).subscribe(x => {
@@ -57,5 +77,16 @@ export class OccurrenceComponent implements OnInit {
       })
     }
     // searchType = author => get all occurs and their count in works of given author => fetched by authorId
+  }
+
+  // @ts-ignore
+  checkAll() {
+    const checkboxes = document.getElementsByName('occurBox')
+    for(let i = 0; i < checkboxes.length ; i++) {
+      // @ts-ignore
+      if ( !checkboxes[i].checked)
+        // @ts-ignore
+        checkboxes[i].click()
+    }
   }
 }

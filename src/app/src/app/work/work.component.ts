@@ -15,18 +15,28 @@ export class WorkComponent implements OnInit {
   works?: Work[];
   selectedWork?: Work;
   selectedWorks?: string[];
-  currentAuthorsFilter!: string[]
+  currentAuthorsFilter!: string[];
+  currentOccurFilter!: string[];
+
 
   constructor(private dataService: DataService) {
   }
 
   ngOnInit(): void {
-    this.dataService.changeWorksFilter([])
+    //this.dataService.changeWorksFilter([])
     this.initWorks()
     this.dataService.currentAuthorFilter.subscribe( authorFilter => {
       this.currentAuthorsFilter = authorFilter;
+      console.log(this.currentAuthorsFilter)
       this.uncheckAll()
     })
+    this.dataService.currentOccurrenceFilter.subscribe( occurFilter => {
+      this.currentOccurFilter = occurFilter.map(function (occur){
+        return occur.workId
+      });
+      console.log(this.currentOccurFilter)
+    })
+
   }
 
   initWorks(): void {
