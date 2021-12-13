@@ -112,7 +112,32 @@ exports.countOfOccurrencePerWorkForAuthor = (req, res) => {
         res.send(data)
     }).catch(err => {
         res.status(500).send({
-            message: "Error retrieving count of occurrence per work "
+            message: "Error retrieving count of occurrence per work for Author"
+        });
+    });
+}
+
+exports.countOfOccurrence= (req, res) => {
+    const term = req.params.term;
+
+    Work.findAll({
+        attributes: ['title', 'id',  'year', [Sequelize.fn('COUNT', Sequelize.col('term')), 'count']],
+        include: [{
+            model: Occurrence,
+            attributes: []
+        }],
+        where: {
+            [Op.or]: [
+                {id: {[Op.like]: `%${term}%`}},
+                {title: {[Op.like]: `%${term}%`}}
+            ]
+        },
+        group: ['year']
+    }).then(data => {
+        res.send(data)
+    }).catch(error => {
+        res.status(500).send({
+            message: "Error retrieving count of occurrence per work"
         });
     });
 }

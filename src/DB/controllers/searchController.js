@@ -71,21 +71,61 @@ exports.searchOccurrence = (req, res) => {
                     err.message || "Error occurred while retrieving occurrences."
             });
         });
-}
+};
 
 exports.searchWorks = (req, res) => {
     const searchTerm = req.params.id;
-    Work.findAll({
-        where: {
-            [Op.or]: [
-                {title: {[Op.like]: `%${searchTerm}%`}},
-                {id: {[Op.like]: `${searchTerm}`}}
-            ]
-        }
-    })
-        .then(data => {
-            res.send(data)
+    Promise.all([
+        Work.findAll({
+            where: {
+                [Op.or]: [
+                    {title: {[Op.like]: `%${searchTerm}%`}},
+                    {id: {[Op.like]: `${searchTerm}`}}
+                ]
+            }
+        }),
+        Author.findAll({
+            include: [{
+                model: Work, where:{
+                    [Op.or]: [
+                        {title: {[Op.like]: `%${searchTerm}%`}},
+                        {id: {[Op.like]: `%${searchTerm}%`}}
+                    ]
+                }, attributes: []
+            }]
+        }),
+        Occurrence.findAll({
+            include: [{
+                model: Work, where: {
+                    [Op.or]: [
+                        {title: {[Op.like]: `%${searchTerm}%`}},
+                        {id: {[Op.like]: `%${searchTerm}%`}}
+                    ]
+                }, attributes: []
+            }],
+            group: ['term']
+        }),
+        Occurrence.findAll({
+            attributes: ['term', 'workId'],
+            include: [{
+                model: Work, where: {
+                    [Op.or]: [
+                        {id: {[Op.like]: `%${searchTerm}%`}},
+                        {title: {[Op.like]: `%${searchTerm}%`}}
+                    ]
+                },
+                attributes: ['authorId']
+            }]
         })
+    ]).then(data => {
+        res.send({
+                works: data[0],
+                authors: data[1],
+                occurrences: data[2],
+                occurrenceJoin: data[3]
+            }
+        )
+    })
         .catch(err => {
             res.status(500).send({
                 message:
@@ -150,49 +190,4 @@ exports.searchAuthor = (req, res) => {
                     err.message || "Error occurred while retrieving authors."
             });
         });
-}
-
-
-exports.search = (req, res) => {
-    const searchTerm = req.params.id;
-
-    Promise.all([
-            Work.findAll({
-                where: {
-                    [Op.or]: [
-                        {title: {[Op.like]: `%${searchTerm}%`}},
-                        {id: {[Op.like]: `${searchTerm}`}}
-                    ]
-                }
-            }),
-            Occurrence.findAll({
-                attributes: [[Sequelize.fn('DISTINCT', Sequelize.col('term')), 'term'], 'scientificName'],
-                where: {
-                    [Op.or]: [
-                        {term: {[Op.like]: `%${searchTerm}`}},
-                        {scientificName: {[Op.like]: `%${searchTerm}`}},
-                    ]
-                }
-            }),
-            Author.findAll({
-                where: {
-                    [Op.or]: [
-                        {author: {[Op.like]: `%${searchTerm}`}},
-                        {id: {[Op.like]: `${searchTerm}`}},
-                        {forename: {[Op.like]: `%${searchTerm}`}},
-                        {surname: {[Op.like]: `%${searchTerm}`}}
-                    ]
-                }
-            })
-        ]
-    ).then(data => {
-        console.log(data)
-        res.send({
-                works: data[0],
-                occurrences: data[1],
-                authors: data[2]
-            }
-        )
-    })
-}
-
+};

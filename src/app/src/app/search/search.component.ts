@@ -30,22 +30,26 @@ export class SearchComponent implements OnInit {
     if (this.categoryModel == this.occurrence) {
       this.searchService.searchOccurrences(term).subscribe((data: Search) => {
         this.dataService.changeResult(data);
-        this.dataService.changeSearchType(this.categoryModel)
+        this.dataService.changeSearchType(this.categoryModel);
       })
       this.dataService.changeSearchTerm(term);
-      this.dataService.changeOccurrenceFilter([])
+      this.dataService.changeOccurrenceFilter([]);
     }
     if (this.categoryModel == this.work){
-      console.log("work")
+      this.searchService.searchWorks(term).subscribe((data: Search) => {
+        this.dataService.changeResult(data);
+        this.dataService.changeSearchType(this.categoryModel);
+      })
+      this.dataService.changeSearchTerm(term);
+      this.dataService.changeOccurrenceFilter([]);
     }
     if (this.categoryModel == this.author){
       this.searchService.searchAuthors(term).subscribe((data: Search) => {
         this.dataService.changeResult(data);
-        console.log(data)
-        this.dataService.changeSearchType(this.categoryModel)
+        this.dataService.changeSearchType(this.categoryModel);
       })
       this.dataService.changeSearchTerm(term);
-      this.dataService.changeOccurrenceFilter([])
+      this.dataService.changeOccurrenceFilter([]);
     }
   }
 

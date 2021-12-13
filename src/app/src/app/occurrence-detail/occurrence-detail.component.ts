@@ -50,8 +50,11 @@ export class OccurrenceDetailComponent implements OnInit {
           this.occurrencesWithWorkMetadata = data
         })
       }
-      if (type === 'works') {
-        console.log('works')
+      if (type === 'work') {
+        this.occurrenceService.getOccurrencesForWorks(searchTerm).subscribe(data => {
+          this.occurrencesWithWorkMetadata = data
+          console.log(data)
+        })
       }
     })
   }

@@ -68,17 +68,22 @@ export class OccurrenceComponent implements OnInit {
         this.labelsYAxis = x.map(y => y.count);
       })
     }
-    if (searchType === 'author'){
+    if (searchType === 'author') {
       this.chartType = 'bar';
       this.workService.getCountOfOccurrencePerWorkForAuthor(this.searchTerm).subscribe(x => {
+        this.labelsXAxis = x.map(y => y.title);
+        this.labelsYAxis = x.map(y => y.count);
+      })
+    }
+    if (searchType === 'work') {
+      this.chartType = 'bar';
+      this.workService.getCountOfOccurrences(this.searchTerm).subscribe(x => {
         console.log(x)
         this.labelsXAxis = x.map(y => y.title);
         this.labelsYAxis = x.map(y => y.count);
       })
     }
-    // searchType = author => get all occurs and their count in works of given author => fetched by authorId
   }
-
   // @ts-ignore
   checkAll() {
     const checkboxes = document.getElementsByName('occurBox')

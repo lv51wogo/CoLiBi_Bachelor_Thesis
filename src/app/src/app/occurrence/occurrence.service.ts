@@ -1,10 +1,9 @@
 import {Injectable} from '@angular/core';
-import {Observable, of, throwError} from "rxjs";
+import {Observable, of} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {MessageService} from "../message.service";
 import {CountModel} from "../shared/models/count.model";
-import {catchError, map, tap} from "rxjs/operators";
-import {Occurrence} from "../shared/models/occurrence.model";
+import {catchError, tap} from "rxjs/operators";
 import {OccurrenceAndWorks} from "../shared/models/occurrenceAndWorks";
 
 @Injectable({
@@ -34,16 +33,6 @@ export class OccurrenceService {
     );
   }
 
-  getOccurrences(): Observable<Occurrence[]>{
-    return this.http.get<Occurrence[]>(this.occurrenceUrl).pipe(
-      map((data: Occurrence[]) => {
-        return data;
-      }), catchError( err => {
-        return throwError('error occurred while fetching occurrences')
-      })
-    );
-  }
-
   //get Occurrences with associated Work metadata
   getOccurrencesWithWorkData(searchTerm:string): Observable<OccurrenceAndWorks[]>{
    const url = `${this.occurrenceUrl}/workOccurData/${searchTerm}`;
@@ -61,7 +50,13 @@ export class OccurrenceService {
     );
   }
 
-
+  getOccurrencesForWorks(searchTerm: string): Observable<OccurrenceAndWorks[]>{
+    const url = `${this.occurrenceUrl}/occurForWorks/${searchTerm}`;
+    return this.http.get<OccurrenceAndWorks[]>(url).pipe(
+      tap(_=> this.log('fetched occurs and works')),
+      catchError(this.handleError<OccurrenceAndWorks[]>(`findOccurrencesForWorks${searchTerm}`))
+    );
+  }
 
   /**
    * Handle Http operation that failed.

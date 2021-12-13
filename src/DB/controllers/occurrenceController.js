@@ -118,6 +118,22 @@ exports.findWorksOccurrencesForAuthor = (req, res) => {
      })
 }
 
+exports.findOccurrencesForWorks = (req, res) => {
+    const term = req.params.term;
+    Occurrence.findAll({
+        include : [{
+            model: Work, where: {
+                [Op.or]: [
+                    {id: {[Op.like]: `%${term}%`}},
+                    {title: {[Op.like]: `%${term}%`}}
+                ]
+            }
+        }]
+    }).then(data => {
+        res.send(data)
+    })
+}
+
 exports.findByAuthor = (req, res) => {
     const term = req.params.term;
     Occurrence.findAll({

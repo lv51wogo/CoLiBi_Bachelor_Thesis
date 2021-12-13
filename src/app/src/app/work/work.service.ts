@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {MessageService} from "../message.service";
-import {Observable, of, throwError} from "rxjs";
+import {Observable, of} from "rxjs";
 import {Work} from "../shared/models/work.model";
-import {catchError, map, tap} from "rxjs/operators";
+import {catchError, tap} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -13,32 +13,12 @@ export class WorkService {
   constructor(private http: HttpClient,
               private messageService: MessageService) { }
 
-  /*GET all works from server*/
-  getWorks(): Observable<Work[]>{
-    return this.http.get<Work[]>(this.workUrl).pipe(
-      map( (data: Work[]) =>{
-        return data;
-      }), catchError(err => {
-        return throwError('error occurred while fetching works ', err)
-      })
-    );
-  }
-
   /*GET work by id*/
   getWork(id:string): Observable<Work>{
     const url = `${this.workUrl}/${id}`
     return this.http.get<Work>(url).pipe(
       tap(_=> this.log(`fetched work id = ${id}`)),
       catchError(this.handleError<Work>(`getWork id ${id}`))
-    )
-  }
-
-  /*GET all works in dependence of occurrence*/
-  findByOccurrence(occurrence: string): Observable<Work[]> {
-    const url = `${this.workUrl}/findByOccur/${occurrence}`
-    return this.http.get<Work[]>(url).pipe(
-      tap(_=> this.log(`fetched works by occurrence ${occurrence}`)),
-      catchError(this.handleError<Work[]>(`findByOccurrence ${occurrence}`))
     )
   }
 
@@ -55,6 +35,14 @@ export class WorkService {
     return this.http.get<any[]>(url).pipe(
       tap(_=> this.log(`fetched count of occur per work of author ${authorId}`)),
       catchError(this.handleError<any[]>(`getCountOfOccurrencePerWork`))
+    )
+  }
+
+  getCountOfOccurrences(occurrence: string): Observable<any[]>{
+    const url = `${this.workUrl}/countOccur/${occurrence}`
+    return this.http.get<any[]>(url).pipe(
+      tap(_=> this.log(`fetched count of ${occurrence} per work`)),
+      catchError(this.handleError<any[]>(`getCountOfOccurrence`))
     )
   }
 

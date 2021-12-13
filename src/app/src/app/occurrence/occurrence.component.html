@@ -9,7 +9,7 @@
       <ul class="list-group" #occurrenceList>
         <div *ngFor="let occurrence of occurrences">
           <li class="list-group-item">
-            <input (change)="changeSelection()" class="form-check-input" type="checkbox" [value]="occurrence.term" id="flexCheckDefault" name='occurBox'>
+            <input (change)="changeSelection()" class="form-check-input" type="checkbox" [value]="occurrence.term" id="flexCheckDefault" name='occurBox' checked>
             {{occurrence.term}}, {{occurrence.scientificName}}
           </li>
         </div>
