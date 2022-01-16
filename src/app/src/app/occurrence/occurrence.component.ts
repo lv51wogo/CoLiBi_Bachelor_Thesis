@@ -23,6 +23,8 @@ export class OccurrenceComponent implements OnInit {
   labelsXAxis!: string[];
   labelsYAxis!: any[];
   selectedOccurrences?: string[];
+  countAll!: any[]
+  count!: string;
 
   constructor(private dataService: DataService, private workService: WorkService, private authorService: AuthorService, private occurrenceService: OccurrenceService) {
   }
@@ -34,6 +36,8 @@ export class OccurrenceComponent implements OnInit {
 
       this.dataService.currentSearchType.subscribe(searchType => {
         this.getChartData(searchType);
+        this.getCount(this.searchTerm)
+        this.getCountAll(this.searchTerm)
       })
     });
   }
@@ -87,11 +91,46 @@ export class OccurrenceComponent implements OnInit {
   // @ts-ignore
   checkAll() {
     const checkboxes = document.getElementsByName('occurBox')
-    for(let i = 0; i < checkboxes.length ; i++) {
+    for (let i = 0; i < checkboxes.length; i++) {
       // @ts-ignore
-      if ( !checkboxes[i].checked)
+      if (!checkboxes[i].checked)
         // @ts-ignore
         checkboxes[i].click()
     }
+  }
+
+  // @ts-ignore
+  uncheckAll() {
+    const checkboxes = document.getElementsByName('occurBox')
+    for(let i = 0; i < checkboxes.length ; i++) {
+      // @ts-ignore
+      if ( checkboxes[i].checked)
+        // @ts-ignore
+        checkboxes[i].checked = !checkboxes[i].checked
+    }
+  }
+
+  getCountAll(searchTerm: string): void {
+    this.dataService.currentSearchType.subscribe(type =>{
+      if(type === 'occurrence'){
+        this.occurrenceService.getCountAllOccurrences(searchTerm).subscribe(x => {
+          this.countAll = x.count
+        })
+      }
+     /* if (type === 'work'){
+            this.occurrenceService.getCountAllOccurrencesByWork(searchTerm).subscribe(x => {
+              console.log('X', x)
+              this.countAll.push(x.count)
+              console.log('bla',this.countAll)
+            })
+      }*/
+    })
+
+  }
+
+  getCount(searchTerm: string): void {
+    this.occurrenceService.getCountOccurrence(searchTerm).subscribe(x => {
+      this.count = x
+    })
   }
 }

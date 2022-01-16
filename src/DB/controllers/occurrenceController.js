@@ -2,7 +2,6 @@ const db = require("../models");
 const {Sequelize} = require("sequelize");
 const Occurrence = db.occurrance;
 const Work = db.work;
-const Author = db.author;
 
 const Op = db.Sequelize.Op;
 
@@ -22,7 +21,7 @@ exports.findAll = (req, res) => {
 };
 
 exports.findOne = (req, res) => {
-    const id = req.params.id;
+    const id = req.params.id; 
     Occurrence.findByPk(id)
         .then(data => {
             res.send(data)
@@ -59,6 +58,23 @@ exports.countAllOccurrences = (req, res) => {
                 [Op.or]: [
                     {term: {[Op.like]: `%${term}`}},
                     {scientificName: {[Op.like]: `${term}`}},
+                ]
+            }
+        }
+    ).then(data => {
+        res.send(data)
+    });
+};
+
+exports.countAllOccurrencesByWork = (req, res) => {
+    const term = req.params.term;
+    Occurrence.findAndCountAll({
+            attributes: ['term', 'scientificName'],
+            group: ['term', 'scientificName'],
+            where: {[Op.or]: [
+                    { workId: {[Op.like]: `%${term}`}},
+                    //join work and then use title
+                   // { title: {[Op.like]: `%${term}%`}}
                 ]
             }
         }
