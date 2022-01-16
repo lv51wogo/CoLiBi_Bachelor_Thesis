@@ -12,7 +12,6 @@ import {OccurrenceAndWorks} from "../shared/models/occurrenceAndWorks";
 export class OccurrenceDetailComponent implements OnInit {
   searchTerm!: string;
   count!: string;
-  countAll!: any[];
   occurrencesWithWorkMetadata!: OccurrenceAndWorks[]
   currentWorkFilter!: string[]
 
@@ -22,7 +21,6 @@ export class OccurrenceDetailComponent implements OnInit {
   ngOnInit(): void {
     this.dataService.currentSearchTerm.subscribe(term => {
       this.searchTerm = term
-      this.getCountAll(this.searchTerm)
       this.getCount(this.searchTerm)
       this.getAllOccurrencesWithWorkMetadata(this.searchTerm)
     })
@@ -56,12 +54,6 @@ export class OccurrenceDetailComponent implements OnInit {
           console.log(data)
         })
       }
-    })
-  }
-
-  getCountAll(searchTerm: string): void {
-    this.occurrenceService.getCountAllOccurrences(searchTerm).subscribe(x => {
-      this.countAll = x.count
     })
   }
 

@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col mt-2 fw-bold">
-        {{searchTerm}} and related terms occurred {{count}} times.
+        Show where Taxon/Scientific Name occurred in work/works
       </div>
     </div>
     <div class="row">
@@ -12,7 +12,7 @@
           <li class="list-group-item border-0" *ngIf="currentWorkFilter.includes(occur.workId)">
             <h5>Title: {{occur.Work.title}} </h5>
             <h6>Author: {{occur.Work.authorId}} Year: {{occur.Work.year}}</h6>
-             Term: {{occur.term}}
+             Taxon: {{occur.term}}, Scientific Name: {{occur.scientificName}}
             <br> WordFrame: {{occur.wordsFrame}}
             <br>Sentence: {{occur.sentence}}
           </li>
