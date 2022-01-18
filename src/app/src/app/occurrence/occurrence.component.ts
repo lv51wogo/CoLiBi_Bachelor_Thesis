@@ -25,6 +25,8 @@ export class OccurrenceComponent implements OnInit {
   selectedOccurrences?: string[];
   countAll!: any[]
   count!: string;
+  from!:string
+  to!:string;
 
   constructor(private dataService: DataService, private workService: WorkService, private authorService: AuthorService, private occurrenceService: OccurrenceService) {
   }
@@ -43,6 +45,12 @@ export class OccurrenceComponent implements OnInit {
   }
 
   initOccurrences(): void {
+    this.dataService.currentFrom.subscribe(fromDate =>{
+      this.from= fromDate;
+    })
+    this.dataService.currentTo.subscribe(toDate =>{
+      this.to= toDate;
+    })
     this.dataService.currentResult.subscribe((data: Search) => {
       this.occurrences = data.occurrences as Occurrence[]
     })
@@ -68,8 +76,9 @@ export class OccurrenceComponent implements OnInit {
     if (searchType === 'occurrence') {
       this.chartType = 'line';
       this.workService.getCountOfOccurrencePerWork(this.searchTerm).subscribe(x => {
-        this.labelsXAxis = x.map(y => y.year);
-        this.labelsYAxis = x.map(y => y.count);
+        const chartData = x.filter(y => y.year <= this.to &&  y.year >= this.from)
+        this.labelsXAxis = chartData.map(y => y.year);
+        this.labelsYAxis = chartData.map(y => y.count);
       })
     }
     if (searchType === 'author') {

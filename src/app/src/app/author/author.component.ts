@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit,ViewChild} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Author} from "../shared/models/author.model";
 import {DataService} from "../shared/services/data.service";
 import {Search} from "../shared/models/search.model";
@@ -16,25 +16,32 @@ export class AuthorComponent implements OnInit {
   selectedAuthor?: Author;
   selectedAuthors?: string[];
   currentOccurFilter!: string[];
+  from!: string;
+  to!: string;
 
   constructor(private dataService: DataService) {
   }
 
   ngOnInit(): void {
+    this.dataService.currentFrom.subscribe(fromDate => {
+      this.from = fromDate;
+    })
+    this.dataService.currentTo.subscribe(toDate => {
+      this.to = toDate;
+    })
     this.initAuthors()
-    this.dataService.currentOccurrenceFilter.subscribe( occurFilter => {
-      this.currentOccurFilter = occurFilter.map(function (occur){
+    this.dataService.currentOccurrenceFilter.subscribe(occurFilter => {
+      this.currentOccurFilter = occurFilter.map(function (occur) {
         return occur.Work.authorId
       });
-      console.log(this.currentOccurFilter)
       this.uncheckAll()
     })
   }
 
   initAuthors(): void {
     this.dataService.currentResult.subscribe((data: Search) => {
-        this.authors = data.authors as Author[];
-        console.log(data, 'test')
+        const authors = data.authors as Author[];
+        this.authors = authors.filter(y => y.deathDate <= this.to && y.deathDate >= this.from)
       }
     )
   }
@@ -45,8 +52,8 @@ export class AuthorComponent implements OnInit {
 
   changeSelection(): void {
     this.dataService.changeWorksFilter([])
-    this.selectedAuthors= [];
-    this.authorList.nativeElement.querySelectorAll('input:checked').forEach((element:Element) => {
+    this.selectedAuthors = [];
+    this.authorList.nativeElement.querySelectorAll('input:checked').forEach((element: Element) => {
       // @ts-ignore
       console.log(element.value)
       // @ts-ignore
@@ -58,9 +65,9 @@ export class AuthorComponent implements OnInit {
   // @ts-ignore
   uncheckAll() {
     const checkboxes = document.getElementsByName('authorBox')
-    for(let i = 0; i < checkboxes.length ; i++) {
+    for (let i = 0; i < checkboxes.length; i++) {
       // @ts-ignore
-      if ( checkboxes[i].checked)
+      if (checkboxes[i].checked)
         // @ts-ignore
         checkboxes[i].click()
     }
@@ -69,9 +76,9 @@ export class AuthorComponent implements OnInit {
   // @ts-ignore
   checkAll() {
     const checkboxes = document.getElementsByName('authorBox')
-    for(let i = 0; i < checkboxes.length ; i++) {
+    for (let i = 0; i < checkboxes.length; i++) {
       // @ts-ignore
-      if ( !checkboxes[i].checked){
+      if (!checkboxes[i].checked) {
         // @ts-ignore
         checkboxes[i].click()
       }

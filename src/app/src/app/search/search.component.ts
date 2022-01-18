@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {SearchService} from "./search.service";
 import {Search} from "../shared/models/search.model";
 import {DataService} from "../shared/services/data.service";
@@ -15,6 +15,8 @@ export class SearchComponent implements OnInit {
   work = "work";
   author = "author";
   categoryModel: any;
+  fromValue ='1705';
+  toValue = '1996';
 
   constructor(private searchService: SearchService, private dataService: DataService) { }
 
@@ -27,6 +29,10 @@ export class SearchComponent implements OnInit {
   }
 
   search(term: string):void {
+
+    this.dataService.changeFrom(this.fromValue)
+    this.dataService.changeTo(this.toValue);
+
     if (this.categoryModel == this.occurrence) {
       this.searchService.searchOccurrences(term).subscribe((data: Search) => {
         this.dataService.changeResult(data);
@@ -53,4 +59,11 @@ export class SearchComponent implements OnInit {
     }
   }
 
+  readTo(event: any) {
+    this.toValue = event.target.value;
+  }
+
+  readFrom(event: any) {
+    this.fromValue = event.target.value;
+  }
 }

@@ -12,6 +12,8 @@ export class DataService {
   private workFilter = new BehaviorSubject<string[]>([]);
   private occurrenceFilter = new BehaviorSubject<OccurrenceJoin[]>([]);
   private searchType = new BehaviorSubject<string>('');
+  private from = new BehaviorSubject<string>('1705');
+  private to = new BehaviorSubject<string>('1969');
 
   /*GET*/
   currentResult = this.resultSource.asObservable();
@@ -20,6 +22,8 @@ export class DataService {
   currentWorkFilter = this.workFilter.asObservable();
   currentOccurrenceFilter = this.occurrenceFilter.asObservable();
   currentSearchType = this.searchType.asObservable();
+  currentFrom = this.from.asObservable();
+  currentTo = this.to.asObservable();
 
   /*SET*/
   changeResult(result: Search) {
@@ -45,6 +49,14 @@ export class DataService {
 
   changeSearchType(searchType: string) {
     this.searchType.next(searchType)
+  }
+
+  changeFrom(from: string){
+    this.from.next(from)
+  }
+
+  changeTo(to: string){
+    this.to.next(to);
   }
 
 }

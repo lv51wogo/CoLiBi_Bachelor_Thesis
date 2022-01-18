@@ -2,6 +2,7 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Work} from "../shared/models/work.model";
 import {DataService} from "../shared/services/data.service";
 import {Search} from "../shared/models/search.model";
+import {from} from "rxjs";
 
 @Component({
   selector: 'app-work',
@@ -17,13 +18,14 @@ export class WorkComponent implements OnInit {
   selectedWorks?: string[];
   currentAuthorsFilter!: string[];
   currentOccurFilter!: string[];
+  from!:string;
+  to!:string;
 
 
   constructor(private dataService: DataService) {
   }
 
   ngOnInit(): void {
-    //this.dataService.changeWorksFilter([])
     this.initWorks()
     this.dataService.currentAuthorFilter.subscribe( authorFilter => {
       this.currentAuthorsFilter = authorFilter;
@@ -40,8 +42,16 @@ export class WorkComponent implements OnInit {
   }
 
   initWorks(): void {
+    this.dataService.currentFrom.subscribe(fromDate =>{
+      this.from = fromDate;
+    })
+    this.dataService.currentTo.subscribe(toDate =>{
+      this.to = toDate;
+    })
     this.dataService.currentResult.subscribe((data: Search) => {
-      this.works = data.works as Work[]
+      const works = data.works as Work[]
+      console.log(this.from, this.to)
+      this.works = works.filter(y => y.year.toString() <= this.to &&  y.year.toString() >= this.from)
     })
   }
 

@@ -25,9 +25,9 @@
   </div>
   <div class="col text-center">
     <div class="input-group"><span class="input-group-text">From</span>
-      <input type="text" class="form-control" placeholder="1705">
+      <input (keyup)="readFrom($event)" type="text" class="form-control" placeholder="1705">
       <span class="input-group-text">To</span>
-      <input type="text" class="form-control" placeholder="1969">
+      <input (keyup)="readTo($event)" type="text" class="form-control" placeholder="1969">
     </div>
   </div>
 </div>
