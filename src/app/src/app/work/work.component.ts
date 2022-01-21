@@ -29,14 +29,12 @@ export class WorkComponent implements OnInit {
     this.initWorks()
     this.dataService.currentAuthorFilter.subscribe( authorFilter => {
       this.currentAuthorsFilter = authorFilter;
-      console.log(this.currentAuthorsFilter)
       this.uncheckAll()
     })
     this.dataService.currentOccurrenceFilter.subscribe( occurFilter => {
       this.currentOccurFilter = occurFilter.map(function (occur){
         return occur.workId
       });
-      console.log(this.currentOccurFilter)
     })
 
   }
@@ -50,7 +48,6 @@ export class WorkComponent implements OnInit {
     })
     this.dataService.currentResult.subscribe((data: Search) => {
       const works = data.works as Work[]
-      console.log(this.from, this.to)
       this.works = works.filter(y => y.year.toString() <= this.to &&  y.year.toString() >= this.from)
     })
   }
@@ -62,8 +59,6 @@ export class WorkComponent implements OnInit {
   changeSelection(): void {
     this.selectedWorks = [];
     this.workList.nativeElement.querySelectorAll('input:checked').forEach((element:Element) => {
-      // @ts-ignore
-      console.log(element.value)
       // @ts-ignore
       this.selectedWorks?.push(element.value)
     })

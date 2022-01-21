@@ -66,7 +66,6 @@ export class OccurrenceComponent implements OnInit {
       this.dataService.currentResult.subscribe((data: Search) => {
         const occurrenceJoin = data.occurrenceJoin as OccurrenceJoin[]
         filteredOccurrenceJoin = occurrenceJoin.filter(occur => this.selectedOccurrences?.includes(occur.term))
-        console.log(filteredOccurrenceJoin)
       })
     this.dataService.changeOccurrenceFilter(filteredOccurrenceJoin)
   }
@@ -84,16 +83,22 @@ export class OccurrenceComponent implements OnInit {
     if (searchType === 'author') {
       this.chartType = 'bar';
       this.workService.getCountOfOccurrencePerWorkForAuthor(this.searchTerm).subscribe(x => {
-        this.labelsXAxis = x.map(y => y.title);
-        this.labelsYAxis = x.map(y => y.count);
+        const chartData = x.filter(y => y.year <= this.to &&  y.year >= this.from)
+        this.labelsXAxis = chartData.map(y => y.title);
+        this.labelsYAxis = chartData.map(y => y.count);
       })
     }
     if (searchType === 'work') {
       this.chartType = 'bar';
       this.workService.getCountOfOccurrences(this.searchTerm).subscribe(x => {
-        console.log(x)
-        this.labelsXAxis = x.map(y => y.title);
-        this.labelsYAxis = x.map(y => y.count);
+        const chartData = x.filter(y => y.year <= this.to &&  y.year >= this.from)
+        const occurrences = chartData.map(y => y.Occurrences)
+        occurrences.forEach(value => {
+           const countHigherTen = value.filter((y: { count: number; }) => y.count > 10);
+          this.labelsXAxis = countHigherTen.map((y: { term: any; }) => y.term);
+          this.labelsYAxis = countHigherTen.map((y: { count: any; }) => y.count);
+        })
+
       })
     }
   }

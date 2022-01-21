@@ -73,7 +73,7 @@ exports.countOfOccurrencePerWork = (req, res) => {
     const term = req.params.term;
 
     Work.findAll({
-        attributes: ['title', 'id',  'year', [Sequelize.fn('COUNT', Sequelize.col('term')), 'count']],
+        attributes: ['title', 'id', 'year', [Sequelize.fn('COUNT', Sequelize.col('term')), 'count']],
         include: [{
             model: Occurrence, where: {
                 [Op.or]: [
@@ -81,7 +81,7 @@ exports.countOfOccurrencePerWork = (req, res) => {
                     {scientificName: {[Op.like]: `%${term} %`}},
                 ]
             },
-            attributes: []
+            attributes: ['term']
         }],
         group: ['year']
     }).then(data => {
@@ -93,14 +93,15 @@ exports.countOfOccurrencePerWork = (req, res) => {
     });
 }
 
+
 exports.countOfOccurrencePerWorkForAuthor = (req, res) => {
     const term = req.params.term;
 
     Work.findAll({
-        attributes: ['title', 'id',  'year', [Sequelize.fn('COUNT', Sequelize.col('term')), 'count']],
+        attributes: ['title', 'id', 'year', [Sequelize.fn('COUNT', Sequelize.col('term')), 'count']],
         include: [{
             model: Occurrence,
-            attributes: []
+            attributes: ['term']
         }],
         where: {
             [Op.or]: [
@@ -117,22 +118,22 @@ exports.countOfOccurrencePerWorkForAuthor = (req, res) => {
     });
 }
 
-exports.countOfOccurrence= (req, res) => {
+exports.countOfOccurrence = (req, res) => {
     const term = req.params.term;
 
     Work.findAll({
-        attributes: ['title', 'id',  'year', [Sequelize.fn('COUNT', Sequelize.col('term')), 'count']],
+        attributes: ['title', 'id', 'year'],
         include: [{
             model: Occurrence,
-            attributes: []
+            attributes: ['term',  [Sequelize.fn('COUNT', Sequelize.col('term')), 'count']]
         }],
         where: {
             [Op.or]: [
-                {id: {[Op.like]: `%${term}%`}},
-                {title: {[Op.like]: `%${term}%`}}
+                {title: {[Op.like]: `%${term}%`}},
+                {id: {[Op.like]: `${term}`}}
             ]
         },
-        group: ['year']
+        group: ['term']
     }).then(data => {
         res.send(data)
     }).catch(error => {
