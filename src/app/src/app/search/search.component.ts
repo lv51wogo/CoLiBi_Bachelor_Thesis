@@ -25,7 +25,6 @@ export class SearchComponent implements OnInit {
 
   change(val: any){
     this.categoryModel = val;
-    console.log(this.categoryModel)
   }
 
   search(term: string):void {

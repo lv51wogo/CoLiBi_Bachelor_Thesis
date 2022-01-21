@@ -26,7 +26,6 @@ export class SearchResultComponent implements OnInit {
       this.authors = data.authors as Author[];
       this.occurrences = data.occurrences as Occurrence[];
       this.occurrenceJoin = data.occurrenceJoin as OccurrenceJoin[]
-      console.log(data)
     });
   }
 }
