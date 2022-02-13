@@ -4,12 +4,13 @@ import {MessageService} from "../message.service";
 import {Observable, of, throwError} from "rxjs";
 import {catchError, map} from "rxjs/operators";
 import {Search} from "../shared/models/search.model";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class SearchService {
-  private searchUrl = 'http://localhost:8080/api/search/'
+  private searchUrl = `${environment.baseUrl}/api/search/`
 
   constructor(private http: HttpClient,
               private messageService: MessageService) {

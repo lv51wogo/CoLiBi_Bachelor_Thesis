@@ -4,12 +4,13 @@ import {MessageService} from "../message.service";
 import {Observable, of} from "rxjs";
 import {Work} from "../shared/models/work.model";
 import {catchError, tap} from "rxjs/operators";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class WorkService {
-  private workUrl = 'http://localhost:8080/api/works'
+  private workUrl = `${environment.baseUrl}/api/works`
   constructor(private http: HttpClient,
               private messageService: MessageService) { }
 

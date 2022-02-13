@@ -5,12 +5,13 @@ import {MessageService} from "../message.service";
 import {CountModel} from "../shared/models/count.model";
 import {catchError, tap} from "rxjs/operators";
 import {OccurrenceAndWorks} from "../shared/models/occurrenceAndWorks";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class OccurrenceService {
-  private occurrenceUrl = 'http://localhost:8080/api/occur';
+  private occurrenceUrl = `${environment.baseUrl}/api/occur`;
 
   constructor(private http: HttpClient, private messageService: MessageService) {
   }
