@@ -46,3 +46,30 @@ exports.findByOccurrence = (req, res) => {
         res.send(data)
     })
 }
+
+exports.countOfOccurrence = (req, res) => {
+    const term = req.params.term;
+
+    Author.findAll({
+        include: [{model: Work, attributes: ['title', 'id', 'year'], include:[{
+            model: Occurrence,
+            attributes: ['term', 'scientificName', 'workId',[Sequelize.fn('COUNT', Sequelize.col('term')), 'count']]
+        }]}],
+        attributes:[],
+        where: {
+            [Op.or]: [
+                {author: {[Op.like]: `%${term}`}},
+                {id: {[Op.like]: `%${term}%`}},
+                {forename: {[Op.like]: `%${term}`}},
+                {surname: {[Op.like]: `%${term}`}}
+            ]
+        },
+        group: ['term']
+    }).then(data => {
+        res.send(data)
+    }).catch(error => {
+        res.status(500).send({
+            message: "Error retrieving count of occurrence per work"
+        });
+    });
+}

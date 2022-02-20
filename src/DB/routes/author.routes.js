@@ -6,6 +6,7 @@ module.exports = app => {
     router.get("/", authors.findAll);
     router.get("/:id", authors.findOne);
     router.get("/findByOccur/:term", authors.findByOccurrence)
+    router.get("/countOccurs/:term", authors.countOfOccurrence)
 
     app.use('/api/authors', router);
 };
