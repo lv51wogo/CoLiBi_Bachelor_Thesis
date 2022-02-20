@@ -21,7 +21,7 @@ exports.findAll = (req, res) => {
 };
 
 exports.findOne = (req, res) => {
-    const id = req.params.id; 
+    const id = req.params.id;
     Occurrence.findByPk(id)
         .then(data => {
             res.send(data)
@@ -52,8 +52,8 @@ exports.findAllDistinct = (req, res) => {
 exports.countAllOccurrences = (req, res) => {
     const term = req.params.term;
     Occurrence.findAndCountAll({
-        attributes: ['term', 'scientificName'],
-        group: ['term', 'scientificName'],
+            attributes: ['term', 'scientificName'],
+            group: ['term', 'scientificName'],
             where: {
                 [Op.or]: [
                     {term: {[Op.like]: `%${term}`}},
@@ -71,10 +71,9 @@ exports.countAllOccurrencesByWork = (req, res) => {
     Occurrence.findAndCountAll({
             attributes: ['term', 'scientificName'],
             group: ['term', 'scientificName'],
-            where: {[Op.or]: [
-                    { workId: {[Op.like]: `%${term}`}},
-                    //join work and then use title
-                   // { title: {[Op.like]: `%${term}%`}}
+            where: {
+                [Op.or]: [
+                    {workId: {[Op.like]: `%${term}`}}
                 ]
             }
         }
@@ -86,7 +85,8 @@ exports.countAllOccurrencesByWork = (req, res) => {
 exports.countOccurrence = (req, res) => {
     const term = req.params.term;
     Occurrence.count({
-            where: {[Op.or]: [
+            where: {
+                [Op.or]: [
                     {term: {[Op.like]: `%${term}`}},
                     {scientificName: {[Op.like]: `${term}`}},
                 ]
@@ -94,7 +94,7 @@ exports.countOccurrence = (req, res) => {
         }
     ).then(data => {
         console.log(data)
-        res.send ( data.toString())
+        res.send(data.toString())
     }).catch(err => {
         res.sendStatus(500).send({
             message:
@@ -107,7 +107,8 @@ exports.findWorksForOccurrences = (req, res) => {
     const term = req.params.term;
     Occurrence.findAll({
         include: [{
-            model: Work}],
+            model: Work
+        }],
         where: {
             [Op.or]: [
                 {term: {[Op.like]: `%${term}`}},
@@ -120,24 +121,24 @@ exports.findWorksForOccurrences = (req, res) => {
 };
 
 exports.findWorksOccurrencesForAuthor = (req, res) => {
-     const authorId = req.params.authorId;
-     Occurrence.findAll({
-         include: [{
-             model: Work, where: {
-                 [Op.or]: [
-                     {authorId: {[Op.like]: `%${authorId}%`}},
-                 ]
-             }
-         }],
-     }).then(data => {
-         res.send(data)
-     })
+    const authorId = req.params.authorId;
+    Occurrence.findAll({
+        include: [{
+            model: Work, where: {
+                [Op.or]: [
+                    {authorId: {[Op.like]: `%${authorId}%`}},
+                ]
+            }
+        }],
+    }).then(data => {
+        res.send(data)
+    })
 }
 
 exports.findOccurrencesForWorks = (req, res) => {
     const term = req.params.term;
     Occurrence.findAll({
-        include : [{
+        include: [{
             model: Work, where: {
                 [Op.or]: [
                     {id: {[Op.like]: `%${term}%`}},
@@ -153,11 +154,13 @@ exports.findOccurrencesForWorks = (req, res) => {
 exports.findByAuthor = (req, res) => {
     const term = req.params.term;
     Occurrence.findAll({
-        include: [{model: Work, where: {
+        include: [{
+            model: Work, where: {
                 [Op.or]: [
                     {authorId: {[Op.like]: `%${term}%`}},
                 ]
-            }, attributes:[]}],
+            }, attributes: []
+        }],
 
     }).then(data => {
         res.send(data)
