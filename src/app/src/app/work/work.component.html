@@ -1,5 +1,5 @@
 <h5 *ngIf="works" class="col fw-bold mt-5">
-  Works ({{works.length}})
+  Works
 </h5>
 <div class="row mb-3">
   <div class="col">
@@ -16,7 +16,7 @@
         <li class="list-group-item">
           <input (change)="changeSelection()" [value]="work.id" class="form-check-input" name='workBox' type="checkbox">
           <span class="work">
-           {{work.title}}
+           {{work.title}} ({{work.id}})
           </span>
         </li>
       </div>
