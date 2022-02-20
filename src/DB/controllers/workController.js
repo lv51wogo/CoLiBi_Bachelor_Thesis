@@ -125,7 +125,7 @@ exports.countOfOccurrence = (req, res) => {
         attributes: ['title', 'id', 'year'],
         include: [{
             model: Occurrence,
-            attributes: ['term',  [Sequelize.fn('COUNT', Sequelize.col('term')), 'count']]
+            attributes: ['term', 'scientificName', [Sequelize.fn('COUNT', Sequelize.col('term')), 'count']]
         }],
         where: {
             [Op.or]: [
