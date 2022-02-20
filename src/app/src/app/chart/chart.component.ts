@@ -6,11 +6,11 @@ import {AfterViewInit, Component, ElementRef, Input, ViewChild} from '@angular/c
   styleUrls: ['./chart.component.css']
 })
 export class ChartComponent implements AfterViewInit {
-  @ViewChild('chartCanvas' ,{static: false}) chartCanvas: ElementRef | undefined;
+  @ViewChild('chartCanvas', {static: false}) chartCanvas: ElementRef | undefined;
   chart: any;
 
   @Input()
-  chatType!: string;
+  chartType!: string;
   @Input()
   label!: string;
   @Input()
@@ -19,20 +19,25 @@ export class ChartComponent implements AfterViewInit {
   labelsYAxis!: any[];
 
   ngAfterViewInit(): void {
-    this.chartMethod();
+    this.createChart();
     this.chart.options.gridLines = 10;
   }
 
-  ngOnChanges () {
-    this.chart.destroy();
-    this.ngAfterViewInit()
+  ngOnChanges() {
+    if (this.chart) {
+      this.chart.config.type = this.chartType
+      this.chart.data.labels = this.labelsXAxis;
+      this.chart.data.datasets[0].data = this.labelsYAxis;
+      this.chart.data.datasets[0].label = this.label;
+      this.chart.update()
+    }
   }
 
 
-  chartMethod() {
+  createChart() {
     // @ts-ignore
     this.chart = new Chart(this.chartCanvas.nativeElement, {
-      type: this.chatType,
+      type: this.chartType,
       data: {
         labels: this.labelsXAxis,
         datasets: [
