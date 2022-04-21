@@ -18,7 +18,10 @@ import {DataService} from "./shared/services/data.service";
 import {WorkComponent} from './work/work.component';
 import {WorkDetailComponent} from './work-detail/work-detail.component';
 import {OccurrenceComponent} from './occurrence/occurrence.component';
-import { OccurrenceDetailComponent } from './occurrence-detail/occurrence-detail.component';
+import {OccurrenceDetailComponent} from './occurrence-detail/occurrence-detail.component';
+import {ChartComponent} from './chart/chart.component';
+import {ChartsModule} from "ng2-charts";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -36,13 +39,16 @@ import { OccurrenceDetailComponent } from './occurrence-detail/occurrence-detail
     WorkComponent,
     WorkDetailComponent,
     OccurrenceComponent,
-    OccurrenceDetailComponent
+    OccurrenceDetailComponent,
+    ChartComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        ChartsModule,
+        FormsModule
+    ],
   providers: [
     DataService
   ],

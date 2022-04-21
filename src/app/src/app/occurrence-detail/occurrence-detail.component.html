@@ -1,20 +1,22 @@
-<div class="occurrence-detail">
+<div class="occurrence-detail mb-3">
   <div class="container">
     <div class="row">
       <div class="col mt-2 fw-bold">
-        {{searchTerm}} and related terms occurred {{count}} times.
+        Show where Taxon/Scientific Name occurred in work/works
       </div>
     </div>
     <div class="row">
       <div class="col">
         <ul class="list-group">
-          <li class="list-group-item border-0" *ngFor="let occurCount of countAll">
-          <span>
-           Term: {{occurCount.term}},
-            <br>Scientific name: {{occurCount.scientificName}}, occurred {{occurCount.count}}
-            times.
-          </span>
+          <ng-container *ngFor="let occur of occurrencesWithWorkMetadata" >
+          <li class="list-group-item border-0" *ngIf="currentWorkFilter.includes(occur.workId)">
+            <h5>Title: {{occur.Work.title}} </h5>
+            <h6>Author: {{occur.Work.authorId}} Year: {{occur.Work.year}}</h6>
+             Taxon: {{occur.term}}, Scientific Name: {{occur.scientificName}}
+            <br> WordFrame: {{occur.wordsFrame}}
+            <br>Sentence: {{occur.sentence}}
           </li>
+          </ng-container>
         </ul>
       </div>
     </div>

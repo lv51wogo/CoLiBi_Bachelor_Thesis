@@ -1,12 +1,14 @@
 
   <div class="row">
-    <div class="col" >
-      <app-author *ngIf="authors"></app-author>
+    <div class="col-4" >
+      <div class="row">
+        <app-author *ngIf="authors"></app-author>
+      </div>
+      <div class="row mt-2">
+        <app-work *ngIf="works"></app-work>
+      </div>
     </div>
-    <div class="col">
+    <div class="col-8">
      <app-occurrence *ngIf="occurrences"></app-occurrence>
-    </div>
-    <div class="col">
-      <app-work *ngIf="works"></app-work>
     </div>
   </div>

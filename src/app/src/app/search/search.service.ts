@@ -1,30 +1,66 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {MessageService} from "../message.service";
 import {Observable, of, throwError} from "rxjs";
-import {catchError, map, tap} from "rxjs/operators";
+import {catchError, map} from "rxjs/operators";
 import {Search} from "../shared/models/search.model";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class SearchService {
-  private searchUrl ='http://localhost:8080/api/search'
-  constructor( private http: HttpClient,
-              private messageService: MessageService) { }
+  private searchUrl = `${environment.baseUrl}/api/search/`
+
+  constructor(private http: HttpClient,
+              private messageService: MessageService) {
+  }
 
 
-  /* GET taxa whose name contains search term */
-  searchTerm(term: string): Observable<Search> {
+  /* GET search for occurrence and the related works and authors   */
+  searchOccurrences(term: string): Observable<Search> {
+    const url = `${this.searchUrl}/occur/${term}`;
     if (!term.trim()) {
-      // if not search term, return empty taxa array.
+      // if not search term, return empty arrays.
       return of({});
     }
-    return this.http.get<Search>(`${this.searchUrl}/${term}`).pipe(
-      map((data: Search)=>{
+    return this.http.get<Search>(url).pipe(
+      map((data: Search) => {
         return data;
-      }), catchError (err => {
-        return throwError('error occurred with fetching data')
+      }), catchError(err => {
+        return throwError('error occurred while fetching data')
+      })
+    );
+  }
+
+  /* GET search for author and the related works and occurrences */
+  searchAuthors(term: string): Observable<Search> {
+    const url = `${this.searchUrl}/authors/${term}`;
+    if (!term.trim()) {
+      // if not search term, return empty arrays.
+      return of({});
+    }
+    return this.http.get<Search>(url).pipe(
+      map((data: Search) => {
+        return data;
+      }), catchError(err => {
+        return throwError('error occurred while fetching data')
+      })
+    );
+  }
+
+  /* GET search for works and the related authors and occurrences */
+  searchWorks(term: string): Observable<Search> {
+    const url = `${this.searchUrl}/works/${term}`;
+    if (!term.trim()) {
+      // if not search term, return empty arrays.
+      return of({});
+    }
+    return this.http.get<Search>(url).pipe(
+      map((data: Search) => {
+        return data;
+      }), catchError(err => {
+        return throwError('error occurred while fetching data')
       })
     );
   }
@@ -38,13 +74,10 @@ export class SearchService {
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
+      console.error(error);
 
-      // TODO: better job of transforming error for user consumption
       this.log(`${operation} failed: ${error.message}`);
 
-      // Let the app keep running by returning an empty result.
       return of(result as T);
     };
   }

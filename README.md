@@ -23,3 +23,5 @@ Seeding:
 To generate a new Seed use: npx sequelize-cli seed:generate --name 'modelName'
 
 To seed the database with date run: npx sequelize-cli db:seed:all
+
+Seed single File: npx sequelize-cli db:seed --seed -fileName

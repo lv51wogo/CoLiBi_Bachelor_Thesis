@@ -4,13 +4,13 @@ import {MessageService} from "../message.service";
 import {Observable, of, throwError} from "rxjs";
 import {Author} from "../shared/models/author.model";
 import {catchError, map, tap} from "rxjs/operators";
-import {Work} from "../shared/models/work.model";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthorService {
-  private authorUrl ='http://localhost:8080/api/authors'
+  private authorUrl = `${environment.baseUrl}/api/authors`
   constructor(private http: HttpClient,
               private messageService: MessageService) { }
 
@@ -40,6 +40,14 @@ export class AuthorService {
     return this.http.get<Author[]>(url).pipe(
       tap(_=> this.log(`fetched authors by occurrence ${occurrence}`)),
       catchError(this.handleError<Author[]>(`findByOccurrence ${occurrence}`))
+    )
+  }
+
+  getCountOfOccurrences(term: string): Observable<any[]>{
+    const url = `${this.authorUrl}/countOccurs/${term}`
+    return this.http.get<any[]>(url).pipe(
+      tap(_=> this.log(`fetched count of occurrences per author ${term}`)),
+      catchError(this.handleError<any[]>(`getCountOfOccurrence`))
     )
   }
 

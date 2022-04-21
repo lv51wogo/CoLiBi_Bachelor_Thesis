@@ -1,4 +1,5 @@
 const db = require("../models");
+const {Sequelize} = require("sequelize");
 const Work = db.work;
 const Occurrence = db.occurrance;
 const Op = db.Sequelize.Op;
@@ -40,7 +41,7 @@ exports.findByOccurrence = (req, res) => {
             model: Occurrence, where: {
                 [Op.or]: [
                     {term: {[Op.like]: `%${term}`}},
-                    {scientificName: {[Op.like]: `${term}`}},
+                    {scientificName: {[Op.like]: `%${term} %`}},
                 ]
             }
         }]
@@ -66,4 +67,78 @@ exports.findByAuthor = (req, res) => {
                 message: "Error retrieving Works related to given author "
             });
         });
+}
+
+exports.countOfOccurrencePerWork = (req, res) => {
+    const term = req.params.term;
+
+    Work.findAll({
+        attributes: ['title', 'id', 'year', [Sequelize.fn('COUNT', Sequelize.col('term')), 'count']],
+        include: [{
+            model: Occurrence, where: {
+                [Op.or]: [
+                    {term: {[Op.like]: `%${term}`}},
+                    {scientificName: {[Op.like]: `%${term} %`}},
+                ]
+            },
+            attributes: ['term']
+        }],
+        group: ['year']
+    }).then(data => {
+        res.send(data)
+    }).catch(err => {
+        res.status(500).send({
+            message: "Error retrieving count of occurrence per work "
+        });
+    });
+}
+
+
+exports.countOfOccurrencePerWorkForAuthor = (req, res) => {
+    const term = req.params.term;
+
+    Work.findAll({
+        attributes: ['title', 'id', 'year', [Sequelize.fn('COUNT', Sequelize.col('term')), 'count']],
+        include: [{
+            model: Occurrence,
+            attributes: ['term']
+        }],
+        where: {
+            [Op.or]: [
+                {authorId: {[Op.like]: `%${term}%`}},
+            ]
+        },
+        group: ['title']
+    }).then(data => {
+        res.send(data)
+    }).catch(err => {
+        res.status(500).send({
+            message: "Error retrieving count of occurrence per work for Author"
+        });
+    });
+}
+
+exports.countOfOccurrence = (req, res) => {
+    const term = req.params.term;
+
+    Work.findAll({
+        attributes: ['title', 'id', 'year'],
+        include: [{
+            model: Occurrence,
+            attributes: ['term', 'scientificName', [Sequelize.fn('COUNT', Sequelize.col('term')), 'count']]
+        }],
+        where: {
+            [Op.or]: [
+                {title: {[Op.like]: `%${term}%`}},
+                {id: {[Op.like]: `${term}`}}
+            ]
+        },
+        group: ['term']
+    }).then(data => {
+        res.send(data)
+    }).catch(error => {
+        res.status(500).send({
+            message: "Error retrieving count of occurrence per work"
+        });
+    });
 }

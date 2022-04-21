@@ -1,6 +1,8 @@
 const db = require("../models");
 const {Sequelize} = require("sequelize");
 const Occurrence = db.occurrance;
+const Work = db.work;
+
 const Op = db.Sequelize.Op;
 
 exports.findAll = (req, res) => {
@@ -50,8 +52,8 @@ exports.findAllDistinct = (req, res) => {
 exports.countAllOccurrences = (req, res) => {
     const term = req.params.term;
     Occurrence.findAndCountAll({
-        attributes: ['term', 'scientificName'],
-        group: ['term', 'scientificName'],
+            attributes: ['term', 'scientificName'],
+            group: ['term', 'scientificName'],
             where: {
                 [Op.or]: [
                     {term: {[Op.like]: `%${term}`}},
@@ -64,10 +66,27 @@ exports.countAllOccurrences = (req, res) => {
     });
 };
 
+exports.countAllOccurrencesByWork = (req, res) => {
+    const term = req.params.term;
+    Occurrence.findAndCountAll({
+            attributes: ['term', 'scientificName'],
+            group: ['term', 'scientificName'],
+            where: {
+                [Op.or]: [
+                    {workId: {[Op.like]: `%${term}`}}
+                ]
+            }
+        }
+    ).then(data => {
+        res.send(data)
+    });
+};
+
 exports.countOccurrence = (req, res) => {
     const term = req.params.term;
     Occurrence.count({
-            where: {[Op.or]: [
+            where: {
+                [Op.or]: [
                     {term: {[Op.like]: `%${term}`}},
                     {scientificName: {[Op.like]: `${term}`}},
                 ]
@@ -75,7 +94,7 @@ exports.countOccurrence = (req, res) => {
         }
     ).then(data => {
         console.log(data)
-        res.send ( data.toString())
+        res.send(data.toString())
     }).catch(err => {
         res.sendStatus(500).send({
             message:
@@ -83,3 +102,67 @@ exports.countOccurrence = (req, res) => {
         })
     });
 };
+
+exports.findWorksForOccurrences = (req, res) => {
+    const term = req.params.term;
+    Occurrence.findAll({
+        include: [{
+            model: Work
+        }],
+        where: {
+            [Op.or]: [
+                {term: {[Op.like]: `%${term}`}},
+                {scientificName: {[Op.like]: `%${term} %`}},
+            ]
+        }
+    }).then(data => {
+        res.send(data)
+    })
+};
+
+exports.findWorksOccurrencesForAuthor = (req, res) => {
+    const authorId = req.params.authorId;
+    Occurrence.findAll({
+        include: [{
+            model: Work, where: {
+                [Op.or]: [
+                    {authorId: {[Op.like]: `%${authorId}%`}},
+                ]
+            }
+        }],
+    }).then(data => {
+        res.send(data)
+    })
+}
+
+exports.findOccurrencesForWorks = (req, res) => {
+    const term = req.params.term;
+    Occurrence.findAll({
+        include: [{
+            model: Work, where: {
+                [Op.or]: [
+                    {id: {[Op.like]: `%${term}%`}},
+                    {title: {[Op.like]: `%${term}%`}}
+                ]
+            }
+        }]
+    }).then(data => {
+        res.send(data)
+    })
+}
+
+exports.findByAuthor = (req, res) => {
+    const term = req.params.term;
+    Occurrence.findAll({
+        include: [{
+            model: Work, where: {
+                [Op.or]: [
+                    {authorId: {[Op.like]: `%${term}%`}},
+                ]
+            }, attributes: []
+        }],
+
+    }).then(data => {
+        res.send(data)
+    })
+}

@@ -1,10 +1,26 @@
+<h5 *ngIf="works" class="col fw-bold mt-5">
+  Works
+</h5>
+<div class="row mb-3">
+  <div class="col">
+    <button (click)="checkAll()" class="btn btn-secondary btn-sm" type="button"> Select all</button>
+  </div>
+  <div class="col">
+    <button (click)="uncheckAll()" class="btn btn-light btn-sm" type="button">Deselect all</button>
+  </div>
+</div>
 <div class="works">
-  <ul class="list-group">
-    <li class="list-group-item" *ngFor="let work of works" (click)="onSelect(work)">
-      <span class="work">
-        {{work.title}}
-      </span>
-    </li>
+  <ul #workList class="list-group">
+    <ng-container *ngFor="let work of works">
+      <div *ngIf="currentAuthorsFilter.includes(work.authorId) && currentOccurFilter.includes(work.id)  || currentOccurFilter.length===0 && currentAuthorsFilter.includes(work.authorId) || currentOccurFilter.length===0 && currentAuthorsFilter.length==0">
+        <li class="list-group-item">
+          <input (change)="changeSelection()" [value]="work.id" class="form-check-input" name='workBox' type="checkbox">
+          <span class="work">
+           {{work.title}} ({{work.id}})
+          </span>
+        </li>
+      </div>
+    </ng-container>
   </ul>
 </div>
 <app-work-detail [work]="selectedWork"></app-work-detail>

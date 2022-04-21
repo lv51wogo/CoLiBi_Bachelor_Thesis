@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {OccurrenceService} from "../occurrence/occurrence.service";
 import {DataService} from "../shared/services/data.service";
+import {OccurrenceAndWorks} from "../shared/models/occurrenceAndWorks";
 
 @Component({
   selector: 'app-occurrence-detail',
@@ -9,30 +10,44 @@ import {DataService} from "../shared/services/data.service";
 })
 export class OccurrenceDetailComponent implements OnInit {
   searchTerm!: string;
-  count!: string;
-  countAll!: any[];
+  searchType!: string;
+  occurrencesWithWorkMetadata!: OccurrenceAndWorks[]
+  currentWorkFilter!: string[]
 
   constructor(private occurrenceService: OccurrenceService, private dataService: DataService) {
   }
 
   ngOnInit(): void {
-    this.dataService.currentSearchTerm.subscribe(term =>
-      this.searchTerm = term)
-    console.log(this.searchTerm)
-    this.getCountAll(this.searchTerm)
-    this.getCount(this.searchTerm)
-  }
+    this.dataService.currentSearchType.subscribe(searchType => {
+      this.searchType = searchType;
+    })
 
-  getCountAll(searchTerm: string): void {
-    this.occurrenceService.getCountAllOccurrences(searchTerm).subscribe(x => {
-      this.countAll = x.count
+    this.dataService.currentSearchTerm.subscribe(term => {
+      this.searchTerm = term
+      this.currentWorkFilter = [];
+      this.getAllOccurrencesWithWorkMetadata()
+    })
+
+    this.dataService.currentWorkFilter.subscribe(worksFilter => {
+      this.currentWorkFilter = worksFilter;
     })
   }
 
-  getCount(searchTerm: string): void {
-    this.occurrenceService.getCountOccurrence(searchTerm).subscribe(x => {
-      this.count = x
-    })
+  getAllOccurrencesWithWorkMetadata(): void {
+    if (this.searchType === 'occurrence') {
+      this.occurrenceService.getOccurrencesWithWorkData(this.searchTerm).subscribe(data => {
+        this.occurrencesWithWorkMetadata = data;
+      })
+    }
+    if (this.searchType === 'author') {
+      this.occurrenceService.getOccurrencesWithWorkDataForAuthor(this.searchTerm).subscribe(data => {
+        this.occurrencesWithWorkMetadata = data;
+      })
+    }
+    if (this.searchType === 'work') {
+      this.occurrenceService.getOccurrencesForWorks(this.searchTerm).subscribe(data => {
+        this.occurrencesWithWorkMetadata = data;
+      })
+    }
   }
-
 }

@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    const Authors = require('../JsonData/TestDatenAutor.json')
+    const Authors = require('../JsonData/CompleteAuthor.json')
     let authorArray = []
     Authors.forEach( item => {
       console.log(item)
