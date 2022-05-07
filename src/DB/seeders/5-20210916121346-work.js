@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    const Works = require('../JsonData/CompleteWork.json')
+    const Works = require('../Data/TestDatenWorks.json')
     let worksArray = []
     Works.forEach( item => {
       console.log(item)
