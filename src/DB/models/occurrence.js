@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
         onDelete: 'CASCADE'
       })
     }
-  };
+  }
   Occurrence.init({
     occId: {
       type: DataTypes.INTEGER,

@@ -69,7 +69,7 @@ exports.countOfOccurrence = (req, res) => {
         res.send(data)
     }).catch(error => {
         res.status(500).send({
-            message: "Error retrieving count of occurrence per work"
+            message: "Error retrieving count of occurrence per author"
         });
     });
 }
