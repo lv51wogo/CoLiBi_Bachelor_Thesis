@@ -16,7 +16,7 @@ export class SearchComponent implements OnInit {
   author = "author";
   categoryModel: any;
   fromValue = '1705';
-  toValue = '1996';
+  toValue = '1969';
 
   constructor(private searchService: SearchService, private dataService: DataService) {
   }
