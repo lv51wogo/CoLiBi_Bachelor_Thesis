@@ -14,19 +14,17 @@ export class SearchComponent implements OnInit {
   occurrence = "occurrence";
   work = "work";
   author = "author";
-  categoryModel: any;
+  categoryModel = "occurrence";
   fromValue = '1705';
   toValue = '1969';
 
   constructor(private searchService: SearchService, private dataService: DataService) {
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   change(val: any) {
-    this.categoryModel = val;
-  }
+    this.categoryModel = val;}
 
   search(term: string): void {
 
