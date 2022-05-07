@@ -34,7 +34,18 @@ To generate a new Seed use: seed:generate --name 'modelName'
 
 To seed the database with date run:  db:seed:all
 
-Seed single File:  db:seed --seed -fileName
+Seed single File:  db:seed -
+
+Troubleshooting:
+
+*This some times occurs when seeding the occurrences*
+
+If there are problems with running seeding as singe file (example not data in data bse after seeding).
+This can be solved via navigation to src\DB\. Then it is necessary to adjust the config.json in src/DB/config/config.json.
+Change the storage path in development to ./database.sqlite3 to ensure the seed will seed the correct database.
+Afterwards run npx sequelize-cli db:seed --seed fileName in src\DB\. The seeder should run correctly now.
+
+
 
 Undo seeding:
 
