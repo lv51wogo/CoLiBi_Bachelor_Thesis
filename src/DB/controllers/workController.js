@@ -36,7 +36,6 @@ exports.findByOccurrence = (req, res) => {
     const term = req.params.term;
 
     Work.findAll({
-        // add or to also match scientific name
         include: [{
             model: Occurrence, where: {
                 [Op.or]: [

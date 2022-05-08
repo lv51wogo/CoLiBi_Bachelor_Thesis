@@ -25,15 +25,6 @@ export class OccurrenceService {
     );
   }
 
-  /*GET count of all occurrences matching the workId*/
-  getCountAllOccurrencesByWork(searchTerm: string): Observable<CountModel> {
-    const url = `${this.occurrenceUrl}/countAllWork/${searchTerm}`;
-    return this.http.get<CountModel>(url).pipe(
-      tap(_ => this.log(`fetched count for occurrences for workId= ${searchTerm}`)),
-      catchError(this.handleError<CountModel>(`getCountAllWork term ${searchTerm}`))
-    );
-  }
-
   /*GET count total of occurrence matching searchTerm*/
   getCountOccurrence(searchTerm: string): Observable<string> {
     const url = `${this.occurrenceUrl}/count/${searchTerm}`;

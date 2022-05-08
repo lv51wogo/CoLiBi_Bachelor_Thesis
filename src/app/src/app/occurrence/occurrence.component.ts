@@ -76,7 +76,6 @@ export class OccurrenceComponent implements OnInit {
     })
     this.occurJoin = filteredOccurrenceJoin;
     this.dataService.changeOccurrenceFilter(filteredOccurrenceJoin)
-    this.updateChartData()
   }
 
   getChartData(): void {
@@ -107,14 +106,6 @@ export class OccurrenceComponent implements OnInit {
         this.labelsYAxis = this.getTopTwenty(this.countsOfOccurrencesInWorks).map((y: { count: any; }) => y.count);
 
       })
-    }
-  }
-
-  updateChartData() {
-    if (this.searchType === 'work' && this.countsOfOccurrencesInWorks) {
-      const test = this.countsOfOccurrencesInWorks.filter(y => this.selectedOccurrences?.includes(y.term));
-      this.labelsXAxis = this.getTopTwenty(test).map((y: { term: any; }) => y.term);
-      this.labelsYAxis = this.getTopTwenty(test).map((y: { count: any; }) => y.count);
     }
   }
 
