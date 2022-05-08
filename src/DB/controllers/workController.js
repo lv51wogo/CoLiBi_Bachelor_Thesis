@@ -46,7 +46,12 @@ exports.findByOccurrence = (req, res) => {
         }]
     }).then(data => {
         res.send(data)
-    })
+    }).catch(err => {
+        res.status(500).send({
+            message:
+                err.message || "Error occurred while retrieving works."
+        });
+    });
 };
 
 exports.findByAuthor = (req, res) => {
