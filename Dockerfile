@@ -8,7 +8,5 @@ FROM node:16 AS server-build
 WORKDIR /root
 COPY ./ ./
 COPY --from=ui-build usr/app/src/app/dist ./src/app/dist
-# COPY package*.json ./
 RUN npm install 
-# COPY server.js .
 CMD ["node", "server.js"]
