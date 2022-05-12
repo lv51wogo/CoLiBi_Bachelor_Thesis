@@ -80,10 +80,11 @@ To work with or run the angular application navigate to the path: \CoLiBi_Bachel
 All Components can be found in: src/app/src/app
 
 # Production Mode
-* app serving on [Port 8080](https://localhost:8080/)
+* app serving on [Port 8080](https://localhost:8080/), just run
 ```sh
-node server.js
+$ node server.js
 ```
+* or use Docker
 ## Docker
 ```sh
   $ docker build . -t colibri
