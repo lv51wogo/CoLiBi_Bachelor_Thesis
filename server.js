@@ -62,5 +62,5 @@ https.createServer({
   key: fs.readFileSync('server.key'),
   cert: fs.readFileSync('server.cert')
 }, app).listen(PORT, () => {
-  console.log('Listening...')
+  console.log('Listening on port 8080...')
 })
