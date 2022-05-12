@@ -4,8 +4,9 @@ This is a repo for my bachelor thesis project
 # Project Setup
 
 * Prerequisite openssl, node.js 
+* to initialize all dependencies run
 ```sh
-$ npm install  to initialize all dependencies 
+$ npm install
 ```
 
 ## Certificate Setup
