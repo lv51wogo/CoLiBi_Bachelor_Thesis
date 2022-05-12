@@ -1,8 +1,3 @@
-#### HOW TO RUN ############
-# docker build . -t colibri
-# docker run  -p  8080:8080 --name colibri-ui colibri:latest
-
-
 FROM node:16 AS ui-build
 COPY ./ /usr/app  
 WORKDIR /usr/app

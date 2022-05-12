@@ -70,4 +70,6 @@ All Components can be found in: src/app/src/app
 
 
 ## Dockerized
-* App running on 8080
+* docker build . -t colibri
+* docker run  -p  8080:8080 --name colibri-ui colibri:latest
+
