@@ -73,3 +73,7 @@ All Components can be found in: src/app/src/app
 * docker build . -t colibri
 * docker run  -p  8080:8080 --name colibri-ui colibri:latest
 
+## Certificate
+* Prerequisite openssl
+* run ***openssl req -nodes -new -x509 -keyout server.key -out server.cert*** to create self signed key and certificate 
+* add certificates to your favorite browser and accept the risk

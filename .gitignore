@@ -108,3 +108,7 @@ dist
 
 #DB
 src/DB/database.sqlite3
+
+# self signed Certificate
+server.key
+server.cert

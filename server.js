@@ -2,12 +2,22 @@
 const express = require("express");
 const cors = require("cors");
 const users = [];
-const app = express();
 const bodyParser = require("body-parser");
+var https = require('https');
+var fs = require('fs');
 
 var corsOptions = {
     origin: "http://localhost:4200"
 };
+
+var options = {
+    key: fs.readFileSync('server.key'),
+    cert: fs.readFileSync('server.cert')
+  };
+
+
+const app = express();
+
 
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
@@ -46,8 +56,25 @@ require("./src/DB/routes/work.routes.js")(app);
 require("./src/DB/routes/search.routes.js")(app);
 require("./src/DB/routes/occurrence.routes")(app)
 
+
+
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}.`);
-});
+https.createServer({
+  key: fs.readFileSync('server.key'),
+  cert: fs.readFileSync('server.cert')
+}, app).listen(PORT, () => {
+  console.log('Listening...')
+})
+// app.listen(PORT, () => {
+//     console.log(`Server is running on port ${PORT}.`);
+// });
+
+
+
+// https.createServer({
+//     key: fs.readFileSync('server.key'),
+//     cert: fs.readFileSync('server.cert')
+//   }, app).listen(8080, () => {
+//     console.log('Listening...')
+//   })
