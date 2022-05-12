@@ -67,3 +67,7 @@ All information can be found in the src/app folder
 To work with or run the angular application navigate to the path: \CoLiBi_Bachelor_Thesis\src\app
 
 All Components can be found in: src/app/src/app
+
+
+## Dockerized
+* App running on 8080

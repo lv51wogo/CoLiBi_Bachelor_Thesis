@@ -10,6 +10,9 @@ var corsOptions = {
 
 app.use(cors(corsOptions));
 
+// get angular app content
+app.use(express.static("./src/app/dist/app"));
+
 // parse requests of content-type - application/json
 app.use(express.json());
 
