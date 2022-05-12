@@ -21,8 +21,6 @@ const app = express();
 
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
-// get angular app content
-// app.use(express.static("./src/app/dist/app"));
 app.use(express.static(process.cwd()+"/src/app/dist/app"));
 
 app.get('/api/users', (req, res) => {
@@ -58,7 +56,7 @@ require("./src/DB/routes/occurrence.routes")(app)
 
 
 
-// set port, listen for requests
+// set port, listen for requests using https
 const PORT = process.env.PORT || 8080;
 https.createServer({
   key: fs.readFileSync('server.key'),
@@ -66,15 +64,3 @@ https.createServer({
 }, app).listen(PORT, () => {
   console.log('Listening...')
 })
-// app.listen(PORT, () => {
-//     console.log(`Server is running on port ${PORT}.`);
-// });
-
-
-
-// https.createServer({
-//     key: fs.readFileSync('server.key'),
-//     cert: fs.readFileSync('server.cert')
-//   }, app).listen(8080, () => {
-//     console.log('Listening...')
-//   })
