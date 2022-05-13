@@ -55,8 +55,6 @@ export class AuthorComponent implements OnInit {
     this.selectedAuthors = [];
     this.authorList.nativeElement.querySelectorAll('input:checked').forEach((element: Element) => {
       // @ts-ignore
-      console.log(element.value)
-      // @ts-ignore
       this.selectedAuthors.push(element.value)
     })
     this.dataService.changeAuthorFilter(this.selectedAuthors)

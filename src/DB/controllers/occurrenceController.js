@@ -117,7 +117,12 @@ exports.findWorksForOccurrences = (req, res) => {
         }
     }).then(data => {
         res.send(data)
-    })
+    }).catch(err => {
+        res.sendStatus(500).send({
+            message:
+                err.message || "Error occurred while fetching works and count of : " + term
+        })
+    });
 };
 
 exports.findWorksOccurrencesForAuthor = (req, res) => {
@@ -132,7 +137,12 @@ exports.findWorksOccurrencesForAuthor = (req, res) => {
         }],
     }).then(data => {
         res.send(data)
-    })
+    }).catch(err => {
+        res.sendStatus(500).send({
+            message:
+                err.message || "Error occurred while fetching works and count of occurs for : " + term
+        })
+    });
 }
 
 exports.findOccurrencesForWorks = (req, res) => {
@@ -148,7 +158,12 @@ exports.findOccurrencesForWorks = (req, res) => {
         }]
     }).then(data => {
         res.send(data)
-    })
+    }).catch(err => {
+        res.sendStatus(500).send({
+            message:
+                err.message || "Error occurred while fetching occurs for work : " + term
+        })
+    });
 }
 
 exports.findByAuthor = (req, res) => {
@@ -164,5 +179,10 @@ exports.findByAuthor = (req, res) => {
 
     }).then(data => {
         res.send(data)
-    })
+    }).catch(err => {
+        res.sendStatus(500).send({
+            message:
+                err.message || "Error occurred while fetching occur for author : " + term
+        })
+    });
 }
