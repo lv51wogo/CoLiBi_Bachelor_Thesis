@@ -7,9 +7,7 @@ RUN apt-get -y install git nodejs npm --no-install-recommends  && rm -rf /var/li
 # RUN git clone https://github.com/lv51wogo/CoLiBi_Bachelor_Thesis.git
 COPY ./ /usr/app  
 WORKDIR /usr/app
-# RUN npm install @angular/cli
 RUN npm install
+RUN npm run sequelize db:migrate && npm run sequelize db:seed:all
 RUN cd src/app && npm install @angular/cli && npm run build && node_modules/.bin/ng build --configuration production
-
-RUN npm run sequelize db:migrate
 CMD ["node", "server.js"]
