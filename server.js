@@ -16,9 +16,14 @@ app.use(express.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
+
+app.use(express.static(process.cwd()+"/src/app/dist/app"));
+
+
 // simple route
 app.get("/", (req, res) => {
     res.json({ message: "Welcome to the CoLiBi application." });
+    res.sendFile(process.cwd()+"/src/app/dist/app");
 });
 
 require("./src/DB/routes/genre.routes.js")(app);
