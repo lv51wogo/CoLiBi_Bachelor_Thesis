@@ -8,6 +8,7 @@ RUN apt-get -y install git nodejs npm --no-install-recommends  && rm -rf /var/li
 COPY ./ /usr/app  
 WORKDIR /usr/app
 RUN npm install
-RUN npm run sequelize db:migrate && npm run sequelize db:seed:all
+RUN npm run sequelize db:migrate
+RUN npm run sequelize db:seed:all
 RUN cd src/app && npm install @angular/cli && npm run build && node_modules/.bin/ng build --configuration production
 CMD ["node", "server.js"]
