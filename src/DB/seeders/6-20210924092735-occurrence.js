@@ -1,11 +1,13 @@
 'use strict';
 const csv = require('csv-parser')
 const fs = require('fs')
+const path = require('path');
+const occPath = path.join(__dirname, '../Data/TestDataOccurrence.csv');
 const results = [];
 
 module.exports = {
     up: async (queryInterface, Sequelize) => {
-        fs.createReadStream('../DB/Data/TestDataOccurrence.csv')
+        fs.createReadStream(occPath)
             .pipe(csv({ separator: ';' }))
             .on('data',  (data) => results.push(
               {
