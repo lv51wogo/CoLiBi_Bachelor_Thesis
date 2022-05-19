@@ -2,9 +2,20 @@
 This is a repo for my bachelor thesis project 
 
 # Project Setup
-Make sure node.js is installed on your device
 
-run:  -npm install  to initialize all dependencies 
+* Prerequisite openssl, node.js 
+* to initialize all dependencies run
+```sh
+$ npm install
+```
+
+## Certificate Setup
+* create self signed key and certificate
+```sh
+$ openssl req -nodes -new -x509 -keyout server.key -out server.cert
+``` 
+* add certificates to your favorite browser and accept the risk
+
 
 ## Database and Database-migration 
 This projects runs on a SQLite database managed with the Sequelize CLI
@@ -67,3 +78,17 @@ All information can be found in the src/app folder
 To work with or run the angular application navigate to the path: \CoLiBi_Bachelor_Thesis\src\app
 
 All Components can be found in: src/app/src/app
+
+# Production Mode
+* app serving on [Port 8080](https://localhost:8080/), just run
+```sh
+$ node server.js
+```
+* or use Docker
+## Docker
+requires certificate setup
+```sh
+  $ docker build . -t colibri
+  $ docker run  -p  8080:8080 --name colibri-ui colibri:latest
+  $ docker stop colibri-ui
+  ```

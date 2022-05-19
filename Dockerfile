@@ -2,7 +2,7 @@ FROM ubuntu:latest
 ENV TZ=Europe/Berlin
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN apt-get update
-RUN apt-get -y install git nodejs npm --no-install-recommends  && rm -rf /var/lib/apt/lists/* 
+RUN apt-get -y install git openssl nodejs npm --no-install-recommends  && rm -rf /var/lib/apt/lists/* 
 ### funktioniert nur wenn meine server.js Änderungen im Repo vorhanden sind, deshalb auskommentiert, bei änderung workdir anpassen
 # RUN git clone https://github.com/lv51wogo/CoLiBi_Bachelor_Thesis.git
 COPY ./ /usr/app  
