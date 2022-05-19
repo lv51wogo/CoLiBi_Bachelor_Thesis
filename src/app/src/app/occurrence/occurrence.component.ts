@@ -109,9 +109,9 @@ export class OccurrenceComponent implements OnInit {
     }
   }
 
-  private getTopTwenty(test: any[] | undefined) {
+  private getTopTwenty(occurs: any[] | undefined) {
     // @ts-ignore
-    return test.sort(function (a: { count: number; }, b: { count: number; }) {
+    return occurs.sort(function (a: { count: number; }, b: { count: number; }) {
 
       if (a.count > b.count) return -1;
 
