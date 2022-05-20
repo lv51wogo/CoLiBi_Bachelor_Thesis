@@ -92,3 +92,10 @@ requires certificate setup
   $ docker run  -p  8080:8080 --name colibri-ui colibri:latest
   $ docker stop colibri-ui
   ```
+
+bzw. für server 
+```sh
+  $ sudo docker build . -t colibri
+  $ sudo docker run --rm -it  -p  0.0.0.0:5100:8080 --name colibri-ui colibri:latest
+  $ sudo docker stop colibri-ui
+  ```
