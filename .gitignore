@@ -107,7 +107,7 @@ dist
 .idea
 
 #DB
-src/DB/database.sqlite3
+#src/DB/database.sqlite3
 
 # self signed Certificate
 server.key
