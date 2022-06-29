@@ -86,7 +86,7 @@ $ node server.js
 ```
 * or use Docker
 ## Docker
-requires certificate setup
+requires DB as database.sqlite3 in main directory, (certificate setup)
 ```sh
   $ docker build . -t colibri
   $ docker run  -p  8080:8080 --name colibri-ui colibri:latest
